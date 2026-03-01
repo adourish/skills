@@ -5,6 +5,85 @@
 
 ---
 
+## User Commands Workflow Diagram
+
+```mermaid
+graph TB
+    USER[👤 User]
+    
+    USER --> DAILY[Daily Commands]
+    USER --> INTEG[Integration Commands]
+    USER --> DEV[Development Commands]
+    USER --> FILE[File Commands]
+    USER --> DOC[Documentation Commands]
+    USER --> SYS[System Commands]
+    
+    %% Daily Workflow
+    DAILY --> PN["process_new<br/>Complete daily planning"]
+    DAILY --> PD["Process Downloads<br/>File new items"]
+    DAILY --> PE["Process Emails<br/>Extract tasks"]
+    
+    PN --> PNOUT["📋 Todoist tasks<br/>📝 Amplenote plan<br/>📊 JSON output"]
+    PD --> PARA["📁 PARA filing"]
+    PE --> TASKS["✅ Tasks created"]
+    
+    %% Integration
+    INTEG --> RAMP["Refresh Amplenote<br/>Token renewal"]
+    INTEG --> AUTH["Authenticate All<br/>Re-auth services"]
+    INTEG --> QTODO["Query Todoist<br/>Search tasks"]
+    INTEG --> QAMP["Query Amplenote<br/>Search notes"]
+    
+    %% Development
+    DEV --> SFDC["Salesforce<br/>Open org, pull/push"]
+    DEV --> GIT["Git<br/>Status, commit, push"]
+    
+    SFDC --> SFOUT["🔧 Apex/LWC code"]
+    GIT --> GITOUT["📦 Version control"]
+    
+    %% File Organization
+    FILE --> PROJ["Move to Projects<br/>Active work"]
+    FILE --> AREA["Move to Areas<br/>Responsibilities"]
+    FILE --> RES["Move to Resources<br/>Reference"]
+    FILE --> ARCH["Move to Archive<br/>Completed"]
+    FILE --> CINBOX["Check Inbox<br/>List files"]
+    FILE --> CDL["Check Downloads<br/>Recent files"]
+    
+    %% Documentation
+    DOC --> MERM["Create Mermaid<br/>Convert to Visio"]
+    
+    %% System
+    SYS --> RR["View Routing Rules<br/>Where things go"]
+    SYS --> CRED["Check Credentials<br/>Verify config"]
+    SYS --> MCP["Run MCP Server<br/>Windsurf integration"]
+    
+    %% Styling
+    style USER fill:#4fc3f7,stroke:#0277bd,stroke-width:3px,color:#000
+    
+    style DAILY fill:#fff176,stroke:#f57f17,stroke-width:2px
+    style INTEG fill:#ce93d8,stroke:#4a148c,stroke-width:2px
+    style DEV fill:#81c784,stroke:#1b5e20,stroke-width:2px
+    style FILE fill:#ffb74d,stroke:#e65100,stroke-width:2px
+    style DOC fill:#f48fb1,stroke:#880e4f,stroke-width:2px
+    style SYS fill:#fff59d,stroke:#f57f17,stroke-width:2px
+    
+    style PN fill:#ffd54f,stroke:#f57f17,stroke-width:3px
+    style PD fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style PE fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    
+    style SFDC fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
+    style GIT fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
+```
+
+**Command Categories:**
+- 🟡 **Daily** - Most frequently used (daily/weekly)
+- 🟣 **Integration** - API and service management
+- 🟢 **Development** - Code and version control
+- 🟠 **File** - PARA method organization
+- 🔴 **Documentation** - Diagram creation
+- 🟡 **System** - Configuration and setup
+
+---
+
 ## Overview
 
 This skill provides a quick command reference for frequently used workflows. Instead of searching through detailed skill documentation, use this for instant access to the most common commands.

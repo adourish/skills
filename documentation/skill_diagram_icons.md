@@ -6,9 +6,35 @@ Complete icon library and visual element guide for creating professional, access
 
 ## Overview
 
-This skill provides a comprehensive icon library and visual element guide for diagram creation. All icons are Unicode-based for universal compatibility and meet Section 508 accessibility standards when combined with text labels.
+This skill provides a comprehensive icon library and visual element guide for diagram creation. All icons listed in this skill are **Unicode emoji and symbols** that are freely available and require no licensing.
 
-**Based on:** HRSA Visio 508 Compliant Template V1.0 icon packs
+**Important:** This skill uses Unicode characters (emoji), NOT Flaticon or other commercial icon libraries. All icons are part of the Unicode standard and are free to use without attribution requirements.
+
+**Based on:** HRSA Visio 508 Compliant Template V1.0 accessibility standards (color palette and structure only)
+
+---
+
+## Licensing and Attribution
+
+### Unicode Icons (Used in This Skill)
+
+**All icons in this skill are Unicode emoji/symbols:**
+- ✅ **Free to use** - No licensing required
+- ✅ **No attribution needed** - Part of Unicode standard
+- ✅ **Universal compatibility** - Works in all modern systems
+- ✅ **Accessible** - Screen reader compatible
+
+**Unicode Standard:** https://unicode.org/emoji/charts/full-emoji-list.html
+
+### Flaticon and Commercial Icons (NOT Used Here)
+
+**If you choose to use Flaticon or other commercial icons:**
+- ⚠️ **Attribution required** - Must credit the author
+- ⚠️ **License restrictions** - Check Free vs Premium license
+- ⚠️ **Flaticon Free License** requires: "Icon by [Author Name] from www.flaticon.com"
+- ⚠️ **Flaticon Premium License** - No attribution required but paid subscription needed
+
+**This skill does NOT use Flaticon icons.** All icons are Unicode characters that are freely available without licensing restrictions.
 
 ---
 
@@ -547,13 +573,48 @@ graph TB
 
 ---
 
+## Important Notes
+
+### About HRSA Template
+
+**What we used from HRSA Visio 508 Compliant Template V1.0:**
+- ✅ Section 508 accessibility standards
+- ✅ Color palette guidelines
+- ✅ Diagram structure best practices
+- ✅ Accessibility compliance requirements
+
+**What we did NOT use:**
+- ❌ Flaticon icons (if any were in the template)
+- ❌ Commercial icon libraries
+- ❌ Proprietary graphics
+
+**All icons in this skill are Unicode emoji** selected to match the accessibility and visual clarity standards established by the HRSA template.
+
+### If You Need Commercial Icons
+
+**For Flaticon icons:**
+1. Visit https://www.flaticon.com
+2. Download icons with appropriate license
+3. Add attribution: "Icon by [Author] from www.flaticon.com"
+4. Check license restrictions for commercial use
+
+**For other icon libraries:**
+- Font Awesome: https://fontawesome.com (Free & Pro versions)
+- Material Icons: https://fonts.google.com/icons (Apache 2.0 license)
+- Heroicons: https://heroicons.com (MIT license)
+- Bootstrap Icons: https://icons.getbootstrap.com (MIT license)
+
+---
+
 ## Changelog
 
-- **2026-03-01:** Created diagram icons skill based on HRSA template icon packs
+- **2026-03-01:** Created diagram icons skill with Unicode emoji library
+- **2026-03-01:** Added licensing clarification and attribution guidelines
 
 ---
 
 **Location:** `G:\My Drive\06_Skills\documentation\skill_diagram_icons.md`  
 **Category:** Documentation  
 **Difficulty:** Beginner  
-**Source:** HRSA Visio 508 Compliant Template V1.0
+**Icons:** Unicode Standard (free, no attribution required)  
+**Accessibility Standards:** Based on HRSA Visio 508 Compliant Template V1.0

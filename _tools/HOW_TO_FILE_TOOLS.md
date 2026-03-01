@@ -161,11 +161,13 @@ integrations/
 
 **Current tools:**
 - `diagram-tools/mermaid_to_visio.py` - Convert Mermaid to Visio
+- `document-processing/` - DOCX, PPTX, PDF, XLSX creation and editing
 
 **Structure:**
 ```
 documentation/
 ├── diagram-tools/
+├── document-processing/
 ├── report-generators/
 └── template-tools/
 ```
@@ -290,7 +292,25 @@ Environment variables or config files needed.
 
 ---
 
-### Example 2: Mermaid to Visio Converter
+### Example 2: Document Processing Skills
+
+**Question:** Where do DOCX/PPTX/PDF/XLSX skills go?
+
+**Analysis:**
+- **Purpose:** Create, edit, and analyze office documents
+- **Frequency:** As needed for documentation
+- **Integration:** Standalone libraries (python-docx, pypdf, openpyxl)
+- **Output:** Documents, reports, presentations
+
+**Answer:** `documentation/document-processing/`
+- Creates documentation
+- Converts formats
+- Documentation workflow
+- Not part of daily automation
+
+---
+
+### Example 3: Mermaid to Visio Converter
 
 **Question:** Where does `mermaid_to_visio.py` go?
 

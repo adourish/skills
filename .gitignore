@@ -29,13 +29,16 @@ Thumbs.db
 
 # Output files
 output/
-*.json
 daily_plans/
 
 # Credentials (already in separate location)
 credentials.json
 token.json
 environments.json
+
+# Exclude specific JSON files from ignore (allow skills manifest)
+!skills_manifest.json
+!skills_context.json
 
 # Temporary files
 *.tmp

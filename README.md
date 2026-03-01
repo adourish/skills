@@ -112,6 +112,32 @@ graph TB
 
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.
 
+**🤖 AI Integration:** See [SKILLS_CONTEXT.md](SKILLS_CONTEXT.md) for AI-optimized skill reference and [skills_manifest.json](skills_manifest.json) for machine-readable skill index.
+
+---
+
+## AI Integration for Windsurf
+
+**Quick AI Lookup:**
+- **[SKILLS_CONTEXT.md](SKILLS_CONTEXT.md)** - Single source of truth for AI agents
+- **[skills_manifest.json](skills_manifest.json)** - Machine-readable skill index with metadata
+- **[user_commands](system/skill_user_commands.md)** - Quick command reference
+
+**AI-Friendly Features:**
+- Structured JSON manifest with tags, dependencies, and commands
+- Skills context file optimized for AI parsing
+- Quick Start sections with copy-paste commands
+- Common user request patterns mapped to skills
+- Dependency chains and workflow guides
+
+**For AI Agents:**
+```
+User says: "Help me plan my day"
+→ Use: daily_planning
+→ Command: python run_process_new.py
+→ Output: Todoist tasks, Amplenote note, JSON file
+```
+
 ---
 
 ## Category Diagrams

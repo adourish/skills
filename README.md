@@ -106,6 +106,168 @@ graph TB
 
 ---
 
+## Category Diagrams
+
+### 🤖 Automation Skills Workflow
+
+```mermaid
+graph LR
+    PN[process_new ⭐] --> DP[daily_planning ⭐]
+    PN --> EP[email_processing]
+    PN --> FO[file_organization ⭐]
+    
+    DP --> AMP[Amplenote]
+    DP --> TODO[Todoist]
+    EP --> GMAIL[Gmail API]
+    FO --> PARA[PARA Method]
+    
+    BA[browser_automation] --> WEB[Web Scraping]
+    PS[powershell_automation] --> SCRIPTS[Scripts]
+    TD[torrent_downloads] --> DL[Downloads]
+    AR[archive_parts_recovery] --> FILES[File Recovery]
+    
+    style PN fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
+    style DP fill:#ffd54f,stroke:#f57f17,stroke-width:3px
+    style EP fill:#ffd54f,stroke:#f57f17,stroke-width:2px
+    style FO fill:#ffd54f,stroke:#f57f17,stroke-width:3px
+    style BA fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style PS fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style TD fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style AR fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+```
+
+**Daily Use:** daily_planning, file_organization, process_new  
+**Weekly Use:** email_processing  
+**As-Needed:** browser_automation, powershell_automation, torrent_downloads, archive_parts_recovery
+
+---
+
+### 🔌 Integration Skills Network
+
+```mermaid
+graph TB
+    EC[environments_credentials 🔑] --> AMP[amplenote_api]
+    EC --> TODO[todoist_api]
+    EC --> GMAIL[gmail_automation]
+    EC --> KEEP[keepass_integration]
+    
+    AMP --> RELAY[amplenote_relay_systems]
+    
+    AMP --> NOTES[Notes & Plans]
+    TODO --> TASKS[Task Management]
+    GMAIL --> EMAIL[Email Processing]
+    KEEP --> PASS[Password Storage]
+    RELAY --> AUTO[Advanced Automation]
+    
+    style EC fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
+    style AMP fill:#ce93d8,stroke:#4a148c,stroke-width:3px
+    style TODO fill:#ce93d8,stroke:#4a148c,stroke-width:3px
+    style GMAIL fill:#ce93d8,stroke:#4a148c,stroke-width:3px
+    style KEEP fill:#e1bee7,stroke:#4a148c,stroke-width:2px
+    style RELAY fill:#e1bee7,stroke:#4a148c,stroke-width:2px
+```
+
+**Setup Required:** environments_credentials (must configure first)  
+**Core APIs:** amplenote_api, todoist_api, gmail_automation  
+**Supporting:** keepass_integration, amplenote_relay_systems
+
+---
+
+### 💻 Development Skills Workflow
+
+```mermaid
+graph LR
+    ADO[azure_devops_automation] --> SF[salesforce_development]
+    SF --> GIT[git_version_control]
+    GIT --> SF
+    
+    SF --> FLS[salesforce_fls_automation]
+    SF --> ACT[salesforce_developer_activity_report]
+    
+    EC[environments_credentials] --> SF
+    EC --> ADO
+    
+    SF --> APEX[Apex Code]
+    SF --> LWC[Lightning Web Components]
+    FLS --> SECURITY[Field-Level Security]
+    ACT --> REPORTS[Activity Reports]
+    
+    style SF fill:#81c784,stroke:#1b5e20,stroke-width:3px
+    style GIT fill:#81c784,stroke:#1b5e20,stroke-width:3px
+    style ADO fill:#81c784,stroke:#1b5e20,stroke-width:2px
+    style FLS fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
+    style ACT fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
+    style EC fill:#fff59d,stroke:#f57f17,stroke-width:2px
+```
+
+**Core:** salesforce_development, git_version_control  
+**Automation:** salesforce_fls_automation, azure_devops_automation  
+**Reporting:** salesforce_developer_activity_report
+
+---
+
+### 📝 Documentation Skills Pipeline
+
+```mermaid
+graph LR
+    MD[mermaid_diagrams] --> VVM[visio_via_mermaid]
+    VVM --> V508[visio_section_508]
+    
+    V508 --> VGL[visio_grant_lifecycle_diagram]
+    V508 --> QIF[qif_dndd_fillable_forms_visio_spec]
+    
+    TEG[teg_discussion_templates] --> FD[feature_documentation]
+    TEGA[teg_discussion_template_alt] --> FD
+    MD --> FD
+    
+    style MD fill:#f48fb1,stroke:#880e4f,stroke-width:3px
+    style VVM fill:#f48fb1,stroke:#880e4f,stroke-width:3px
+    style V508 fill:#f48fb1,stroke:#880e4f,stroke-width:3px
+    style TEG fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
+    style TEGA fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
+    style FD fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
+    style VGL fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
+    style QIF fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
+```
+
+**Diagram Creation:** mermaid_diagrams → visio_via_mermaid → visio_section_508  
+**Templates:** teg_discussion_templates, feature_documentation  
+**Specialized:** visio_grant_lifecycle_diagram, qif_dndd_fillable_forms_visio_spec
+
+---
+
+### ⚙️ System Configuration Flow
+
+```mermaid
+graph TD
+    EC[environments_credentials 🔑] --> RR[routing_rules]
+    EC --> MCP[mcp_server_setup]
+    
+    RR --> PN[process_new]
+    MCP --> PN
+    
+    CW[cascade_workflow] --> AH[agent_handoff]
+    OS[organizing_skills] --> CW
+    
+    PN --> DAILY[Daily Automation]
+    CW --> AI[AI Workflows]
+    AH --> CONTEXT[Context Sharing]
+    
+    style EC fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
+    style RR fill:#fff176,stroke:#f57f17,stroke-width:3px
+    style PN fill:#fff176,stroke:#f57f17,stroke-width:3px
+    style MCP fill:#fff59d,stroke:#f57f17,stroke-width:2px
+    style CW fill:#fff59d,stroke:#f57f17,stroke-width:2px
+    style AH fill:#fff59d,stroke:#f57f17,stroke-width:2px
+    style OS fill:#fff59d,stroke:#f57f17,stroke-width:2px
+```
+
+**Critical Setup:** environments_credentials, routing_rules  
+**Core Workflow:** process_new, mcp_server_setup  
+**AI Management:** cascade_workflow, agent_handoff, organizing_skills
+
+---
+
 ## Categories
 
 ### 🤖 Automation

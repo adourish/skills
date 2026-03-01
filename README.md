@@ -1,8 +1,16 @@
 # Skills
 
+**One repository to train your AI coding assistants in the ways of excellence.**
+
+Master Section 508 accessibility, Salesforce development, professional diagramming, comprehensive documentation, and more. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
+
+**51 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
+
+---
+
 AI agent skills organized by category. Each skill provides detailed instructions for specific workflows and integrations.
 
-**🚀 New to this repository?** See [QUICKSTART.md](QUICKSTART.md) for a complete guide on using these skills in Windsurf Cascade and Claude Code.
+**🚀 New to this repository?** See [QUICKSTART.md](QUICKSTART.md) for a complete guide on using these skills in Windsurf Cascade, Claude Code, and Devin AI.
 
 ## Skills Organization Diagram
 

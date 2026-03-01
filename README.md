@@ -6,13 +6,18 @@ AI agent skills organized by category. Each skill provides detailed instructions
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>36 AI Skills<br/>5 Categories"]
+    Root["📁 06_Skills<br/>48 AI Skills<br/>6 Categories"]
     
+    Root --> Tools["🛠️ TOOLS<br/>2 Skills<br/>Skill Development"]
     Root --> Automation["🤖 AUTOMATION<br/>7 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>5 Skills<br/>Dev Tools"]
-    Root --> Documentation["📝 DOCUMENTATION<br/>10 Skills<br/>Templates & Diagrams"]
+    Root --> Development["💻 DEVELOPMENT<br/>6 Skills<br/>Dev Tools"]
+    Root --> Documentation["📝 DOCUMENTATION<br/>19 Skills<br/>Templates & Diagrams"]
     Root --> System["⚙️ SYSTEM<br/>9 Skills<br/>Core Configuration"]
+    
+    %% Tools Skills
+    Tools --> T1["skill_creator ⭐<br/>Create new skills"]
+    Tools --> T2["file_tools_guide<br/>Tool organization"]
     
     %% Automation Skills
     Automation --> A1["daily_planning ⭐<br/>Kanban board generation"]
@@ -36,6 +41,7 @@ graph TB
     Development --> D3["salesforce_developer_activity_report<br/>Activity tracking"]
     Development --> D4["git_version_control<br/>Git workflows"]
     Development --> D5["azure_devops_automation<br/>ADO work items"]
+    Development --> D6["mcp_builder ⭐<br/>Build MCP servers"]
     
     %% Documentation Skills
     Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
@@ -48,6 +54,15 @@ graph TB
     Documentation --> Doc8["feature_documentation<br/>Doc standards"]
     Documentation --> Doc9["qif_dndd_fillable_forms_visio_spec<br/>QIF forms"]
     Documentation --> Doc10["teg_discussion_template_alt<br/>Alt TEG template"]
+    Documentation --> Doc11["diagram_tools ⭐<br/>Mermaid to Visio tool"]
+    Documentation --> Doc12["doc_coauthoring ⭐<br/>Collaborative writing"]
+    Documentation --> Doc13["internal_comms<br/>Announcements & updates"]
+    Documentation --> Doc14["docx_processing<br/>Word documents"]
+    Documentation --> Doc15["pptx_processing<br/>PowerPoint"]
+    Documentation --> Doc16["pdf_processing<br/>PDF files"]
+    Documentation --> Doc17["xlsx_processing<br/>Excel spreadsheets"]
+    Documentation --> Doc18["document_processing ⭐<br/>All Office docs"]
+    Documentation --> Doc19["media_filing_guide<br/>Media organization"]
     
     %% System Skills
     System --> S1["user_commands ⭐<br/>Quick command reference"]
@@ -62,11 +77,15 @@ graph TB
     
     %% Styling
     style Root fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+    style Tools fill:#e0f2f1,stroke:#004d40,stroke-width:2px
     style Automation fill:#fff3e0,stroke:#e65100,stroke-width:2px
     style Integrations fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     style Development fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     style Documentation fill:#fce4ec,stroke:#880e4f,stroke-width:2px
     style System fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    
+    style T1 fill:#b2dfdb,stroke:#004d40
+    style T2 fill:#b2dfdb,stroke:#004d40
     
     style A1 fill:#ffe0b2,stroke:#e65100
     style A2 fill:#ffe0b2,stroke:#e65100

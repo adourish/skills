@@ -337,6 +337,707 @@ Light: fill:#e1f5fe,stroke:#0d47a1,stroke-width:2px,color:#000000
 
 ---
 
+## Real-World Examples
+
+### Example 1: Software Development Workflow
+
+```mermaid
+graph LR
+    Start([Start Development]) --> Plan[Planning Phase]
+    Plan --> Design[Design Phase]
+    Design --> Dev[Development]
+    Dev --> Test[Testing]
+    Test --> Review{Code Review}
+    Review -->|Approved| Deploy[Deploy to Prod]
+    Review -->|Changes Needed| Dev
+    Deploy --> Monitor[Monitoring]
+    Monitor --> End([Complete])
+    
+    style Start fill:#0d47a1,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Plan fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Design fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Dev fill:#e65100,stroke:#ffffff,color:#ffffff
+    style Test fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style Review fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Deploy fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Monitor fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style End fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
+```
+
+**Color Choices:**
+- **Navy Blue** (#0d47a1): Start/End points - Primary milestones
+- **Dark Teal** (#00695c): Planning/Design - Information gathering
+- **Dark Orange** (#e65100): Development - Active work
+- **Deep Purple** (#6a1b9a): Testing - Quality assurance
+- **Amber** (#f57f17): Decision point - Review required
+- **Forest Green** (#1b5e20): Deployment - Success state
+- **Dark Green** (#2e7d32): Monitoring - Ongoing process
+
+---
+
+### Example 2: System Architecture Diagram
+
+```mermaid
+graph TB
+    User[User Interface<br/>Web Browser] --> LB[Load Balancer]
+    LB --> App1[App Server 1]
+    LB --> App2[App Server 2]
+    LB --> App3[App Server 3]
+    
+    App1 --> Cache[Redis Cache]
+    App2 --> Cache
+    App3 --> Cache
+    
+    App1 --> DB[(Primary Database)]
+    App2 --> DB
+    App3 --> DB
+    
+    DB --> Replica[(Read Replica)]
+    
+    App1 --> Queue[Message Queue]
+    App2 --> Queue
+    App3 --> Queue
+    
+    Queue --> Worker1[Background Worker 1]
+    Queue --> Worker2[Background Worker 2]
+    
+    Worker1 --> Storage[(File Storage)]
+    Worker2 --> Storage
+    
+    style User fill:#0d47a1,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style LB fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style App1 fill:#00695c,stroke:#ffffff,color:#ffffff
+    style App2 fill:#00695c,stroke:#ffffff,color:#ffffff
+    style App3 fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Cache fill:#e65100,stroke:#ffffff,color:#ffffff
+    style DB fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Replica fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Queue fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style Worker1 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style Worker2 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style Storage fill:#2e7d32,stroke:#ffffff,stroke-width:2px,color:#ffffff
+```
+
+**Color Choices:**
+- **Navy Blue** (#0d47a1): User interface - Entry point
+- **Deep Purple** (#6a1b9a): Load balancer - Traffic distribution
+- **Dark Teal** (#00695c): Application servers - Core processing
+- **Dark Orange** (#e65100): Cache - Performance layer
+- **Burgundy** (#880e4f): Primary database - Critical data
+- **Dark Magenta** (#ad1457): Read replica - Secondary data
+- **Amber** (#f57f17): Message queue - Async processing
+- **Forest/Dark Green** (#1b5e20, #2e7d32): Workers & storage - Background tasks
+
+---
+
+### Example 3: Decision Tree with Status Indicators
+
+```mermaid
+graph TB
+    Start([Request Received]) --> Auth{Authenticated?}
+    Auth -->|Yes| Perm{Has Permission?}
+    Auth -->|No| Deny1[❌ Access Denied<br/>401 Unauthorized]
+    
+    Perm -->|Yes| Valid{Valid Input?}
+    Perm -->|No| Deny2[❌ Access Denied<br/>403 Forbidden]
+    
+    Valid -->|Yes| Process[⚙️ Process Request]
+    Valid -->|No| Error1[⚠️ Validation Error<br/>400 Bad Request]
+    
+    Process --> DB{Database<br/>Available?}
+    DB -->|Yes| Success[✅ Success<br/>200 OK]
+    DB -->|No| Error2[❌ Service Error<br/>503 Unavailable]
+    
+    Success --> Log[ℹ️ Log Transaction]
+    Error1 --> Log
+    Error2 --> Log
+    Deny1 --> Log
+    Deny2 --> Log
+    
+    Log --> End([Complete])
+    
+    style Start fill:#0d47a1,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Auth fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Perm fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Valid fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style DB fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Process fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Success fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Error1 fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Error2 fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Deny1 fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Deny2 fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Log fill:#00695c,stroke:#ffffff,color:#ffffff
+    style End fill:#0d47a1,stroke:#ffffff,stroke-width:2px,color:#ffffff
+```
+
+**Color Choices:**
+- **Navy Blue** (#0d47a1): Start/End - Flow boundaries
+- **Deep Purple** (#6a1b9a): Decision points - Critical choices
+- **Dark Teal** (#00695c): Processing - Active operations
+- **Forest Green** (#1b5e20): Success - Positive outcome
+- **Amber** (#f57f17): Validation errors - Warnings
+- **Burgundy** (#880e4f): Critical errors - Failures
+
+---
+
+### Example 4: Data Pipeline with Stages
+
+```mermaid
+graph LR
+    Source1[(Source DB 1)] --> Extract[Extract Data]
+    Source2[(Source DB 2)] --> Extract
+    Source3[(API Source)] --> Extract
+    
+    Extract --> Transform[Transform & Clean]
+    Transform --> Validate{Data Quality<br/>Check}
+    
+    Validate -->|Pass| Load[Load to Warehouse]
+    Validate -->|Fail| Quarantine[Quarantine Data]
+    
+    Load --> Aggregate[Aggregate & Index]
+    Aggregate --> BI[BI Dashboard]
+    Aggregate --> Reports[Automated Reports]
+    
+    Quarantine --> Review[Manual Review]
+    Review --> Reprocess[Reprocess]
+    Reprocess --> Transform
+    
+    style Source1 fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style Source2 fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style Source3 fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style Extract fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Transform fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Validate fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Load fill:#00695c,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Aggregate fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style BI fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Reports fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Quarantine fill:#bf360c,stroke:#ffffff,color:#ffffff
+    style Review fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Reprocess fill:#e65100,stroke:#ffffff,color:#ffffff
+```
+
+**Color Choices:**
+- **Burgundy** (#880e4f): Data sources - Origin points
+- **Dark Orange** (#e65100): Extract/Reprocess - Data movement
+- **Deep Purple** (#6a1b9a): Transform - Data manipulation
+- **Amber** (#f57f17): Validation - Quality check
+- **Dark Teal** (#00695c): Load - Data storage
+- **Dark Green** (#2e7d32): Aggregation - Processing
+- **Forest Green** (#1b5e20): Outputs - Final deliverables
+- **Deep Orange/Dark Magenta** (#bf360c, #ad1457): Error handling
+
+---
+
+### Example 5: Project Timeline (Gantt Style)
+
+```mermaid
+gantt
+    title Project Implementation Timeline
+    dateFormat YYYY-MM-DD
+    
+    section Planning
+    Requirements Gathering    :done, plan1, 2026-01-01, 2026-01-15
+    Architecture Design        :done, plan2, 2026-01-16, 2026-01-31
+    
+    section Development
+    Backend Development        :active, dev1, 2026-02-01, 2026-03-15
+    Frontend Development       :active, dev2, 2026-02-15, 2026-03-31
+    Database Setup            :done, dev3, 2026-02-01, 2026-02-15
+    
+    section Testing
+    Unit Testing              :test1, 2026-03-01, 2026-03-31
+    Integration Testing       :test2, 2026-04-01, 2026-04-15
+    UAT                       :test3, 2026-04-16, 2026-04-30
+    
+    section Deployment
+    Staging Deployment        :deploy1, 2026-05-01, 2026-05-07
+    Production Deployment     :crit, deploy2, 2026-05-08, 2026-05-15
+    Post-Launch Monitoring    :monitor, 2026-05-16, 2026-05-31
+```
+
+**Gantt Color Legend:**
+- **Green** (done): Completed tasks
+- **Blue** (active): In-progress tasks
+- **Gray** (default): Planned tasks
+- **Red** (crit): Critical path items
+
+---
+
+### Example 6: User Journey Map
+
+```mermaid
+graph TB
+    Entry([User Visits Site]) --> Landing[Landing Page]
+    Landing --> Browse{Browse or<br/>Search?}
+    
+    Browse -->|Browse| Category[Category Page]
+    Browse -->|Search| Search[Search Results]
+    
+    Category --> Product[Product Page]
+    Search --> Product
+    
+    Product --> Decision{Add to Cart?}
+    Decision -->|Yes| Cart[Shopping Cart]
+    Decision -->|No| Continue[Continue Shopping]
+    
+    Continue --> Browse
+    
+    Cart --> Checkout{Proceed to<br/>Checkout?}
+    Checkout -->|Yes| Payment[Payment Page]
+    Checkout -->|No| Continue
+    
+    Payment --> Process{Payment<br/>Success?}
+    Process -->|Yes| Confirm[✅ Order Confirmed]
+    Process -->|No| Retry[⚠️ Retry Payment]
+    
+    Retry --> Payment
+    Confirm --> Email[📧 Confirmation Email]
+    Email --> Track[📦 Track Order]
+    Track --> End([Order Delivered])
+    
+    style Entry fill:#0d47a1,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Landing fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Browse fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Category fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Search fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Product fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Decision fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Cart fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style Continue fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Checkout fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Payment fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Process fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Confirm fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Retry fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Email fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style Track fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style End fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
+```
+
+**Color Choices:**
+- **Navy Blue** (#0d47a1): Entry/Exit - Journey boundaries
+- **Dark Teal** (#00695c): Information pages - Browsing
+- **Deep Purple** (#6a1b9a): Decision points - User choices
+- **Dark Orange** (#e65100): Product page - Key interaction
+- **Amber** (#f57f17): Cart - Commitment point
+- **Burgundy** (#880e4f): Payment - Critical transaction
+- **Forest/Dark Green** (#1b5e20, #2e7d32): Success & follow-up
+
+---
+
+## Use Case Scenarios
+
+### Scenario 1: Monitoring Dashboard
+
+**Requirement:** Create a real-time monitoring dashboard showing system health
+
+**Color Strategy:**
+```
+Healthy Services:     #1b5e20 (Forest Green) - White text
+Warning State:        #f57f17 (Amber) - White text
+Critical Errors:      #880e4f (Burgundy) - White text
+Information Panels:   #00695c (Dark Teal) - White text
+Background:           #f5f5f5 (Off-White) - Black text
+```
+
+**Example Implementation:**
+```mermaid
+graph TB
+    subgraph Healthy
+        S1[API Server<br/>✅ Online]
+        S2[Database<br/>✅ Online]
+        S3[Cache<br/>✅ Online]
+    end
+    
+    subgraph Warning
+        S4[Disk Space<br/>⚠️ 85% Full]
+        S5[Memory<br/>⚠️ High Usage]
+    end
+    
+    subgraph Critical
+        S6[Backup Job<br/>❌ Failed]
+    end
+    
+    style S1 fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style S2 fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style S3 fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style S4 fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style S5 fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style S6 fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+```
+
+---
+
+### Scenario 2: Approval Workflow
+
+**Requirement:** Document a multi-stage approval process
+
+**Color Strategy:**
+```
+Pending Review:       #00695c (Dark Teal) - White text
+Under Review:         #6a1b9a (Deep Purple) - White text
+Approved:            #1b5e20 (Forest Green) - White text
+Rejected:            #880e4f (Burgundy) - White text
+Needs Revision:      #f57f17 (Amber) - White text
+```
+
+**Example Implementation:**
+```mermaid
+graph LR
+    Submit[📝 Submit Request] --> L1[Level 1 Review]
+    L1 --> D1{Manager<br/>Decision}
+    
+    D1 -->|Approved| L2[Level 2 Review]
+    D1 -->|Rejected| Reject1[❌ Rejected]
+    D1 -->|Revise| Revise1[⚠️ Needs Revision]
+    
+    L2 --> D2{Director<br/>Decision}
+    D2 -->|Approved| Final[✅ Final Approval]
+    D2 -->|Rejected| Reject2[❌ Rejected]
+    D2 -->|Revise| Revise2[⚠️ Needs Revision]
+    
+    Revise1 --> Submit
+    Revise2 --> Submit
+    
+    style Submit fill:#00695c,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style L1 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style L2 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style D1 fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style D2 fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Final fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Reject1 fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Reject2 fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Revise1 fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Revise2 fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+```
+
+---
+
+### Scenario 3: Network Topology
+
+**Requirement:** Diagram network infrastructure with security zones
+
+**Color Strategy:**
+```
+Public Zone:          #880e4f (Burgundy) - White text
+DMZ:                 #f57f17 (Amber) - White text
+Internal Network:    #00695c (Dark Teal) - White text
+Secure Zone:         #1b5e20 (Forest Green) - White text
+Management:          #0d47a1 (Navy Blue) - White text
+```
+
+**Example Implementation:**
+```mermaid
+graph TB
+    Internet([Internet]) --> FW1[Firewall 1]
+    
+    subgraph Public["Public Zone (Burgundy)"]
+        FW1 --> Web[Web Server]
+    end
+    
+    subgraph DMZ["DMZ (Amber)"]
+        Web --> FW2[Firewall 2]
+        FW2 --> App[App Server]
+    end
+    
+    subgraph Internal["Internal Network (Teal)"]
+        App --> FW3[Firewall 3]
+        FW3 --> DB[(Database)]
+        FW3 --> File[File Server]
+    end
+    
+    subgraph Secure["Secure Zone (Green)"]
+        DB --> Backup[(Backup)]
+    end
+    
+    subgraph Mgmt["Management (Blue)"]
+        Admin[Admin Console] --> FW1
+        Admin --> FW2
+        Admin --> FW3
+    end
+    
+    style Internet fill:#212121,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style FW1 fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Web fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style FW2 fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style App fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style FW3 fill:#00695c,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style DB fill:#00695c,stroke:#ffffff,color:#ffffff
+    style File fill:#00695c,stroke:#ffffff,color:#ffffff
+    style Backup fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Admin fill:#0d47a1,stroke:#ffffff,stroke-width:2px,color:#ffffff
+```
+
+---
+
+## Additional Mermaid Templates
+
+### Template 4: Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as App
+    participant D as Database
+    participant C as Cache
+    
+    U->>A: Login Request
+    A->>D: Validate Credentials
+    D-->>A: User Data
+    A->>C: Store Session
+    C-->>A: Session ID
+    A-->>U: Login Success
+    
+    Note over U,C: User is now authenticated
+    
+    U->>A: Request Data
+    A->>C: Check Cache
+    alt Cache Hit
+        C-->>A: Cached Data
+    else Cache Miss
+        A->>D: Query Database
+        D-->>A: Fresh Data
+        A->>C: Update Cache
+    end
+    A-->>U: Return Data
+```
+
+**Sequence Diagram Colors (Applied via CSS/Theme):**
+- Actors: Navy Blue (#0d47a1)
+- Activation boxes: Dark Teal (#00695c)
+- Messages: Charcoal (#212121)
+- Notes: Light Yellow (#fff9c4) with black text
+
+---
+
+### Template 5: State Diagram
+
+```mermaid
+stateDiagram-v2
+    [*] --> Draft
+    Draft --> InReview: Submit
+    InReview --> Approved: Approve
+    InReview --> Rejected: Reject
+    InReview --> Draft: Request Changes
+    Approved --> Published: Publish
+    Published --> Archived: Archive
+    Rejected --> [*]
+    Archived --> [*]
+    
+    note right of Draft
+        Initial state
+        Editable
+    end note
+    
+    note right of Published
+        Live content
+        Read-only
+    end note
+```
+
+**State Diagram Color Recommendations:**
+- Draft: Dark Teal (#00695c)
+- InReview: Deep Purple (#6a1b9a)
+- Approved: Forest Green (#1b5e20)
+- Rejected: Burgundy (#880e4f)
+- Published: Dark Green (#2e7d32)
+- Archived: Medium Gray (#757575)
+
+---
+
+### Template 6: Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : places
+    USER {
+        int user_id PK
+        string email
+        string name
+        date created_at
+    }
+    ORDER ||--|{ ORDER_ITEM : contains
+    ORDER {
+        int order_id PK
+        int user_id FK
+        date order_date
+        decimal total
+    }
+    PRODUCT ||--o{ ORDER_ITEM : includes
+    PRODUCT {
+        int product_id PK
+        string name
+        decimal price
+        int stock
+    }
+    ORDER_ITEM {
+        int order_item_id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        decimal price
+    }
+```
+
+**ERD Color Recommendations:**
+- Entities: Dark Teal (#00695c) background
+- Primary Keys: Forest Green (#1b5e20) highlight
+- Foreign Keys: Deep Purple (#6a1b9a) highlight
+- Relationships: Charcoal (#212121) lines
+
+---
+
+## Visio Implementation Examples
+
+### Visio Color Application
+
+**For Shapes:**
+1. Select shape
+2. Right-click → Format Shape
+3. Fill → Solid fill
+4. Enter hex code (e.g., #0d47a1)
+5. Text → Text fill → White (#ffffff)
+
+**For Connectors:**
+1. Select connector
+2. Line → Color → Custom
+3. Enter hex code
+4. Weight: 2pt minimum for visibility
+
+**Theme Colors Setup:**
+```
+Theme Color 1:  #0d47a1 (Navy Blue)
+Theme Color 2:  #1b5e20 (Forest Green)
+Theme Color 3:  #880e4f (Burgundy)
+Theme Color 4:  #00695c (Dark Teal)
+Theme Color 5:  #e65100 (Dark Orange)
+Theme Color 6:  #6a1b9a (Deep Purple)
+```
+
+---
+
+### Visio Flowchart Example
+
+**Process Flow with Status:**
+
+```
+┌─────────────────────┐
+│   Start Process     │ ← Navy Blue (#0d47a1)
+│   (Entry Point)     │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Gather Input Data  │ ← Dark Teal (#00695c)
+│  (Information)      │
+└──────────┬──────────┘
+           │
+           ▼
+      ┌────────┐
+      │Validate│         ← Amber (#f57f17)
+      │  Data? │
+      └───┬────┘
+          │
+    ┌─────┴─────┐
+    │           │
+   Yes         No
+    │           │
+    ▼           ▼
+┌────────┐  ┌────────┐
+│Process │  │ Error  │  ← Burgundy (#880e4f)
+│  Data  │  │Handler │
+└───┬────┘  └───┬────┘
+    │           │
+    │           └──────┐
+    ▼                  │
+┌────────┐             │
+│Success │             │  ← Forest Green (#1b5e20)
+│Complete│             │
+└───┬────┘             │
+    │                  │
+    └──────────────────┘
+           │
+           ▼
+    ┌──────────┐
+    │   End    │        ← Navy Blue (#0d47a1)
+    └──────────┘
+```
+
+**Shape-to-Color Mapping:**
+- Terminator (Start/End): Navy Blue (#0d47a1)
+- Process: Dark Teal (#00695c)
+- Decision: Amber (#f57f17)
+- Error/Exception: Burgundy (#880e4f)
+- Success: Forest Green (#1b5e20)
+
+---
+
+## Color Psychology in Technical Diagrams
+
+### Color Meaning Guide
+
+**Blue Tones (Navy, Royal, Dark Blue):**
+- **Meaning:** Trust, stability, professionalism
+- **Use for:** Entry points, main processes, core systems
+- **Avoid for:** Errors, warnings, urgent actions
+
+**Green Tones (Forest, Dark, Hunter):**
+- **Meaning:** Success, growth, completion
+- **Use for:** Completed tasks, healthy states, approvals
+- **Avoid for:** Errors, pending items, warnings
+
+**Red/Burgundy Tones:**
+- **Meaning:** Critical, error, stop
+- **Use for:** Errors, failures, critical alerts
+- **Avoid for:** Success states, normal operations
+
+**Orange/Amber Tones:**
+- **Meaning:** Caution, attention, action needed
+- **Use for:** Warnings, review needed, intermediate states
+- **Avoid for:** Success, completion, errors
+
+**Purple Tones:**
+- **Meaning:** Decision, special, important
+- **Use for:** Decision points, gateways, special processes
+- **Avoid for:** Routine operations, simple flows
+
+**Teal Tones:**
+- **Meaning:** Information, data, neutral
+- **Use for:** Information displays, data processes, neutral states
+- **Avoid for:** Errors, urgent actions
+
+---
+
+## Accessibility Best Practices
+
+### Pattern + Color Combinations
+
+**For colorblind users, combine colors with patterns:**
+
+```mermaid
+graph LR
+    A["✅ Success<br/>(Green + Checkmark)"] --> B["⚠️ Warning<br/>(Amber + Alert)"]
+    B --> C["❌ Error<br/>(Red + X)"]
+    C --> D["ℹ️ Info<br/>(Blue + i)"]
+    
+    style A fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style B fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style C fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style D fill:#0d47a1,stroke:#ffffff,stroke-width:2px,color:#ffffff
+```
+
+**Pattern Library:**
+- Success: ✅ ✓ ✔️ + Green
+- Warning: ⚠️ ⚡ 🔔 + Amber/Yellow
+- Error: ❌ ✗ ✖️ + Red/Burgundy
+- Info: ℹ️ 💡 📌 + Blue/Teal
+- Process: ⚙️ 🔧 ⏳ + Purple/Orange
+- Complete: 🏁 ✨ 🎯 + Green
+
+---
+
 ## Related Skills
 
 - **[skill_mermaid_section_508](skill_mermaid_section_508.md)** - Mermaid Section 508 compliance
@@ -349,11 +1050,18 @@ Light: fill:#e1f5fe,stroke:#0d47a1,stroke-width:2px,color:#000000
 ## Changelog
 
 - **2026-03-01:** Created Section 508 color palette skill based on Visio template
+- **2026-03-01:** Added 6 real-world diagram examples with detailed color explanations
+- **2026-03-01:** Added 3 use case scenarios (monitoring dashboard, approval workflow, network topology)
+- **2026-03-01:** Added 3 additional mermaid templates (sequence, state, ERD diagrams)
+- **2026-03-01:** Added Visio implementation guide with flowchart example
+- **2026-03-01:** Added color psychology section for technical diagrams
+- **2026-03-01:** Added accessibility best practices with pattern + color combinations
 
 ---
 
 **Location:** `G:\My Drive\06_Skills\documentation\skill_section_508_color_palette.md`  
 **Category:** Documentation  
-**Difficulty:** Beginner  
-**Source:** Visio 508 Compliant Template
+**Difficulty:** Beginner to Intermediate  
+**Source:** Visio 508 Compliant Template  
+**Examples:** 6 real-world diagrams, 3 use cases, 6 mermaid templates
 

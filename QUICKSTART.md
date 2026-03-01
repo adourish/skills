@@ -1,6 +1,6 @@
 # Skills Repository Quick Start Guide
 
-Complete guide for using the Skills repository in Windsurf Cascade and Claude Code.
+Complete guide for using the Skills repository in Windsurf Cascade, Claude Code, and Devin AI.
 
 ---
 
@@ -17,10 +17,11 @@ This repository contains 50+ AI agent skills for automation, development, docume
 1. [Getting Started](#getting-started)
 2. [For Windsurf Cascade Users](#for-windsurf-cascade-users)
 3. [For Claude Code Users](#for-claude-code-users)
-4. [Common Workflows](#common-workflows)
-5. [Skill Categories](#skill-categories)
-6. [Best Practices](#best-practices)
-7. [Troubleshooting](#troubleshooting)
+4. [For Devin AI Users](#for-devin-ai-users)
+5. [Common Workflows](#common-workflows)
+6. [Skill Categories](#skill-categories)
+7. [Best Practices](#best-practices)
+8. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -67,6 +68,23 @@ Claude Code uses @ mentions to reference files. To use skills:
 ```
 
 **Pro Tip:** Add skills folder to your IDE workspace for easier @ mention autocomplete.
+
+**Step 4: Setup for Devin AI**
+
+Devin has full command-line access. To use skills:
+
+```
+1. Clone repository to Devin's workspace:
+   git clone https://github.com/adourish/skills.git /workspace/skills
+
+2. Reference skills in tasks:
+   "Review /workspace/skills/automation/skill_daily_planning.md
+    and implement the workflow"
+
+3. Let Devin work autonomously with skill guidelines
+```
+
+**Key Point:** Devin can read files, execute commands, and implement complete solutions autonomously using skill guidelines.
 
 ---
 
@@ -331,6 +349,135 @@ Claude:
 
 ---
 
+## For Devin AI Users
+
+### Method 1: Clone and Reference
+
+**Command-Line Approach:**
+
+```bash
+# Clone repository to workspace
+git clone https://github.com/adourish/skills.git /workspace/skills
+
+# Reference specific skill
+cat /workspace/skills/automation/skill_daily_planning.md
+
+# List skills by category
+ls -la /workspace/skills/automation/
+
+# Search for skills
+find /workspace/skills -name "*github*"
+```
+
+**Use Case:** Devin has full file system access and can read any skill
+
+---
+
+### Method 2: Task-Based Implementation
+
+**Autonomous Development:**
+
+```
+"Implement daily planning automation.
+Review /workspace/skills/automation/skill_daily_planning.md
+Follow all guidelines, implement in Python, test thoroughly,
+and provide complete documentation."
+```
+
+**What Devin Does:**
+- Reads skill documentation
+- Plans implementation steps
+- Develops complete solution
+- Tests and validates
+- Documents everything
+- Provides deployment guide
+
+---
+
+### Method 3: Multi-Phase Projects
+
+**Complex Task Management:**
+
+```
+"Build an MCP server for Notion integration.
+Follow /workspace/skills/development/mcp-builder/README.md
+
+Phase 1: Research Notion API
+Phase 2: Implement server code
+Phase 3: Add tests and error handling
+Phase 4: Create evaluations and examples
+
+Work autonomously and provide updates after each phase."
+```
+
+---
+
+### Method 4: Skill Creation
+
+**Meta-Skill Usage:**
+
+```
+"Create a new skill for API rate limiting.
+Follow /workspace/skills/_tools/skill-creator/README.md
+
+1. Determine correct category (development)
+2. Create skill markdown with all sections
+3. Add diagrams and examples
+4. Update README.md
+5. Commit with proper message"
+```
+
+---
+
+### Devin Workflow Examples
+
+#### Example 1: Autonomous Implementation
+
+```
+You: "Implement email processing automation following the skill"
+
+Devin:
+1. Reads: /workspace/skills/automation/skill_email_processing.md
+2. Analyzes: Gmail API requirements, dependencies
+3. Plans: Implementation with milestones
+4. Develops: Python script with error handling
+5. Tests: Validates with test emails
+6. Documents: Usage guide and examples
+7. Reports: "Email processor complete. Processes 100 emails in 2 minutes."
+```
+
+#### Example 2: Repository Setup
+
+```
+You: "Set up new project with GitFlow"
+
+Devin:
+1. Reviews: skill_git_version_control.md, skill_gitflow_workflow.md
+2. Initializes: Git repo with main and develop branches
+3. Creates: Feature branch structure
+4. Configures: .gitignore, README, LICENSE
+5. Documents: GitFlow workflow for team
+6. Commits: Initial setup with proper messages
+7. Provides: Complete setup guide
+```
+
+#### Example 3: Documentation Creation
+
+```
+You: "Create comprehensive API documentation"
+
+Devin:
+1. Reviews: doc-coauthoring/README.md
+2. Stage 1: Gathers context about API
+3. Stage 2: Creates structured documentation
+4. Stage 3: Validates clarity and completeness
+5. Generates: Markdown docs with examples
+6. Creates: Changelog using internal-comms format
+7. Delivers: Complete documentation package
+```
+
+---
+
 ## Common Workflows
 
 ### Workflow 1: Setup New Project
@@ -584,6 +731,14 @@ git pull origin main
 @SKILLS_CONTEXT.md
 @automation/skill_daily_planning.md
 @documentation/
+```
+
+**Devin AI - Load Skills:**
+```bash
+git clone https://github.com/adourish/skills.git /workspace/skills
+cat /workspace/skills/automation/skill_daily_planning.md
+ls -la /workspace/skills/automation/
+find /workspace/skills -name "*mcp*"
 ```
 
 ---

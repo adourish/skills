@@ -8,14 +8,14 @@ AI agent skills organized by category. Each skill provides detailed instructions
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>50 AI Skills<br/>6 Categories"]
+    Root["📁 06_Skills<br/>51 AI Skills<br/>6 Categories"]
     
     Root --> Tools["🛠️ TOOLS<br/>2 Skills<br/>Skill Development"]
     Root --> Automation["🤖 AUTOMATION<br/>7 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
     Root --> Development["💻 DEVELOPMENT<br/>8 Skills<br/>Dev Tools"]
     Root --> Documentation["📝 DOCUMENTATION<br/>19 Skills<br/>Templates & Diagrams"]
-    Root --> System["⚙️ SYSTEM<br/>9 Skills<br/>Core Configuration"]
+    Root --> System["⚙️ SYSTEM<br/>10 Skills<br/>Core Configuration"]
     
     %% Tools Skills
     Tools --> T1["skill_creator ⭐<br/>Create new skills"]
@@ -78,6 +78,7 @@ graph TB
     System --> S7["agent_handoff<br/>Agent protocols"]
     System --> S8["mcp_server_setup<br/>MCP configuration"]
     System --> S9["organizing_skills<br/>Skill organization"]
+    System --> S10["devin_integration ⭐<br/>Devin AI integration"]
     
     %% Section 508 Compliant Styling (4.5:1 contrast minimum)
     style Root fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
@@ -143,6 +144,7 @@ graph TB
     style S7 fill:#ef6c00,stroke:#ffffff,color:#ffffff
     style S8 fill:#ef6c00,stroke:#ffffff,color:#ffffff
     style S9 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S10 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
 ```
 
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.
@@ -153,7 +155,7 @@ graph TB
 
 ---
 
-## AI Integration for Windsurf & Claude Code
+## AI Integration for Windsurf, Claude Code & Devin
 
 ### Quick Start for AI Assistants
 
@@ -307,6 +309,72 @@ Claude Workflow:
 4. Include: Table creation, styling, formatting
 5. Reference: Best practices from skill
 ```
+
+---
+
+### For Devin AI
+
+**Loading Skills in Devin:**
+
+```bash
+# Clone repository to workspace
+git clone https://github.com/adourish/skills.git /workspace/skills
+
+# Reference specific skill
+cat /workspace/skills/automation/skill_daily_planning.md
+
+# List skills by category
+ls -la /workspace/skills/automation/
+
+# Search for skills
+find /workspace/skills -name "*mcp*"
+```
+
+**Devin Workflow Patterns:**
+
+**Pattern 1: Autonomous Implementation**
+```
+User: "Implement daily planning automation following the skill"
+
+Devin Workflow:
+1. Review: /workspace/skills/automation/skill_daily_planning.md
+2. Analyze: Dependencies (Todoist, Amplenote, Gmail APIs)
+3. Plan: Implementation steps with milestones
+4. Setup: Environment and credentials
+5. Develop: Python automation script
+6. Test: Validate with test data
+7. Document: Usage instructions
+8. Deploy: Provide deployment guide
+```
+
+**Pattern 2: Multi-Phase Projects**
+```
+User: "Build an MCP server for X, following the mcp_builder skill"
+
+Devin Workflow:
+1. Review: /workspace/skills/development/mcp-builder/README.md
+2. Phase 1: Research API and plan architecture
+3. Phase 2: Implement server with tools/resources
+4. Phase 3: Add tests and error handling
+5. Phase 4: Create evaluations and examples
+6. Deliver: Complete working MCP server with docs
+```
+
+**Pattern 3: Skill-Based Development**
+```
+User: "Create new skill for API rate limiting"
+
+Devin Workflow:
+1. Review: /workspace/skills/_tools/skill-creator/README.md
+2. Determine: Category (development) and structure
+3. Create: Skill markdown with all sections
+4. Add: Diagrams, examples, best practices
+5. Update: README.md with new skill
+6. Test: Validate all links and examples
+7. Commit: Changes with proper message
+```
+
+**See [skill_devin_integration](system/skill_devin_integration.md) for complete guide.**
 
 ---
 
@@ -920,12 +988,11 @@ Documentation and template skills.
 Core system configuration and workflow skills.
 
 - **[user_commands](system/skill_user_commands.md)** - Quick reference for common commands and workflows
+- **[devin_integration](system/skill_devin_integration.md)** - Using Skills repository with Devin AI
 - **[section_508_compliance](system/skill_section_508_compliance.md)** - Section 508 accessibility guidelines for all content
-- **[routing_rules](system/skill_routing_rules.md)** - System-wide routing rules for tasks, notes, and files
-- **[environments_credentials](system/skill_environments_credentials.md)** - Credential management and environment configuration
-- **[cascade_workflow](system/skill_cascade_workflow.md)** - Cascade AI workflow patterns and best practices
-- **[agent_handoff](system/skill_agent_handoff.md)** - Agent handoff protocols and context sharing
-- **[mcp_server_setup](system/skill_mcp_server_setup.md)** - MCP server configuration and setup
+- **[routing_rules](system/skill_routing_rules.md)** - PARA method routing and file organization rules
+- **[environments_credentials](system/skill_environments_credentials.md)** - API credentials and environment configuration
+- **[cascade_workflow](system/skill_cascade_workflow.md)** - Windsurf Cascade workflow patterns and best practices
 - **[process_new](system/skill_process_new.md)** - Complete workflow for processing new items
 - **[organizing_skills](system/skill_organizing_skills.md)** - Guidelines for organizing skills and creating tools
 
@@ -964,23 +1031,24 @@ Core system configuration and workflow skills.
 ## Changelog
 
 ### March 1, 2026
-**Added 14 New Skills:**
+**Added 15 New Skills:**
 - **Tools Category (2):** Skill Creator, HOW_TO_FILE_TOOLS
 - **Development (3):** MCP Builder, GitHub Pull Requests, GitFlow Workflow
 - **Documentation (9):** Doc Co-Authoring, Internal Comms, Document Processing (DOCX, PPTX, PDF, XLSX), Diagram Tools, Media Filing Guide
+- **System (1):** Devin Integration
 
 **Updated:**
 - Skills diagram with new Tools category
-- Category counts: 50 total skills across 6 categories
+- Category counts: 51 total skills across 6 categories
 - Documentation section reorganized into Workflow, Document Processing, Diagram Tools, and Templates
 - Quick Start section with new skill references
 - **All diagrams updated to Section 508 compliant colors** - Dark backgrounds with white text for 4.5:1 contrast ratio minimum
-- **AI Integration section enhanced** - Added Windsurf Cascade and Claude Code specific workflow patterns, loading methods, and practical examples
+- **AI Integration section enhanced** - Added Windsurf Cascade, Claude Code, and Devin AI specific workflow patterns, loading methods, and practical examples
 
 **Source:** Skills from [Anthropic Skills Repository](https://github.com/anthropics/skills)
 
 ---
 
 **Last Updated:** March 1, 2026  
-**Total Skills:** 50 across 6 categories  
+**Total Skills:** 51 across 6 categories  
 **Location:** `G:\My Drive\06_Skills\README.md`

@@ -375,7 +375,7 @@ This skill provides a comprehensive icon library and visual element guide for di
 
 **1. Always Pair Icons with Text:**
 ```mermaid
-graph LR
+flowchart LR
     Good["✓ Success<br/>Task completed"]
     Bad["✓"]
     
@@ -405,7 +405,7 @@ graph LR
 ### Example 1: Process Flow with Icons
 
 ```mermaid
-graph TB
+flowchart TB
     Start["📌 Start<br/>Initialize process"]
     Input["📥 Input<br/>Receive data"]
     Process["⚙️ Process<br/>Transform data"]
@@ -437,7 +437,7 @@ graph TB
 ### Example 2: System Architecture with Icons
 
 ```mermaid
-graph TB
+flowchart TB
     subgraph "User Layer"
         Web["🖥️ Web App<br/>Frontend"]
         Mobile["📱 Mobile App<br/>iOS/Android"]
@@ -476,7 +476,7 @@ graph TB
 ### Example 3: User Journey with Icons
 
 ```mermaid
-graph LR
+flowchart LR
     Visit["👤 Visit<br/>Land on site"]
     Browse["👁️ Browse<br/>View products"]
     Select["🎯 Select<br/>Choose item"]
@@ -556,7 +556,7 @@ graph LR
 ### Mermaid Icon Template
 
 ```mermaid
-graph TB
+flowchart TB
     Node["[Icon] Label<br/>Description"]
     
     style Node fill:#e1f5fe,stroke:#0d47a1,stroke-width:2px,color:#000

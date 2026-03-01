@@ -60,7 +60,7 @@ Light Gray:   #f5f5f5  (Subtle backgrounds)
 
 **❌ Bad - Color conveys meaning:**
 ```mermaid
-graph LR
+flowchart LR
     A[Task] --> B[Complete]
     A --> C[Failed]
     
@@ -70,7 +70,7 @@ graph LR
 
 **✅ Good - Text + icons convey meaning:**
 ```mermaid
-graph LR
+flowchart LR
     A[Task] --> B["✓ Complete"]
     A --> C["✗ Failed"]
     
@@ -96,7 +96,7 @@ graph LR
 **All nodes must have descriptive text:**
 
 ```mermaid
-graph TB
+flowchart TB
     Start["📋 Start Process<br/>Initialize system"]
     Check{"✓ Validation<br/>Check inputs"}
     Process["⚙️ Processing<br/>Execute workflow"]
@@ -286,14 +286,14 @@ sequenceDiagram
 
 **❌ Bad:**
 ```mermaid
-graph LR
+flowchart LR
     A[Task] --> B[Status]
     style B fill:#00ff00  %% Pure green - not 508 compliant
 ```
 
 **✅ Good:**
 ```mermaid
-graph LR
+flowchart LR
     A[Task] --> B["✓ Success"]
     style B fill:#e8f5e9,stroke:#1b5e20,color:#000
 ```
@@ -302,14 +302,14 @@ graph LR
 
 **❌ Bad:**
 ```mermaid
-graph TB
+flowchart TB
     A[Light gray text on white]
     style A fill:#ffffff,color:#cccccc
 ```
 
 **✅ Good:**
 ```mermaid
-graph TB
+flowchart TB
     A[Black text on white]
     style A fill:#ffffff,stroke:#757575,color:#000
 ```
@@ -318,7 +318,7 @@ graph TB
 
 **❌ Bad:**
 ```mermaid
-graph TB
+flowchart TB
     A[Item 1]
     B[Item 2]
     C[Item 3]
@@ -329,7 +329,7 @@ graph TB
 
 **✅ Good:**
 ```mermaid
-graph TB
+flowchart TB
     A["🔴 High Priority"]
     B["🟢 Normal Priority"]
     C["🔵 Low Priority"]
@@ -399,14 +399,10 @@ Data Layer has the Database for storage and Redis Cache for performance.
 **Section 508 Mermaid Style Template:**
 
 ```mermaid
-graph TB
-    Node1["📌 Label<br/>Description"]
-    Node2["⚙️ Label<br/>Description"]
+flowchart TB
+    Node["[Icon] Label<br/>Description"]
     
-    Node1 --> Node2
-    
-    style Node1 fill:#e1f5fe,stroke:#0d47a1,stroke-width:2px,color:#000
-    style Node2 fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px,color:#000
+    style Node fill:#e1f5fe,stroke:#0d47a1,stroke-width:2px,color:#000
 ```
 
 **Key Points:**

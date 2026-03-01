@@ -8,36 +8,176 @@ Master Section 508 compliance, Salesforce workflows, professional diagramming, A
 
 ---
 
+## Configuration
+
+**📍 Repository Location:** This repository uses relative paths. Configure your local path in `skills_config.json`:
+
+```json
+{
+  "SKILLS_ROOT": "G:\\My Drive\\06_Skills"
+}
+```
+
+**Update for your environment:**
+- **Windows:** `"C:\\Users\\YourName\\Documents\\06_Skills"`
+- **Linux/Mac:** `"/home/username/06_Skills"` or `"/Users/username/Documents/06_Skills"`
+
+**Using paths in documentation:**
+- All paths are shown as: `${SKILLS_ROOT}/category/skill_name.md`
+- Replace `${SKILLS_ROOT}` with your actual path from `skills_config.json`
+- Example: `${SKILLS_ROOT}/automation/skill_daily_planning.md` → `C:\Skills\automation\skill_daily_planning.md`
+
+---
+
 AI agent skills organized by category. Each skill provides detailed instructions for specific workflows and integrations.
 
 **🚀 New to this repository?** See [QUICKSTART.md](QUICKSTART.md) for a complete guide on using these skills in Windsurf Cascade, Claude Code, and Devin AI.
 
 ---
 
+## Definitions
+
+Understanding the terminology used in this repository:
+
+### **Skill**
+A reusable guide that teaches AI assistants how to perform specific tasks consistently and effectively. Skills are markdown documents (`.md` files) containing structured instructions, workflows, examples, and best practices.
+
+**Characteristics:**
+- Stored as markdown files in category folders (`automation/`, `documentation/`, etc.)
+- Contains structured workflows and decision trees
+- Includes examples, best practices, and quality checks
+- Designed for repeated use across multiple sessions
+- Can reference other skills, tools, and scripts
+
+**Example:** `skill_daily_planning.md` teaches AI how to automate daily task planning by integrating Gmail, Calendar, and Todoist.
+
+**Scope:** One skill = one clear purpose. If a skill does multiple unrelated things, it should be split into separate skills.
+
+### **Tool**
+An executable program (usually Python) that performs a specific automated function. Tools are the "doing" component that skills reference.
+
+**Characteristics:**
+- Stored in `_tools/` directory
+- Executable files (`.py`, `.js`, `.bat`)
+- Part of regular/daily workflows
+- Integrates multiple services or APIs
+- Produces actionable outputs
+
+**Example:** `run_process_new.py` is a tool that scans Gmail, Calendar, and Todoist to generate daily plans.
+
+**Relationship to Skills:** Skills provide the "how and when" instructions; tools provide the "what executes."
+
+### **Script**
+A one-off or occasional utility program for specific tasks. Unlike tools, scripts are not part of regular workflows.
+
+**Characteristics:**
+- Stored in `_scripts/` directory
+- Run manually when needed
+- Utility/helper functions
+- Temporary or experimental code
+- Not part of daily automation
+
+**Example:** `migrate_old_notes.py` is a script for one-time data migration.
+
+**Tool vs Script:** If you run it daily/weekly = tool. If you run it once or occasionally = script.
+
+### **Workflow**
+A multi-step process that orchestrates multiple tools and skills to accomplish a complex task.
+
+**Characteristics:**
+- Stored in `automation/` directory
+- Combines multiple tools/skills
+- Has defined stages or phases
+- May include configuration files
+
+**Example:** The daily planning workflow combines email analysis, calendar checking, and task creation.
+
+### **Integration**
+A reusable API client or service wrapper that other tools and skills can use.
+
+**Characteristics:**
+- Stored in `integrations/` directory
+- Provides interface to external services
+- Can be imported by multiple tools
+- Well-defined, documented API
+
+**Example:** `amplenote_api` provides methods for creating and updating Amplenote notes.
+
+### **Resource**
+Supporting files referenced by skills, including documentation, templates, configuration files, and reference materials.
+
+**Types:**
+- **References:** Documentation loaded into context as needed
+- **Assets:** Files used in output (templates, icons, fonts)
+- **Configuration:** Settings and credentials (`environments.json`, `config.yaml`)
+
+**Example:** Section 508 color palettes, Visio icon libraries, diagram templates.
+
+### **Skill Creator Definitions**
+Special files that define how to generate or regenerate tools in `_tools/`:
+
+**Storage Location:** `${SKILLS_ROOT}/_tools/skill-creator/`
+
+**Purpose:** When a library updates or you need to regenerate a Python script, these definitions contain:
+- The original prompt/instructions used to create the tool
+- Configuration and requirements
+- Expected behavior and outputs
+- Integration points with other tools
+
+**Files:**
+- `README.md` - Overview and skill creation process
+- `SKILL.md` - Complete skill creation workflow and templates
+
+**Regeneration Use Case:** If `run_process_new.py` needs updates due to API changes, reference the skill creator definitions to regenerate with the same specifications but updated dependencies.
+
+### **Category**
+Organizational folders that group related skills by purpose:
+
+- **🛠️ Tools** (`_tools/`) - Skill development and creation
+- **🤖 Automation** (`automation/`) - Daily workflows and processes
+- **🔌 Integrations** (`integrations/`) - API clients and service wrappers
+- **💻 Development** (`development/`) - Dev tools and workflows
+- **📝 Documentation** (`documentation/`) - Templates and diagram creation
+- **⚙️ System** (`system/`) - Core configuration and setup
+
+### **MCP (Model Context Protocol)**
+A standard that connects AI systems with external tools and data sources, enabling AI assistants to access specialized functions and services.
+
+**Example:** The daily planner MCP server provides tools for Gmail, Todoist, Calendar, and Amplenote operations.
+
+### **PARA Method**
+A file organization system used throughout this repository:
+- **Projects** - Active work with deadlines
+- **Areas** - Ongoing responsibilities
+- **Resources** - Reference materials
+- **Archive** - Completed items
+
+---
+
 ## How It Works
 
 ```mermaid
-graph TB
-    subgraph Platforms["🤖 AI Platforms"]
+flowchart TB
+    subgraph Platforms["AI Platforms"]
         W[Windsurf Cascade]
         C[Claude Code]
         D[Devin AI]
     end
     
-    subgraph Skills["📚 51 Skills Repository"]
-        AUTO[🤖 Automation<br/>Daily workflows]
-        DOC[📝 Documentation<br/>Diagrams & templates]
-        DEV[💻 Development<br/>Git & Salesforce]
-        SYS[⚙️ System<br/>Configuration]
-        INT[🔌 Integrations<br/>APIs & services]
-        TOOL[🛠️ Tools<br/>Skill creation]
+    subgraph Skills["51 Skills Repository"]
+        AUTO[Automation - Daily workflows]
+        DOC[Documentation - Diagrams & templates]
+        DEV[Development - Git & Salesforce]
+        SYS[System - Configuration]
+        INT[Integrations - APIs & services]
+        TOOL[Tools - Skill creation]
     end
     
-    subgraph Outcomes["✨ Outcomes"]
-        A11Y[♿ Section 508<br/>Accessible code]
-        QUAL[⭐ Quality<br/>Best practices]
-        SPEED[⚡ Speed<br/>Automated workflows]
-        DOCS[📖 Documentation<br/>Professional output]
+    subgraph Outcomes["Outcomes"]
+        A11Y[Section 508 - Accessible code]
+        QUAL[Quality - Best practices]
+        SPEED[Speed - Automated workflows]
+        DOCS[Documentation - Professional output]
     end
     
     W --> Skills

@@ -8,8 +8,8 @@
 ## User Commands Workflow Diagram
 
 ```mermaid
-graph TB
-    USER[👤 User]
+flowchart TB
+    USER[User]
     
     USER --> DAILY[Daily Commands]
     USER --> INTEG[Integration Commands]
@@ -19,13 +19,13 @@ graph TB
     USER --> SYS[System Commands]
     
     %% Daily Workflow
-    DAILY --> PN["process_new<br/>Complete daily planning"]
-    DAILY --> PD["Process Downloads<br/>File new items"]
-    DAILY --> PE["Process Emails<br/>Extract tasks"]
+    DAILY --> PN[process_new - Complete daily planning]
+    DAILY --> PD[Process Downloads - File new items]
+    DAILY --> PE[Process Emails - Extract tasks]
     
-    PN --> PNOUT["📋 Todoist tasks<br/>📝 Amplenote plan<br/>📊 JSON output"]
-    PD --> PARA["📁 PARA filing"]
-    PE --> TASKS["✅ Tasks created"]
+    PN --> PNOUT[Todoist tasks, Amplenote plan, JSON output]
+    PD --> PARA[PARA filing]
+    PE --> TASKS[Tasks created]
     
     %% Integration
     INTEG --> RAMP["Refresh Amplenote<br/>Token renewal"]
@@ -34,27 +34,27 @@ graph TB
     INTEG --> QAMP["Query Amplenote<br/>Search notes"]
     
     %% Development
-    DEV --> SFDC["Salesforce<br/>Open org, pull/push"]
-    DEV --> GIT["Git<br/>Status, commit, push"]
+    DEV --> SFDC[Salesforce - Open org, pull/push]
+    DEV --> GIT[Git - Status, commit, push]
     
-    SFDC --> SFOUT["🔧 Apex/LWC code"]
-    GIT --> GITOUT["📦 Version control"]
+    SFDC --> SFOUT[Apex/LWC code]
+    GIT --> GITOUT[Version control]
     
     %% File Organization
-    FILE --> PROJ["Move to Projects<br/>Active work"]
-    FILE --> AREA["Move to Areas<br/>Responsibilities"]
-    FILE --> RES["Move to Resources<br/>Reference"]
-    FILE --> ARCH["Move to Archive<br/>Completed"]
-    FILE --> CINBOX["Check Inbox<br/>List files"]
-    FILE --> CDL["Check Downloads<br/>Recent files"]
+    FILE --> PROJ[Move to Projects - Active work]
+    FILE --> AREA[Move to Areas - Responsibilities]
+    FILE --> RES[Move to Resources - Reference]
+    FILE --> ARCH[Move to Archive - Completed]
+    FILE --> CINBOX[Check Inbox - List files]
+    FILE --> CDL[Check Downloads - Recent files]
     
     %% Documentation
-    DOC --> MERM["Create Mermaid<br/>Convert to Visio"]
+    DOC --> MERM[Create Mermaid - Convert to Visio]
     
     %% System
-    SYS --> RR["View Routing Rules<br/>Where things go"]
-    SYS --> CRED["Check Credentials<br/>Verify config"]
-    SYS --> MCP["Run MCP Server<br/>Windsurf integration"]
+    SYS --> RR[View Routing Rules - Where things go]
+    SYS --> CRED[Check Credentials - Verify config]
+    SYS --> MCP[Run MCP Server - Windsurf integration]
     
     %% Styling
     style USER fill:#4fc3f7,stroke:#0277bd,stroke-width:3px,color:#000

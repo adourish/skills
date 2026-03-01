@@ -32,7 +32,7 @@ This skill covers how to contribute to the Skills repository using GitHub pull r
 ## Workflow Overview
 
 ```mermaid
-graph LR
+flowchart LR
     A[Fork Repository] --> B[Clone Fork]
     B --> C[Create Branch]
     C --> D[Make Changes]

@@ -62,7 +62,7 @@ This skill covers converting Visio diagrams (.vsdx) to Mermaid text syntax. This
 
 1. **Open Visio diagram**
 2. **Identify diagram type:**
-   - Flowchart → `graph TB` or `graph LR`
+   - Flowchart → `flowchart TB` or `flowchart LR`
    - Sequence diagram → `sequenceDiagram`
    - Entity relationship → `erDiagram`
    - State diagram → `stateDiagram-v2`
@@ -99,7 +99,7 @@ Visio Connector Label → Mermaid: A -->|Label| B
 
 **Mermaid Conversion:**
 ```mermaid
-graph TB
+flowchart TB
     Start[Start] --> Check{Check?}
     Check -->|Yes| Process[Process]
     Check -->|No| End((End))
@@ -139,7 +139,7 @@ graph TB
 
 **Flowchart:**
 ```mermaid
-graph TB
+flowchart TB
     A[Start] --> B[Process]
 ```
 
@@ -176,7 +176,7 @@ gantt
 Start with basic structure:
 
 ```mermaid
-graph TB
+flowchart TB
     %% Define all nodes first
     A[Node 1]
     B[Node 2]
@@ -191,7 +191,7 @@ graph TB
 
 **Add styling:**
 ```mermaid
-graph TB
+flowchart TB
     A[Important]
     B[Normal]
     
@@ -201,7 +201,7 @@ graph TB
 
 **Add subgraphs:**
 ```mermaid
-graph TB
+flowchart TB
     subgraph "Process Group"
         A[Step 1]
         B[Step 2]
@@ -210,7 +210,7 @@ graph TB
 
 **Add classes:**
 ```mermaid
-graph TB
+flowchart TB
     A[Node]:::important
     
     classDef important fill:#f96,stroke:#333,stroke-width:4px
@@ -261,7 +261,7 @@ graph TB
 **Visio colors → Mermaid styles:**
 
 ```mermaid
-graph TB
+flowchart TB
     A[Red Background]
     B[Blue Background]
     C[Green Background]
@@ -287,7 +287,7 @@ graph TB
 **Mermaid Conversion:**
 
 ```mermaid
-graph TB
+flowchart TB
     Start([Start Process])
     Check{Valid Input?}
     Process[Process Data]
@@ -317,7 +317,7 @@ graph TB
 **Mermaid Conversion:**
 
 ```mermaid
-graph TB
+flowchart TB
     subgraph User
         U1[Submit Request]
     end
@@ -346,7 +346,7 @@ graph TB
 **Mermaid Conversion:**
 
 ```mermaid
-graph TB
+flowchart TB
     Start[Start]
     Q1{Question 1?}
     Q2{Question 2?}

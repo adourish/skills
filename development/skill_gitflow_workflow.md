@@ -172,7 +172,7 @@ git push origin --delete feature/user-authentication
 
 **Feature Branch Lifecycle:**
 ```mermaid
-graph LR
+flowchart LR
     A[develop] --> B[Create feature branch]
     B --> C[Develop & commit]
     C --> D[Merge develop updates]

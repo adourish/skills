@@ -11,6 +11,45 @@ Mermaid is a JavaScript-based diagramming and charting tool that uses text-based
 
 ---
 
+## Setup: VS Code & Windsurf Extension
+
+To preview Mermaid diagrams in VS Code or Windsurf, install the required extension:
+
+### Install Extension
+
+1. Open Extensions panel (`Ctrl+Shift+X`)
+2. Search for **"Markdown Preview Mermaid Support"** by Matt Bierner
+3. Click Install
+
+### Usage
+
+**Preview in Markdown:**
+1. Create or open a `.md` file with Mermaid code blocks
+2. Press `Ctrl+Shift+V` to open Markdown preview
+3. Mermaid diagrams render automatically
+
+**Side-by-side editing:**
+1. Open your `.md` file
+2. Press `Ctrl+K V` (or right-click → "Open Preview to the Side")
+3. Edit on the left, see live updates on the right
+
+**Example:**
+
+````markdown
+# My Diagram
+
+```mermaid
+graph TD
+    A[Start] --> B[End]
+```
+````
+
+**Troubleshooting:**
+- Ensure code blocks use ` ```mermaid ` (not `mmd` or `mer`)
+- Reload window if diagrams don't render: `Ctrl+Shift+P` → "Reload Window"
+
+---
+
 ## 1. Mermaid Syntax Reference
 
 ### 1.1 Flowcharts

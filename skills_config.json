@@ -1,0 +1,15 @@
+{
+  "SKILLS_ROOT": "G:\\My Drive\\06_Skills",
+  "description": "Configuration for the Skills repository. Update SKILLS_ROOT to match your local clone location.",
+  "examples": {
+    "windows": "G:\\My Drive\\06_Skills",
+    "windows_alt": "C:\\Users\\YourName\\Documents\\06_Skills",
+    "linux": "/home/username/06_Skills",
+    "mac": "/Users/username/Documents/06_Skills"
+  },
+  "usage": {
+    "note": "All skill paths in documentation are relative to SKILLS_ROOT",
+    "format": "${SKILLS_ROOT}/automation/skill_daily_planning.md",
+    "actual_example": "If SKILLS_ROOT is 'C:\\Skills', then the path becomes 'C:\\Skills\\automation\\skill_daily_planning.md'"
+  }
+}

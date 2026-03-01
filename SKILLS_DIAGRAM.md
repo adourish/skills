@@ -7,56 +7,56 @@ Complete visual map of all 32 AI skills organized by category.
 ## Skills Overview Diagram
 
 ```mermaid
-graph TB
-    Root["📁 06_Skills<br/>32 AI Skills<br/>5 Categories"]
+flowchart TB
+    Root[06_Skills - 32 AI Skills - 5 Categories]
     
-    Root --> Automation["🤖 AUTOMATION<br/>7 Skills<br/>Daily Workflows"]
-    Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>5 Skills<br/>Dev Tools"]
-    Root --> Documentation["📝 DOCUMENTATION<br/>8 Skills<br/>Templates & Diagrams"]
-    Root --> System["⚙️ SYSTEM<br/>7 Skills<br/>Core Configuration"]
+    Root --> Automation[AUTOMATION - 7 Skills - Daily Workflows]
+    Root --> Integrations[INTEGRATIONS - 5 Skills - API & Services]
+    Root --> Development[DEVELOPMENT - 5 Skills - Dev Tools]
+    Root --> Documentation[DOCUMENTATION - 8 Skills - Templates & Diagrams]
+    Root --> System[SYSTEM - 7 Skills - Core Configuration]
     
     %% Automation Skills
-    Automation --> A1["daily_planning ⭐<br/>Kanban board generation"]
-    Automation --> A2["email_processing<br/>Automated email handling"]
-    Automation --> A3["file_organization<br/>PARA method filing"]
-    Automation --> A4["browser_automation<br/>Playwright web automation"]
-    Automation --> A5["powershell_automation<br/>PowerShell scripting"]
-    Automation --> A6["torrent_downloads<br/>Torrent management"]
-    Automation --> A7["archive_parts_recovery<br/>Archive recovery"]
+    Automation --> A1[daily_planning - Kanban board generation]
+    Automation --> A2[email_processing - Automated email handling]
+    Automation --> A3[file_organization - PARA method filing]
+    Automation --> A4[browser_automation - Playwright web automation]
+    Automation --> A5[powershell_automation - PowerShell scripting]
+    Automation --> A6[torrent_downloads - Torrent management]
+    Automation --> A7[archive_parts_recovery - Archive recovery]
     
     %% Integration Skills
-    Integrations --> I1["amplenote_api<br/>Amplenote integration"]
-    Integrations --> I2["amplenote_relay_systems<br/>Advanced relay configs"]
-    Integrations --> I3["gmail_automation<br/>Gmail API setup"]
-    Integrations --> I4["todoist_api<br/>Task management API"]
-    Integrations --> I5["keepass_integration<br/>Password manager"]
+    Integrations --> I1[amplenote_api - Amplenote integration]
+    Integrations --> I2[amplenote_relay_systems - Advanced relay configs]
+    Integrations --> I3[gmail_automation - Gmail API setup]
+    Integrations --> I4[todoist_api - Task management API]
+    Integrations --> I5[keepass_integration - Password manager]
     
     %% Development Skills
-    Development --> D1["salesforce_development<br/>Apex & LWC"]
-    Development --> D2["salesforce_fls_automation<br/>Field-level security"]
-    Development --> D3["salesforce_developer_activity_report<br/>Activity tracking"]
-    Development --> D4["git_version_control<br/>Git workflows"]
-    Development --> D5["azure_devops_automation<br/>ADO work items"]
+    Development --> D1[salesforce_development - Apex & LWC]
+    Development --> D2[salesforce_fls_automation - Field-level security]
+    Development --> D3[salesforce_developer_activity_report - Activity tracking]
+    Development --> D4[git_version_control - Git workflows]
+    Development --> D5[azure_devops_automation - ADO work items]
     
     %% Documentation Skills
-    Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
-    Documentation --> Doc2["visio_via_mermaid<br/>Mermaid to Visio"]
-    Documentation --> Doc3["visio_section_508<br/>Accessible diagrams"]
-    Documentation --> Doc4["visio_grant_lifecycle_diagram<br/>Grant diagrams"]
-    Documentation --> Doc5["teg_discussion_templates<br/>TEG templates"]
-    Documentation --> Doc6["feature_documentation<br/>Doc standards"]
-    Documentation --> Doc7["qif_dndd_fillable_forms_visio_spec<br/>QIF forms"]
-    Documentation --> Doc8["teg_discussion_template_alt<br/>Alt TEG template"]
+    Documentation --> Doc1[mermaid_diagrams - Diagram syntax]
+    Documentation --> Doc2[visio_via_mermaid - Mermaid to Visio]
+    Documentation --> Doc3[visio_section_508 - Accessible diagrams]
+    Documentation --> Doc4[visio_grant_lifecycle_diagram - Grant diagrams]
+    Documentation --> Doc5[teg_discussion_templates - TEG templates]
+    Documentation --> Doc6[feature_documentation - Doc standards]
+    Documentation --> Doc7[qif_dndd_fillable_forms_visio_spec - QIF forms]
+    Documentation --> Doc8[teg_discussion_template_alt - Alt TEG template]
     
     %% System Skills
-    System --> S1["routing_rules<br/>System routing"]
-    System --> S2["environments_credentials<br/>Credential management"]
-    System --> S3["cascade_workflow<br/>AI workflow patterns"]
-    System --> S4["process_new<br/>Process new items"]
-    System --> S5["agent_handoff<br/>Agent protocols"]
-    System --> S6["mcp_server_setup<br/>MCP configuration"]
-    System --> S7["organizing_skills<br/>Skill organization"]
+    System --> S1[routing_rules - System routing]
+    System --> S2[environments_credentials - Credential management]
+    System --> S3[cascade_workflow - AI workflow patterns]
+    System --> S4[process_new - Process new items]
+    System --> S5[agent_handoff - Agent protocols]
+    System --> S6[mcp_server_setup - MCP configuration]
+    System --> S7[organizing_skills - Skill organization]
     
     %% Styling
     style Root fill:#e1f5fe,stroke:#01579b,stroke-width:3px
@@ -109,7 +109,7 @@ graph TB
 ## Skill Relationships Diagram
 
 ```mermaid
-graph LR
+flowchart LR
     %% Core Daily Workflow
     DP[daily_planning ⭐]
     EP[email_processing]
@@ -160,7 +160,7 @@ graph LR
 ## Development Skills Workflow
 
 ```mermaid
-graph TD
+flowchart TD
     %% Development Workflow
     SF[salesforce_development]
     GIT[git_version_control]
@@ -194,7 +194,7 @@ graph TD
 ## Documentation Skills Workflow
 
 ```mermaid
-graph LR
+flowchart LR
     %% Documentation Creation Flow
     MD[mermaid_diagrams]
     VVM[visio_via_mermaid]
@@ -224,7 +224,7 @@ graph LR
 ## System Configuration Flow
 
 ```mermaid
-graph TD
+flowchart TD
     %% System Setup
     EC[environments_credentials]
     RR[routing_rules]
@@ -355,7 +355,7 @@ graph TB
 ## Skills by Frequency of Use
 
 ```mermaid
-graph LR
+flowchart LR
     subgraph "Daily Use ⭐"
         D1[daily_planning]
         D2[file_organization]

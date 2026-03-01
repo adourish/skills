@@ -144,7 +144,7 @@ This skill provides the official Section 508 compliant color palette for all dia
 **Dark Background Nodes:**
 
 ```mermaid
-graph TB
+flowchart TB
     Node1["Primary Node"]
     Node2["Success Node"]
     Node3["Warning Node"]
@@ -157,7 +157,7 @@ graph TB
 **Light Background Nodes:**
 
 ```mermaid
-graph TB
+flowchart TB
     Node1["Primary Highlight"]
     Node2["Success Highlight"]
     Node3["Warning Highlight"]
@@ -174,7 +174,7 @@ graph TB
 **Template 1: Primary Flow (Dark)**
 
 ```mermaid
-graph LR
+flowchart LR
     A[Start] --> B[Process]
     B --> C[Complete]
     
@@ -186,7 +186,7 @@ graph LR
 **Template 2: Highlighted Flow (Light)**
 
 ```mermaid
-graph LR
+flowchart LR
     A[Start] --> B[Process]
     B --> C[Complete]
     
@@ -198,7 +198,7 @@ graph LR
 **Template 3: Status Indicators**
 
 ```mermaid
-graph TB
+flowchart TB
     Success["✓ Success<br/>Completed"]
     Warning["⚠ Warning<br/>Review needed"]
     Error["✗ Error<br/>Failed"]

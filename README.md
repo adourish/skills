@@ -2,6 +2,8 @@
 
 AI agent skills organized by category. Each skill provides detailed instructions for specific workflows and integrations.
 
+**🚀 New to this repository?** See [QUICKSTART.md](QUICKSTART.md) for a complete guide on using these skills in Windsurf Cascade and Claude Code.
+
 ## Skills Organization Diagram
 
 ```mermaid
@@ -146,6 +148,8 @@ graph TB
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.
 
 **🤖 AI Integration:** See [SKILLS_CONTEXT.md](SKILLS_CONTEXT.md) for AI-optimized skill reference and [skills_manifest.json](skills_manifest.json) for machine-readable skill index.
+
+**📖 Quick Start:** See [QUICKSTART.md](QUICKSTART.md) for complete guide on using skills in Windsurf and Claude Code.
 
 ---
 

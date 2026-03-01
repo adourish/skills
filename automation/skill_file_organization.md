@@ -419,136 +419,25 @@ This separate guide covers:
 
 **Note:** The media filing guide is kept separate to maintain privacy of certain folder structures.
 
-### Video Filing
+### Media Filing Details
 
-**Location**: `G:\My Drive\04_Resources\Media\Video\`
+All detailed media filing rules (videos, photos, magazines, music) have been moved to a separate guide for privacy and organization:
 
-#### Categories
-```
-Video/
-├── Spicy/              # Adult content (flat structure)
-├── Movies/             # Films organized by genre
-├── TV_Shows/           # Series organized by show name
-└── Educational/        # Tutorials and courses
-```
+**See:** `G:\My Drive\04_Resources\Media\HOW_TO_FILE_MEDIA.md`
 
-#### Spicy Video Rules
-**Destination**: `G:\My Drive\04_Resources\Media\Video\Spicy\`
+**Quick summary:**
+- Videos: Organized by type (movies, TV shows, documentaries, tutorials)
+- Photos: Organized by category with date-based structure
+- Magazines: Organized by publication in collections
+- Music: Organized by artist/album
+- Audio: Podcasts, audiobooks organized by show/author
 
-**Rules**:
-- All files stored flat (no subfolders)
-- Keep original filenames when descriptive
-- Replace spaces with underscores
-- Supported formats: `.mp4`, `.mkv`, `.avi`, `.wmv`, `.mov`
-
-**Processing**:
-1. Extract from archives using password `koth`
-2. Move directly to Spicy folder
-3. Log moves in `_unpack_log.txt`
-4. Move source archive to `C:\Users\sol90\Downloads\Archives\Processed\` after verification
-
-**Naming Convention**:
-- Keep descriptive names: `Big_Natural_Tits_16.mp4`
-- Keep quality indicators: `Video_Name_1080p.mp4`
-- Keep numeric IDs: `06950853.mp4`
-- Replace spaces with underscores
-
-### Photo Filing
-
-**Location**: `G:\My Drive\04_Resources\Media\Pictures\`
-
-#### Categories
-```
-Pictures/
-├── Spicy/              # Adult content in organized folders
-├── Photography/        # Personal photography
-└── Stock_Images/       # Stock and reference images
-```
-
-#### Spicy Photo Rules
-**Destination**: `G:\My Drive\04_Resources\Media\Pictures\Spicy\`
-
-**Folder Naming by Type**:
-
-**Type A: Named Model/Performer**
-- Pattern: `Model_Name_Set_Theme`
-- Examples:
-  - `Jenni_Pearl_Necklaces/`
-  - `Shay_Laren_Bathroom_Blues/`
-  - `Stella_Cardo_Chalet/`
-
-**Type B: Coded/Hash Archives**
-- Pattern: Keep exact alphanumeric code
-- Examples:
-  - `f1s26fvak5u3/`
-  - `ic415ex63bvf/`
-
-**Type C: Date-Stamped**
-- Pattern: `Source_YYYY-MM-DD_Model_Set`
-- Examples:
-  - `GN_2004-01-11_Valentina_Polina_Necklace_Of_Shells/`
-  - `ma_2025_11_04_pearl_necklace_avery/`
-
-**Processing Workflow**:
-1. Extract archives to Downloads with proper folder naming
-2. Verify extraction success
-3. Move photo folders to Pictures Spicy
-4. Move archives to `C:\Users\sol90\Downloads\Archives\Processed\` after verification
-5. Clean Downloads folder (move processed files to archive, not delete)
-
-### Magazine Filing
-
-**Location**: `G:\My Drive\04_Resources\Media\Magazines\Spicy\`
-
-#### Structure
-```
-Magazines/Spicy/
-└── Collections/
-    ├── [Magazine_Title]/
-    │   ├── [Issue_PDFs]
-```
-
-**CRITICAL RULES**:
-- **ALL magazines** must be in `Collections/[Magazine_Name]/` folders
-- **NO PDFs at root level** - everything organized by magazine title
-- Each magazine title gets its own collection folder (even single issues)
-
-#### Magazine Collections
-Common collections:
-- `Hustler/` - All Hustler and Hustler Taboo issues
-- `Penthouse/` - All Penthouse issues
-- `Playboy/` - All Playboy issues
-- `Mayfair/` - British magazine
-- `Club/` - British magazine
-- `High_Society/` - American magazine
-- `Razzle/` - British magazine
-- `Barely_Legal/` - Hustler publication
-- `Other_Magazines/` - Miscellaneous titles
-
-#### Magazine Naming Convention
-Format: `Magazine_Title_Issue_Date.pdf`
-
-Examples:
-- `Hustler_Taboo_2025_11.pdf`
-- `Penthouse_Dec_2006.pdf`
-- `High_Society_Volume_290_April_2020.pdf`
-
-#### Magazine Processing
-1. Identify magazine title from filename or content
-2. Create/use collection folder: `Collections/[Magazine_Title]/`
-3. Move PDF to collection folder
-4. Use OCR for poorly named files if needed
-5. Run standardization script to clean filenames
-
-**Standardization Script**: `G:\My Drive\04_Resources\Media\Magazines\Spicy\standardize_filenames.ps1`
-
-**Rules Applied**:
-- Remove numeric prefixes
-- Expand abbreviations (Hustlr → Hustler, Tb → Taboo)
-- Remove possessive apostrophes
-- Standardize date formats (YYYY-MM-DD → YYYY_MM)
-- Clean multiple underscores
-- Remove trailing underscores
+**Processing workflow:**
+1. Download/receive media file
+2. Identify media type
+3. Follow specific rules in media filing guide
+4. Move to appropriate location in `04_Resources/Media/`
+5. Archive source files to `Downloads/Archives/Processed/`
 
 ---
 

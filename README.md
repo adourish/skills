@@ -6,13 +6,13 @@ AI agent skills organized by category. Each skill provides detailed instructions
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>32 AI Skills<br/>5 Categories"]
+    Root["📁 06_Skills<br/>33 AI Skills<br/>5 Categories"]
     
     Root --> Automation["🤖 AUTOMATION<br/>7 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
     Root --> Development["💻 DEVELOPMENT<br/>5 Skills<br/>Dev Tools"]
     Root --> Documentation["📝 DOCUMENTATION<br/>8 Skills<br/>Templates & Diagrams"]
-    Root --> System["⚙️ SYSTEM<br/>7 Skills<br/>Core Configuration"]
+    Root --> System["⚙️ SYSTEM<br/>8 Skills<br/>Core Configuration"]
     
     %% Automation Skills
     Automation --> A1["daily_planning ⭐<br/>Kanban board generation"]
@@ -48,13 +48,14 @@ graph TB
     Documentation --> Doc8["teg_discussion_template_alt<br/>Alt TEG template"]
     
     %% System Skills
-    System --> S1["routing_rules<br/>System routing"]
-    System --> S2["environments_credentials<br/>Credential management"]
-    System --> S3["cascade_workflow<br/>AI workflow patterns"]
-    System --> S4["process_new<br/>Process new items"]
-    System --> S5["agent_handoff<br/>Agent protocols"]
-    System --> S6["mcp_server_setup<br/>MCP configuration"]
-    System --> S7["organizing_skills<br/>Skill organization"]
+    System --> S1["user_commands ⭐<br/>Quick command reference"]
+    System --> S2["routing_rules<br/>System routing"]
+    System --> S3["environments_credentials<br/>Credential management"]
+    System --> S4["cascade_workflow<br/>AI workflow patterns"]
+    System --> S5["process_new<br/>Process new items"]
+    System --> S6["agent_handoff<br/>Agent protocols"]
+    System --> S7["mcp_server_setup<br/>MCP configuration"]
+    System --> S8["organizing_skills<br/>Skill organization"]
     
     %% Styling
     style Root fill:#e1f5fe,stroke:#01579b,stroke-width:3px
@@ -93,13 +94,14 @@ graph TB
     style Doc7 fill:#f8bbd0,stroke:#880e4f
     style Doc8 fill:#f8bbd0,stroke:#880e4f
     
-    style S1 fill:#fff59d,stroke:#f57f17
+    style S1 fill:#fff176,stroke:#f57f17
     style S2 fill:#fff59d,stroke:#f57f17
     style S3 fill:#fff59d,stroke:#f57f17
     style S4 fill:#fff59d,stroke:#f57f17
     style S5 fill:#fff59d,stroke:#f57f17
     style S6 fill:#fff59d,stroke:#f57f17
     style S7 fill:#fff59d,stroke:#f57f17
+    style S8 fill:#fff59d,stroke:#f57f17
 ```
 
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.
@@ -246,14 +248,19 @@ graph TD
     RR --> PN[process_new]
     MCP --> PN
     
+    UC[user_commands] --> PN
+    UC --> RR
+    
     CW[cascade_workflow] --> AH[agent_handoff]
     OS[organizing_skills] --> CW
     
     PN --> DAILY[Daily Automation]
     CW --> AI[AI Workflows]
     AH --> CONTEXT[Context Sharing]
+    UC --> QUICK[Quick Reference]
     
     style EC fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
+    style UC fill:#fff176,stroke:#f57f17,stroke-width:3px
     style RR fill:#fff176,stroke:#f57f17,stroke-width:3px
     style PN fill:#fff176,stroke:#f57f17,stroke-width:3px
     style MCP fill:#fff59d,stroke:#f57f17,stroke-width:2px
@@ -262,6 +269,7 @@ graph TD
     style OS fill:#fff59d,stroke:#f57f17,stroke-width:2px
 ```
 
+**Quick Reference:** user_commands ⭐ (start here for common commands)  
 **Critical Setup:** environments_credentials, routing_rules  
 **Core Workflow:** process_new, mcp_server_setup  
 **AI Management:** cascade_workflow, agent_handoff, organizing_skills
@@ -314,6 +322,7 @@ Documentation and template skills.
 ### ⚙️ System
 Core system configuration and workflow skills.
 
+- **[user_commands](system/skill_user_commands.md)** - Quick reference for common commands and workflows
 - **[routing_rules](system/skill_routing_rules.md)** - System-wide routing rules for tasks, notes, and files
 - **[environments_credentials](system/skill_environments_credentials.md)** - Credential management and environment configuration
 - **[cascade_workflow](system/skill_cascade_workflow.md)** - Cascade AI workflow patterns and best practices

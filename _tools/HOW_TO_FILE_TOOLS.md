@@ -506,3 +506,5 @@ This guide covers:
 - **2026-03-01:** Created initial guide
 - **2026-03-01:** Moved Mermaid converter to `documentation/diagram-tools/`
 - **2026-03-01:** Added reference to media filing guide for private content
+- **2026-03-01:** Added document processing skills (DOCX, PPTX, PDF, XLSX)
+- **2026-03-01:** Added MCP Builder, Doc Co-Authoring, Skill Creator, and Internal Comms skills

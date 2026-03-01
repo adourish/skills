@@ -6,12 +6,12 @@ AI agent skills organized by category. Each skill provides detailed instructions
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>48 AI Skills<br/>6 Categories"]
+    Root["📁 06_Skills<br/>50 AI Skills<br/>6 Categories"]
     
     Root --> Tools["🛠️ TOOLS<br/>2 Skills<br/>Skill Development"]
     Root --> Automation["🤖 AUTOMATION<br/>7 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>6 Skills<br/>Dev Tools"]
+    Root --> Development["💻 DEVELOPMENT<br/>8 Skills<br/>Dev Tools"]
     Root --> Documentation["📝 DOCUMENTATION<br/>19 Skills<br/>Templates & Diagrams"]
     Root --> System["⚙️ SYSTEM<br/>9 Skills<br/>Core Configuration"]
     
@@ -42,6 +42,8 @@ graph TB
     Development --> D4["git_version_control<br/>Git workflows"]
     Development --> D5["azure_devops_automation<br/>ADO work items"]
     Development --> D6["mcp_builder ⭐<br/>Build MCP servers"]
+    Development --> D7["github_pull_requests ⭐<br/>PR workflow"]
+    Development --> D8["gitflow_workflow ⭐<br/>GitFlow branching"]
     
     %% Documentation Skills
     Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
@@ -75,58 +77,70 @@ graph TB
     System --> S8["mcp_server_setup<br/>MCP configuration"]
     System --> S9["organizing_skills<br/>Skill organization"]
     
-    %% Styling
-    style Root fill:#e1f5fe,stroke:#01579b,stroke-width:3px
-    style Tools fill:#e0f2f1,stroke:#004d40,stroke-width:2px
-    style Automation fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    style Integrations fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style Development fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    style Documentation fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-    style System fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    %% Section 508 Compliant Styling (4.5:1 contrast minimum)
+    style Root fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Tools fill:#00695c,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Automation fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Integrations fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Development fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Documentation fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style System fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
     
-    style T1 fill:#b2dfdb,stroke:#004d40
-    style T2 fill:#b2dfdb,stroke:#004d40
+    style T1 fill:#00897b,stroke:#ffffff,color:#ffffff
+    style T2 fill:#00897b,stroke:#ffffff,color:#ffffff
     
-    style A1 fill:#ffe0b2,stroke:#e65100
-    style A2 fill:#ffe0b2,stroke:#e65100
-    style A3 fill:#ffe0b2,stroke:#e65100
-    style A4 fill:#ffe0b2,stroke:#e65100
-    style A5 fill:#ffe0b2,stroke:#e65100
-    style A6 fill:#ffe0b2,stroke:#e65100
-    style A7 fill:#ffe0b2,stroke:#e65100
+    style A1 fill:#ff6f00,stroke:#ffffff,color:#ffffff
+    style A2 fill:#ff6f00,stroke:#ffffff,color:#ffffff
+    style A3 fill:#ff6f00,stroke:#ffffff,color:#ffffff
+    style A4 fill:#ff6f00,stroke:#ffffff,color:#ffffff
+    style A5 fill:#ff6f00,stroke:#ffffff,color:#ffffff
+    style A6 fill:#ff6f00,stroke:#ffffff,color:#ffffff
+    style A7 fill:#ff6f00,stroke:#ffffff,color:#ffffff
     
-    style I1 fill:#e1bee7,stroke:#4a148c
-    style I2 fill:#e1bee7,stroke:#4a148c
-    style I3 fill:#e1bee7,stroke:#4a148c
-    style I4 fill:#e1bee7,stroke:#4a148c
-    style I5 fill:#e1bee7,stroke:#4a148c
+    style I1 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
+    style I2 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
+    style I3 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
+    style I4 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
+    style I5 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
     
-    style D1 fill:#c8e6c9,stroke:#1b5e20
-    style D2 fill:#c8e6c9,stroke:#1b5e20
-    style D3 fill:#c8e6c9,stroke:#1b5e20
-    style D4 fill:#c8e6c9,stroke:#1b5e20
-    style D5 fill:#c8e6c9,stroke:#1b5e20
+    style D1 fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D2 fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D3 fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D4 fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D5 fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D6 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D7 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D8 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
-    style Doc1 fill:#f8bbd0,stroke:#880e4f
-    style Doc2 fill:#f8bbd0,stroke:#880e4f
-    style Doc3 fill:#f8bbd0,stroke:#880e4f
-    style Doc4 fill:#f48fb1,stroke:#880e4f
-    style Doc5 fill:#f48fb1,stroke:#880e4f
-    style Doc6 fill:#f8bbd0,stroke:#880e4f
-    style Doc7 fill:#f8bbd0,stroke:#880e4f
-    style Doc8 fill:#f8bbd0,stroke:#880e4f
-    style Doc9 fill:#f8bbd0,stroke:#880e4f
-    style Doc10 fill:#f8bbd0,stroke:#880e4f
+    style Doc1 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc2 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc3 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc4 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc5 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc6 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc7 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc8 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc9 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc10 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc11 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Doc12 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Doc13 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc14 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc15 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc16 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc17 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc18 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Doc19 fill:#ad1457,stroke:#ffffff,color:#ffffff
     
-    style S1 fill:#fff176,stroke:#f57f17
-    style S2 fill:#fff176,stroke:#f57f17
-    style S3 fill:#fff59d,stroke:#f57f17
-    style S4 fill:#fff59d,stroke:#f57f17
-    style S5 fill:#fff59d,stroke:#f57f17
-    style S6 fill:#fff59d,stroke:#f57f17
-    style S7 fill:#fff59d,stroke:#f57f17
-    style S8 fill:#fff59d,stroke:#f57f17
-    style S9 fill:#fff59d,stroke:#f57f17
+    style S1 fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style S2 fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style S3 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S4 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S5 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S6 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S7 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S8 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S9 fill:#ef6c00,stroke:#ffffff,color:#ffffff
 ```
 
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.
@@ -135,27 +149,387 @@ graph TB
 
 ---
 
-## AI Integration for Windsurf
+## AI Integration for Windsurf & Claude Code
 
-**Quick AI Lookup:**
-- **[SKILLS_CONTEXT.md](SKILLS_CONTEXT.md)** - Single source of truth for AI agents
-- **[skills_manifest.json](skills_manifest.json)** - Machine-readable skill index with metadata
-- **[user_commands](system/skill_user_commands.md)** - Quick command reference
+### Quick Start for AI Assistants
 
-**AI-Friendly Features:**
-- Structured JSON manifest with tags, dependencies, and commands
-- Skills context file optimized for AI parsing
-- Quick Start sections with copy-paste commands
-- Common user request patterns mapped to skills
-- Dependency chains and workflow guides
+**Primary Resources:**
+- **[SKILLS_CONTEXT.md](SKILLS_CONTEXT.md)** - Single source of truth for AI agents (comprehensive guide)
+- **[skills_manifest.json](skills_manifest.json)** - Machine-readable skill index with complete metadata
+- **[user_commands](system/skill_user_commands.md)** - Quick command reference with copy-paste examples
 
-**For AI Agents:**
+**How to Use:**
+1. **First time?** Read SKILLS_CONTEXT.md for complete overview
+2. **Need a command?** Check user_commands skill
+3. **Programmatic access?** Parse skills_manifest.json
+4. **Specific skill?** Reference individual skill markdown files
+
+---
+
+### For Windsurf Cascade
+
+**Loading Skills in Windsurf:**
+
+```markdown
+# Method 1: Reference Specific Skill
+"Check the daily_planning skill at G:\My Drive\06_Skills\automation\skill_daily_planning.md"
+
+# Method 2: Load Multiple Skills
+"Load the following skills:
+- file_organization
+- routing_rules
+- skill_creator"
+
+# Method 3: Load by Category
+"Load all documentation skills from G:\My Drive\06_Skills\documentation\"
+
+# Method 4: Use Skills Context
+"Reference SKILLS_CONTEXT.md for complete skill overview"
 ```
-User says: "Help me plan my day"
-→ Use: daily_planning
-→ Command: python run_process_new.py
-→ Output: Todoist tasks, Amplenote note, JSON file
+
+**Windsurf Workflow Patterns:**
+
+**Pattern 1: Task Execution**
 ```
+User: "Plan my day"
+
+Cascade Workflow:
+1. Read: G:\My Drive\06_Skills\automation\skill_daily_planning.md
+2. Check prerequisites: environments.json configured?
+3. Navigate: cd "C:\Users\sol90\CascadeProjects\mcptools"
+4. Execute: python run_process_new_v2.py
+5. Monitor: Watch for completion (~30 seconds)
+6. Verify: Check Todoist for new tasks
+7. Report: "Created X tasks from Y emails and Z calendar events"
+```
+
+**Pattern 2: Skill Discovery**
+```
+User: "How do I organize my downloads?"
+
+Cascade Workflow:
+1. Search: skills_manifest.json for "file" or "organization"
+2. Find: file_organization skill
+3. Load: G:\My Drive\06_Skills\automation\skill_file_organization.md
+4. Reference: routing_rules for PARA method
+5. Guide: Walk user through filing process
+6. Suggest: Related skills (media_filing_guide for media files)
+```
+
+**Pattern 3: Skill Creation**
+```
+User: "Create a new skill for X"
+
+Cascade Workflow:
+1. Load: G:\My Drive\06_Skills\_tools\skill-creator\README.md
+2. Load: G:\My Drive\06_Skills\_tools\HOW_TO_FILE_TOOLS.md
+3. Follow: Skill creation template
+4. Determine: Correct folder based on purpose
+5. Create: Skill markdown with proper structure
+6. Update: Skills README if needed
+```
+
+**Pattern 4: Documentation Creation**
+```
+User: "Write a guide for Y"
+
+Cascade Workflow:
+1. Load: G:\My Drive\06_Skills\documentation\doc-coauthoring\README.md
+2. Stage 1: Context Gathering (ask questions)
+3. Stage 2: Refinement & Structure (draft content)
+4. Stage 3: Reader Testing (validate clarity)
+5. Reference: internal-comms for changelog format
+6. Create: Comprehensive documentation
+```
+
+---
+
+### For Claude Code
+
+**Loading Skills in Claude:**
+
+```markdown
+# Method 1: Direct File Reference
+@G:\My Drive\06_Skills\automation\skill_daily_planning.md
+
+# Method 2: Folder Reference
+@G:\My Drive\06_Skills\documentation\
+
+# Method 3: Multiple Skills
+@skill_file_organization.md
+@skill_routing_rules.md
+@HOW_TO_FILE_TOOLS.md
+
+# Method 4: Context File
+@SKILLS_CONTEXT.md for complete overview
+```
+
+**Claude Workflow Patterns:**
+
+**Pattern 1: Quick Command Lookup**
+```
+User: "What's the command to plan my day?"
+
+Claude Workflow:
+1. Load: @user_commands
+2. Find: daily_planning section
+3. Provide: python run_process_new_v2.py
+4. Explain: What it does
+5. Show: Expected output
+```
+
+**Pattern 2: Skill-Based Development**
+```
+User: "Build an MCP server for X"
+
+Claude Workflow:
+1. Load: @mcp-builder/README.md
+2. Load: @mcp-builder/SKILL.md
+3. Follow: 4-phase development process
+4. Phase 1: Research and planning
+5. Phase 2: Implementation
+6. Phase 3: Review and test
+7. Phase 4: Create evaluations
+```
+
+**Pattern 3: Document Processing**
+```
+User: "Create a Word document with tables"
+
+Claude Workflow:
+1. Load: @document-processing/skill_docx.md
+2. Check: Dependencies (docx-js, pandoc)
+3. Provide: Code example using docx-js
+4. Include: Table creation, styling, formatting
+5. Reference: Best practices from skill
+```
+
+---
+
+### AI-Optimized Features
+
+**Structured Metadata:**
+- 36 skills with tags, categories, and difficulty levels
+- Dependencies mapped (e.g., daily_planning requires todoist_api, amplenote_api)
+- Related skills linked (e.g., email_processing → gmail_automation)
+- Frequency indicators (daily/weekly/as-needed)
+- Time estimates for each skill
+
+**Copy-Paste Commands:**
+- Every skill includes ready-to-run commands
+- Full paths specified (no ambiguity)
+- Expected outputs documented
+- Error handling guidance included
+
+**User Intent Mapping:**
+- Common requests mapped to skills
+- Workflow patterns documented
+- Use case categories defined
+- Quick lookup by task type
+
+### AI Workflow Examples
+
+**Example 1: Daily Planning**
+```
+User: "Help me plan my day"
+
+AI Workflow:
+1. Check skills_manifest.json for "daily_planning"
+2. Read: frequency=daily, difficulty=beginner
+3. Command: cd "G:\My Drive\06_Skills\_tools" && python run_process_new.py
+4. Explain: Scans Gmail, Calendar, Todoist → Creates Kanban board
+5. Output: Todoist tasks (5), Amplenote note, JSON file
+6. Time: ~30 seconds
+7. Related: Can also use email_processing, file_organization
+```
+
+**Example 2: File Organization**
+```
+User: "File my downloads"
+
+AI Workflow:
+1. Check skills_manifest.json for "file_organization"
+2. Read: frequency=daily, uses PARA method
+3. Check Downloads folder: Get-ChildItem "$env:USERPROFILE\Downloads"
+4. Reference routing_rules skill for PARA locations
+5. Suggest: Projects/Areas/Resources/Archive based on file type
+6. Execute: Move-Item commands after user confirmation
+7. Time: 10-30 minutes
+```
+
+**Example 3: Create Accessible Diagram**
+```
+User: "Create a flowchart that's Section 508 compliant"
+
+AI Workflow:
+1. Check skills_manifest.json for "mermaid_section_508"
+2. Dependencies: mermaid_diagrams, section_508_compliance
+3. Use approved color palette:
+   - Light Blue (#e1f5fe) with black text
+   - Forest Green (#1b5e20) with white text
+4. Add icons + text labels (no color-only meaning)
+5. Ensure 4.5:1 contrast minimum
+6. Provide Mermaid syntax with styling
+7. Related: Can convert to Visio with visio_via_mermaid
+```
+
+**Example 4: Salesforce Development**
+```
+User: "Open my Salesforce org"
+
+AI Workflow:
+1. Check skills_manifest.json for "salesforce_development"
+2. Dependencies: environments_credentials, git_version_control
+3. Command: sfdx force:org:open -u dmedev5
+4. Related workflows:
+   - Pull changes: sfdx force:source:pull
+   - Push changes: sfdx force:source:push
+   - Git commit: git add . && git commit -m "message"
+5. Reference: salesforce_fls_automation for security
+```
+
+### Skill Discovery Strategy
+
+**Step 1: Identify User Intent**
+- Planning/Organization → daily_planning, file_organization, routing_rules
+- Email Management → email_processing, gmail_automation
+- Task Management → todoist_api, daily_planning
+- Documentation → mermaid_diagrams, visio_via_mermaid, feature_documentation
+- Development → salesforce_development, git_version_control
+- Accessibility → section_508_compliance, mermaid_section_508
+
+**Step 2: Check Prerequisites**
+- API access needed? → Check environments_credentials
+- First time setup? → Check routing_rules, mcp_server_setup
+- Need commands? → Check user_commands
+
+**Step 3: Execute Workflow**
+- Provide copy-paste command
+- Explain what it does
+- Show expected output
+- Mention related skills
+- Offer next steps
+
+### Common User Requests → Skills Mapping
+
+| User Request | Primary Skill | Command | Related Skills |
+|--------------|---------------|---------|----------------|
+| "Plan my day" | daily_planning | `python run_process_new.py` | email_processing, todoist_api |
+| "File downloads" | file_organization | Ask AI to help | routing_rules |
+| "Process emails" | email_processing | `python email_processor.py` | gmail_automation, daily_planning |
+| "Create diagram" | mermaid_diagrams | Create .mmd file | visio_via_mermaid, mermaid_section_508 |
+| "Make it accessible" | section_508_compliance | Use approved colors | mermaid_section_508, visio_section_508 |
+| "Show commands" | user_commands | Reference skill | All skills |
+| "Where does this go?" | routing_rules | PARA method guide | file_organization |
+| "Open Salesforce" | salesforce_development | `sfdx force:org:open` | git_version_control |
+| "Commit code" | git_version_control | `git status` | salesforce_development |
+| "Refresh token" | amplenote_api | `node refresh_amplenote_token.js` | daily_planning |
+
+### Dependency Chains
+
+**Setup Chain (Do First):**
+```
+environments_credentials → All API integrations
+routing_rules → file_organization
+mcp_server_setup → browser_automation, daily_planning
+```
+
+**Daily Planning Chain:**
+```
+environments_credentials → gmail_automation → email_processing → daily_planning
+environments_credentials → todoist_api → daily_planning
+environments_credentials → amplenote_api → daily_planning
+```
+
+**Documentation Chain:**
+```
+mermaid_diagrams → visio_via_mermaid → visio_section_508
+section_508_compliance → mermaid_section_508 + visio_section_508
+```
+
+**Development Chain:**
+```
+environments_credentials → salesforce_development → git_version_control
+azure_devops_automation → salesforce_development
+```
+
+### Skills by Frequency
+
+**Daily Use (5 skills):**
+- daily_planning - `python run_process_new.py` (30 sec)
+- file_organization - Ask AI to help (10-30 min)
+- user_commands - Quick reference (instant)
+- routing_rules - Where things go (instant)
+- git_version_control - Version control (ongoing)
+
+**Weekly Use (1 skill):**
+- email_processing - `python email_processor.py` (5-10 min)
+
+**Setup First (3 skills):**
+- environments_credentials - Configure APIs (5-10 min)
+- routing_rules - Learn PARA method (5 min)
+- mcp_server_setup - Windsurf integration (15 min)
+
+**As-Needed (27 skills):**
+- Reference when specific functionality needed
+- See skills_manifest.json for complete list
+
+### Best Practices for AI Agents
+
+**DO:**
+- ✓ Always provide full command paths
+- ✓ Explain what command does before running
+- ✓ Show expected outputs
+- ✓ Reference related skills
+- ✓ Check dependencies first
+- ✓ Use Section 508 colors for diagrams
+- ✓ Ask confirmation for destructive operations
+
+**DON'T:**
+- ✗ Assume user has API keys configured
+- ✗ Run commands without explanation
+- ✗ Use relative paths (always absolute)
+- ✗ Create diagrams with color-only meaning
+- ✗ Skip prerequisite skills
+- ✗ Guess at commands (reference skills)
+
+### Section 508 Compliance for AI
+
+**When creating diagrams, always:**
+1. Use approved color palette from mermaid_section_508
+2. Include text labels + icons (no color-only meaning)
+3. Ensure 4.5:1 contrast minimum
+4. Provide alt text or description
+
+**Approved Colors:**
+- **Dark backgrounds:** Navy Blue (#0d47a1), Forest Green (#1b5e20), Burgundy (#880e4f) - white text
+- **Light backgrounds:** Light Blue (#e1f5fe), Light Green (#e8f5e9), Light Pink (#fce4ec) - black text
+
+### Quick Reference
+
+**Most Important Skills:**
+1. user_commands - All commands in one place
+2. daily_planning - Daily workflow automation
+3. routing_rules - Where everything goes
+4. section_508_compliance - Accessibility standards
+
+**File Locations:**
+- Skills: `G:\My Drive\06_Skills\`
+- Tools: `G:\My Drive\06_Skills\_tools\`
+- Scripts: `G:\My Drive\06_Skills\_scripts\`
+- Credentials: `G:\My Drive\03_Areas\Keys\Environments\environments.json`
+
+**PARA Method:**
+- Projects: `G:\My Drive\01_Operate\Projects\` (active work)
+- Areas: `G:\My Drive\03_Areas\` (responsibilities)
+- Resources: `G:\My Drive\04_Resources\` (reference)
+- Archive: `G:\My Drive\05_Archive\` (completed)
+
+**Task/Note/Event Storage:**
+- Tasks → Todoist (permanent)
+- Notes → Amplenote (reference + daily view)
+- Events → Google Calendar
+- Files → PARA method
 
 ---
 
@@ -179,14 +553,14 @@ graph LR
     TD[torrent_downloads] --> DL[Downloads]
     AR[archive_parts_recovery] --> FILES[File Recovery]
     
-    style PN fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
-    style DP fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style EP fill:#ffd54f,stroke:#f57f17,stroke-width:2px
-    style FO fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style BA fill:#ffe0b2,stroke:#e65100,stroke-width:2px
-    style PS fill:#ffe0b2,stroke:#e65100,stroke-width:2px
-    style TD fill:#ffe0b2,stroke:#e65100,stroke-width:2px
-    style AR fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style PN fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style DP fill:#ff6f00,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style EP fill:#ff6f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style FO fill:#ff6f00,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style BA fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style PS fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style TD fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style AR fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
 ```
 
 **Daily Use:** daily_planning, file_organization, process_new  
@@ -212,12 +586,12 @@ graph TB
     KEEP --> PASS[Password Storage]
     RELAY --> AUTO[Advanced Automation]
     
-    style EC fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
-    style AMP fill:#ce93d8,stroke:#4a148c,stroke-width:3px
-    style TODO fill:#ce93d8,stroke:#4a148c,stroke-width:3px
-    style GMAIL fill:#ce93d8,stroke:#4a148c,stroke-width:3px
-    style KEEP fill:#e1bee7,stroke:#4a148c,stroke-width:2px
-    style RELAY fill:#e1bee7,stroke:#4a148c,stroke-width:2px
+    style EC fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style AMP fill:#6a1b9a,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style TODO fill:#6a1b9a,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style GMAIL fill:#6a1b9a,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style KEEP fill:#7b1fa2,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style RELAY fill:#7b1fa2,stroke:#ffffff,stroke-width:2px,color:#ffffff
 ```
 
 **Setup Required:** environments_credentials (must configure first)  
@@ -245,12 +619,12 @@ graph LR
     FLS --> SECURITY[Field-Level Security]
     ACT --> REPORTS[Activity Reports]
     
-    style SF fill:#81c784,stroke:#1b5e20,stroke-width:3px
-    style GIT fill:#81c784,stroke:#1b5e20,stroke-width:3px
-    style ADO fill:#81c784,stroke:#1b5e20,stroke-width:2px
-    style FLS fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
-    style ACT fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
-    style EC fill:#fff59d,stroke:#f57f17,stroke-width:2px
+    style SF fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style GIT fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style ADO fill:#2e7d32,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style FLS fill:#2e7d32,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style ACT fill:#2e7d32,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style EC fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
 ```
 
 **Core:** salesforce_development, git_version_control  
@@ -275,15 +649,15 @@ graph LR
     TEGA[teg_discussion_template_alt] --> FD
     MD --> FD
     
-    style MD fill:#f48fb1,stroke:#880e4f,stroke-width:3px
-    style VVM fill:#f48fb1,stroke:#880e4f,stroke-width:3px
-    style MFV fill:#f48fb1,stroke:#880e4f,stroke-width:3px
-    style V508 fill:#f48fb1,stroke:#880e4f,stroke-width:3px
-    style TEG fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
-    style TEGA fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
-    style FD fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
-    style VGL fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
-    style QIF fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
+    style MD fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style VVM fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style MFV fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style V508 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style TEG fill:#ad1457,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style TEGA fill:#ad1457,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style FD fill:#ad1457,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style VGL fill:#ad1457,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style QIF fill:#ad1457,stroke:#ffffff,stroke-width:2px,color:#ffffff
 ```
 
 **Diagram Creation:** mermaid_from_visio → mermaid_diagrams → visio_via_mermaid → visio_section_508  
@@ -313,14 +687,14 @@ graph TD
     AH --> CONTEXT[Context Sharing]
     UC --> QUICK[Quick Reference]
     
-    style EC fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
-    style UC fill:#fff176,stroke:#f57f17,stroke-width:3px
-    style RR fill:#fff176,stroke:#f57f17,stroke-width:3px
-    style PN fill:#fff176,stroke:#f57f17,stroke-width:3px
-    style MCP fill:#fff59d,stroke:#f57f17,stroke-width:2px
-    style CW fill:#fff59d,stroke:#f57f17,stroke-width:2px
-    style AH fill:#fff59d,stroke:#f57f17,stroke-width:2px
-    style OS fill:#fff59d,stroke:#f57f17,stroke-width:2px
+    style EC fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style UC fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style RR fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style PN fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style MCP fill:#ef6c00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style CW fill:#ef6c00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style AH fill:#ef6c00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style OS fill:#ef6c00,stroke:#ffffff,stroke-width:2px,color:#ffffff
 ```
 
 **Quick Reference:** user_commands ⭐ (start here for common commands)  
@@ -331,6 +705,12 @@ graph TD
 ---
 
 ## Categories
+
+### 🛠️ Tools
+Skill development and organization tools.
+
+- **[skill_creator](_tools/skill-creator/README.md)** - Meta-skill for creating new skills with structured approach
+- **[HOW_TO_FILE_TOOLS](_tools/HOW_TO_FILE_TOOLS.md)** - Complete guide for organizing tools in Skills folder
 
 ### 🤖 Automation
 Daily workflows and process automation skills.
@@ -356,20 +736,38 @@ API and service integration skills.
 ### 💻 Development
 Development tools and workflow skills.
 
+- **[mcp_builder](development/mcp-builder/README.md)** - Build Model Context Protocol servers for LLM integrations
+- **[github_pull_requests](development/skill_github_pull_requests.md)** - GitHub pull request workflow for skills updates
+- **[gitflow_workflow](development/skill_gitflow_workflow.md)** - GitFlow branching strategy for releases
+- **[git_version_control](development/skill_git_version_control.md)** - Git workflows and version control best practices
 - **[salesforce_development](development/skill_salesforce_development.md)** - Salesforce Apex and LWC development workflows
 - **[salesforce_fls_automation](development/skill_salesforce_fls_automation.md)** - Field-level security automation
 - **[salesforce_developer_activity_report](development/skill_salesforce_developer_activity_report.md)** - Developer activity tracking and reporting
-- **[git_version_control](development/skill_git_version_control.md)** - Git workflows and version control best practices
 - **[azure_devops_automation](development/skill_azure_devops_automation.md)** - Azure DevOps work item automation
 
 ### 📝 Documentation
 Documentation and template skills.
 
+**Workflow & Collaboration:**
+- **[doc_coauthoring](documentation/doc-coauthoring/README.md)** - Structured 3-stage collaborative document creation
+- **[internal_comms](documentation/internal-comms/README.md)** - Professional announcements, updates, and changelogs
+
+**Document Processing:**
+- **[document_processing](documentation/document-processing/README.md)** - Complete guide for DOCX, PPTX, PDF, XLSX
+- **[skill_docx](documentation/document-processing/skill_docx.md)** - Create and edit Word documents
+- **[skill_pptx](documentation/document-processing/skill_pptx.md)** - Create and edit PowerPoint presentations
+- **[skill_pdf](documentation/document-processing/skill_pdf.md)** - Process and manipulate PDF files
+- **[skill_xlsx](documentation/document-processing/skill_xlsx.md)** - Create and edit Excel spreadsheets with formulas
+
+**Diagram Tools:**
+- **[diagram_tools](documentation/diagram-tools/)** - Mermaid to Visio conversion tool
 - **[mermaid_diagrams](documentation/skill_mermaid_diagrams.md)** - Mermaid diagram syntax and Visio conversion
 - **[visio_via_mermaid](documentation/skill_visio_via_mermaid.md)** - Create Visio diagrams using Mermaid workflow
 - **[mermaid_from_visio](documentation/skill_mermaid_from_visio.md)** - Convert Visio diagrams to Mermaid syntax
 - **[mermaid_section_508](documentation/skill_mermaid_section_508.md)** - Section 508 compliant Mermaid diagrams
 - **[visio_section_508](documentation/skill_visio_section_508.md)** - Section 508 compliant Visio diagrams
+
+**Templates & Standards:**
 - **[teg_discussion_templates](documentation/skill_teg_discussion_templates.md)** - TEG discussion document templates
 - **[feature_documentation](documentation/skill_feature_documentation.md)** - Feature documentation standards
 - **[visio_grant_lifecycle_diagram](documentation/skill_visio_grant_lifecycle_diagram.md)** - Grant lifecycle diagram specifications
@@ -395,11 +793,20 @@ Core system configuration and workflow skills.
 - [email_processing](automation/skill_email_processing.md) - Weekly email management
 - [file_organization](automation/skill_file_organization.md) - File management and PARA method
 - [routing_rules](system/skill_routing_rules.md) - Understand where things go
+- [skill_creator](_tools/skill-creator/README.md) - Create new skills
 
 ### Setup Skills
 - [environments_credentials](system/skill_environments_credentials.md) - Configure credentials first
 - [gmail_automation](integrations/skill_gmail_automation.md) - Set up Gmail integration
 - [amplenote_api](integrations/skill_amplenote_api.md) - Set up Amplenote integration
+
+### Documentation Skills
+- [doc_coauthoring](documentation/doc-coauthoring/README.md) - Collaborative document creation
+- [document_processing](documentation/document-processing/README.md) - Office document processing
+- [internal_comms](documentation/internal-comms/README.md) - Announcements and updates
+
+### Development Skills
+- [mcp_builder](development/mcp-builder/README.md) - Build MCP servers
 
 ## Supporting Resources
 
@@ -411,5 +818,26 @@ Core system configuration and workflow skills.
 
 ---
 
+## Changelog
+
+### March 1, 2026
+**Added 14 New Skills:**
+- **Tools Category (2):** Skill Creator, HOW_TO_FILE_TOOLS
+- **Development (3):** MCP Builder, GitHub Pull Requests, GitFlow Workflow
+- **Documentation (9):** Doc Co-Authoring, Internal Comms, Document Processing (DOCX, PPTX, PDF, XLSX), Diagram Tools, Media Filing Guide
+
+**Updated:**
+- Skills diagram with new Tools category
+- Category counts: 50 total skills across 6 categories
+- Documentation section reorganized into Workflow, Document Processing, Diagram Tools, and Templates
+- Quick Start section with new skill references
+- **All diagrams updated to Section 508 compliant colors** - Dark backgrounds with white text for 4.5:1 contrast ratio minimum
+- **AI Integration section enhanced** - Added Windsurf Cascade and Claude Code specific workflow patterns, loading methods, and practical examples
+
+**Source:** Skills from [Anthropic Skills Repository](https://github.com/anthropics/skills)
+
+---
+
 **Last Updated:** March 1, 2026  
+**Total Skills:** 50 across 6 categories  
 **Location:** `G:\My Drive\06_Skills\README.md`

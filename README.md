@@ -80,13 +80,13 @@ graph TB
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>51 AI Skills<br/>6 Categories"]
+    Root["📁 06_Skills<br/>53 AI Skills<br/>6 Categories"]
     
     Root --> Tools["🛠️ TOOLS<br/>2 Skills<br/>Skill Development"]
     Root --> Automation["🤖 AUTOMATION<br/>7 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
     Root --> Development["💻 DEVELOPMENT<br/>8 Skills<br/>Dev Tools"]
-    Root --> Documentation["📝 DOCUMENTATION<br/>19 Skills<br/>Templates & Diagrams"]
+    Root --> Documentation["📝 DOCUMENTATION<br/>21 Skills<br/>Templates & Diagrams"]
     Root --> System["⚙️ SYSTEM<br/>10 Skills<br/>Core Configuration"]
     
     %% Tools Skills
@@ -139,6 +139,8 @@ graph TB
     Documentation --> Doc17["xlsx_processing<br/>Excel spreadsheets"]
     Documentation --> Doc18["document_processing ⭐<br/>All Office docs"]
     Documentation --> Doc19["media_filing_guide<br/>Media organization"]
+    Documentation --> Doc20["section_508_color_palette ⭐<br/>Color palette"]
+    Documentation --> Doc21["diagram_icons ⭐<br/>Icon library"]
     
     %% System Skills
     System --> S1["user_commands ⭐<br/>Quick command reference"]
@@ -206,6 +208,8 @@ graph TB
     style Doc17 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc18 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc19 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc20 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Doc21 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style S1 fill:#f57f17,stroke:#ffffff,color:#ffffff
     style S2 fill:#f57f17,stroke:#ffffff,color:#ffffff
@@ -648,6 +652,11 @@ graph LR
         ADO[azure_devops_automation] --> SF
     end
     
+    Setup --> Daily
+    Setup --> Weekly
+    Daily -.-> AsNeeded
+    Weekly -.-> AsNeeded
+    
     style EC1 fill:#e65100,stroke:#ffffff,color:#ffffff
     style EC2 fill:#e65100,stroke:#ffffff,color:#ffffff
     style EC3 fill:#e65100,stroke:#ffffff,color:#ffffff
@@ -1049,6 +1058,8 @@ Documentation and template skills.
 - **[mermaid_from_visio](documentation/skill_mermaid_from_visio.md)** - Convert Visio diagrams to Mermaid syntax
 - **[mermaid_section_508](documentation/skill_mermaid_section_508.md)** - Section 508 compliant Mermaid diagrams
 - **[visio_section_508](documentation/skill_visio_section_508.md)** - Section 508 compliant Visio diagrams
+- **[section_508_color_palette](documentation/skill_section_508_color_palette.md)** - Official Section 508 color palette for diagrams
+- **[diagram_icons](documentation/skill_diagram_icons.md)** - Complete icon library for accessible diagrams
 
 **Templates & Standards:**
 - **[teg_discussion_templates](documentation/skill_teg_discussion_templates.md)** - TEG discussion document templates
@@ -1103,15 +1114,15 @@ Core system configuration and workflow skills.
 ## Changelog
 
 ### March 1, 2026
-**Added 15 New Skills:**
+**Added 17 New Skills:**
 - **Tools Category (2):** Skill Creator, HOW_TO_FILE_TOOLS
 - **Development (3):** MCP Builder, GitHub Pull Requests, GitFlow Workflow
-- **Documentation (9):** Doc Co-Authoring, Internal Comms, Document Processing (DOCX, PPTX, PDF, XLSX), Diagram Tools, Media Filing Guide
+- **Documentation (11):** Doc Co-Authoring, Internal Comms, Document Processing (DOCX, PPTX, PDF, XLSX), Diagram Tools, Media Filing Guide, Section 508 Color Palette, Diagram Icons
 - **System (1):** Devin Integration
 
 **Updated:**
 - Skills diagram with new Tools category
-- Category counts: 51 total skills across 6 categories
+- Category counts: 53 total skills across 6 categories
 - Documentation section reorganized into Workflow, Document Processing, Diagram Tools, and Templates
 - Quick Start section with new skill references
 - **All diagrams updated to Section 508 compliant colors** - Dark backgrounds with white text for 4.5:1 contrast ratio minimum
@@ -1122,5 +1133,5 @@ Core system configuration and workflow skills.
 ---
 
 **Last Updated:** March 1, 2026  
-**Total Skills:** 51 across 6 categories  
+**Total Skills:** 53 across 6 categories  
 **Location:** `G:\My Drive\06_Skills\README.md`

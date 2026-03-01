@@ -211,14 +211,11 @@ GMAIL_SCOPES = [
 ### Morning Routine (5-10 minutes)
 
 ```powershell
-# Navigate to scripts folder
-cd "G:\My Drive\06_Master_Guides\Scripts"
+# Navigate to automation folder
+cd "G:\My Drive\06_Skills\_automation"
 
-# Generate daily plan
-python daily_planner.py
-
-# Create Kanban board in Amplenote
-node sync_plan_to_amplenote.js
+# Run daily planning (generates plan and creates Amplenote board)
+python run_process_new_v2.py
 ```
 
 **What Happens:**
@@ -644,7 +641,8 @@ Then:
 
 **Generate Fresh Board:**
 ```powershell
-python daily_planner.py && node sync_plan_to_amplenote.js
+cd "G:\My Drive\06_Skills\_automation"
+python run_process_new_v2.py
 ```
 
 **Benefits of Daily Refresh:**
@@ -866,35 +864,33 @@ def get_calendar_events(self):
 
 ```powershell
 # Full daily planning workflow
-cd "G:\My Drive\06_Master_Guides\Scripts"
-python daily_planner.py && node sync_plan_to_amplenote.js
-```
-
-### Individual Steps
-
-```powershell
-# Just generate plan (no Amplenote board)
-python daily_planner.py
-
-# Just create board from existing plan
-node sync_plan_to_amplenote.js
-
-# Refresh Amplenote token
-cd C:\Users\[username]\Desktop
-node refresh_amplenote_token.js
+cd "G:\My Drive\06_Skills\_automation"
+python run_process_new_v2.py
 ```
 
 ### Troubleshooting
 
 ```powershell
-# Re-authenticate Gmail
-python email_processor.py --auth
+# Navigate to automation folder
+cd "G:\My Drive\06_Skills\_automation"
 
-# Check Todoist connection
-# View environments.json to verify token
+# Install/update dependencies
+pip install -r requirements.txt
 
-# Test Amplenote connection
-node sync_plan_to_amplenote.js
+# View latest daily plan
+cd daily_plans
+dir | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+```
+
+### Authentication Issues
+
+```powershell
+# Re-authenticate Gmail (delete token to trigger OAuth)
+Remove-Item "G:\My Drive\03_Areas\Keys\Gmail\token.json"
+python run_process_new_v2.py
+
+# Check Todoist/Amplenote tokens
+notepad "G:\My Drive\03_Areas\Keys\Environments\environments.json"
 ```
 
 ---

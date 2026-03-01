@@ -1,0 +1,26 @@
+# Daily plan outputs
+daily_plans/*.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+logs/
+*.log
+
+# Output files
+output/
+
+# Environment variables (if any local overrides)
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,8 +1,8 @@
 # Skills
 
-**One repository to train your AI coding assistants in the ways of excellence.**
+**One repository to train your AI coding assistants in the ways of accessibility, automation, documentation, and enterprise development.**
 
-Master Section 508 accessibility, Salesforce development, professional diagramming, comprehensive documentation, and more. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
+Master Section 508 compliance, Salesforce workflows, professional diagramming, API integrations, GitFlow strategies, and comprehensive documentation. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
 
 **51 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
 

@@ -220,18 +220,19 @@ flowchart TB
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>54 AI Skills<br/>6 Categories"]
+    Root["📁 06_Skills<br/>57 AI Skills<br/>6 Categories"]
     
-    Root --> Tools["🛠️ TOOLS<br/>2 Skills<br/>Skill Development"]
-    Root --> Automation["🤖 AUTOMATION<br/>7 Skills<br/>Daily Workflows"]
+    Root --> Tools["🛠️ TOOLS<br/>3 Skills<br/>Skill Development"]
+    Root --> Automation["🤖 AUTOMATION<br/>8 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>8 Skills<br/>Dev Tools"]
-    Root --> Documentation["📝 DOCUMENTATION<br/>22 Skills<br/>Templates & Diagrams"]
+    Root --> Development["💻 DEVELOPMENT<br/>9 Skills<br/>Dev Tools"]
+    Root --> Documentation["📝 DOCUMENTATION<br/>21 Skills<br/>Templates & Diagrams"]
     Root --> System["⚙️ SYSTEM<br/>10 Skills<br/>Core Configuration"]
     
     %% Tools Skills
     Tools --> T1["skill_creator ⭐<br/>Create new skills"]
-    Tools --> T2["file_tools_guide<br/>Tool organization"]
+    Tools --> T2["tool_filing ⭐<br/>File tools correctly"]
+    Tools --> T3["quick_filing<br/>Fast filing workflow"]
     
     %% Automation Skills
     Automation --> A1["daily_planning ⭐<br/>Kanban board generation"]
@@ -241,6 +242,7 @@ graph TB
     Automation --> A5["powershell_automation<br/>PowerShell scripting"]
     Automation --> A6["torrent_downloads<br/>Torrent management"]
     Automation --> A7["archive_parts_recovery<br/>Archive recovery"]
+    Automation --> A8["keepass_backup_automation ⭐<br/>KeePass backup automation"]
     
     %% Integration Skills
     Integrations --> I1["amplenote_api<br/>Amplenote integration"]
@@ -258,6 +260,7 @@ graph TB
     Development --> D6["mcp_builder ⭐<br/>Build MCP servers"]
     Development --> D7["github_pull_requests ⭐<br/>PR workflow"]
     Development --> D8["gitflow_workflow ⭐<br/>GitFlow branching"]
+    Development --> D9["splunk_monitoring ⭐<br/>Splunk queries & monitoring"]
     
     %% Documentation Skills
     Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
@@ -270,18 +273,18 @@ graph TB
     Documentation --> Doc8["feature_documentation<br/>Doc standards"]
     Documentation --> Doc9["qif_dndd_fillable_forms_visio_spec<br/>QIF forms"]
     Documentation --> Doc10["teg_discussion_template_alt<br/>Alt TEG template"]
-    Documentation --> Doc11["diagram_tools ⭐<br/>Mermaid to Visio tool"]
-    Documentation --> Doc12["doc_coauthoring ⭐<br/>Collaborative writing"]
-    Documentation --> Doc13["internal_comms<br/>Announcements & updates"]
-    Documentation --> Doc14["docx_processing<br/>Word documents"]
-    Documentation --> Doc15["pptx_processing<br/>PowerPoint"]
-    Documentation --> Doc16["pdf_processing<br/>PDF files"]
-    Documentation --> Doc17["xlsx_processing<br/>Excel spreadsheets"]
-    Documentation --> Doc18["document_processing ⭐<br/>All Office docs"]
-    Documentation --> Doc19["media_filing_guide<br/>Media organization"]
-    Documentation --> Doc20["section_508_color_palette ⭐<br/>Color palette"]
-    Documentation --> Doc21["diagram_icons ⭐<br/>Icon library"]
-    Documentation --> Doc22["hrsa_visio_icons ⭐<br/>HRSA template icons"]
+    Documentation --> Doc11["doc_coauthoring ⭐<br/>Collaborative writing"]
+    Documentation --> Doc12["internal_comms<br/>Announcements & updates"]
+    Documentation --> Doc13["docx<br/>Word documents"]
+    Documentation --> Doc14["pptx<br/>PowerPoint"]
+    Documentation --> Doc15["pdf<br/>PDF files"]
+    Documentation --> Doc16["xlsx<br/>Excel spreadsheets"]
+    Documentation --> Doc17["section_508_color_palette ⭐<br/>Color palette"]
+    Documentation --> Doc18["diagram_icons ⭐<br/>Icon library"]
+    Documentation --> Doc19["visio_icons ⭐<br/>Visio template icons"]
+    Documentation --> Doc20["mermaid_visio_icons ⭐<br/>Visio icons in Mermaid"]
+    Documentation --> Doc21["wireframing_markdown ⭐<br/>UI wireframes in markdown"]
+    Documentation --> Doc22["engineering_design_process ⭐<br/>Design methodology"]
     
     %% System Skills
     System --> S1["user_commands ⭐<br/>Quick command reference"]
@@ -304,22 +307,24 @@ graph TB
     style Documentation fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
     style System fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
     
-    style T1 fill:#00897b,stroke:#ffffff,color:#ffffff
-    style T2 fill:#00897b,stroke:#ffffff,color:#ffffff
+    style T1 fill:#00695c,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style T2 fill:#00695c,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style T3 fill:#00695c,stroke:#ffffff,color:#ffffff
     
-    style A1 fill:#ff6f00,stroke:#ffffff,color:#ffffff
-    style A2 fill:#ff6f00,stroke:#ffffff,color:#ffffff
-    style A3 fill:#ff6f00,stroke:#ffffff,color:#ffffff
-    style A4 fill:#ff6f00,stroke:#ffffff,color:#ffffff
-    style A5 fill:#ff6f00,stroke:#ffffff,color:#ffffff
-    style A6 fill:#ff6f00,stroke:#ffffff,color:#ffffff
-    style A7 fill:#ff6f00,stroke:#ffffff,color:#ffffff
+    style A1 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style A2 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style A3 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style A4 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style A5 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style A6 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style A7 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style A8 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
-    style I1 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
-    style I2 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
-    style I3 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
-    style I4 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
-    style I5 fill:#7b1fa2,stroke:#ffffff,color:#ffffff
+    style I1 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style I2 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style I3 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style I4 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style I5 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
     
     style D1 fill:#2e7d32,stroke:#ffffff,color:#ffffff
     style D2 fill:#2e7d32,stroke:#ffffff,color:#ffffff
@@ -329,6 +334,7 @@ graph TB
     style D6 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D7 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D8 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D9 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style Doc1 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc2 fill:#ad1457,stroke:#ffffff,color:#ffffff
@@ -341,27 +347,27 @@ graph TB
     style Doc9 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc10 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc11 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
-    style Doc12 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Doc12 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc13 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc14 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc15 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc16 fill:#ad1457,stroke:#ffffff,color:#ffffff
-    style Doc17 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc17 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc18 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
-    style Doc19 fill:#ad1457,stroke:#ffffff,color:#ffffff
+    style Doc19 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc20 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc21 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc22 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
-    style S1 fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style S1 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style S2 fill:#f57f17,stroke:#ffffff,color:#ffffff
-    style S3 fill:#ef6c00,stroke:#ffffff,color:#ffffff
-    style S4 fill:#ef6c00,stroke:#ffffff,color:#ffffff
-    style S5 fill:#ef6c00,stroke:#ffffff,color:#ffffff
-    style S6 fill:#ef6c00,stroke:#ffffff,color:#ffffff
-    style S7 fill:#ef6c00,stroke:#ffffff,color:#ffffff
-    style S8 fill:#ef6c00,stroke:#ffffff,color:#ffffff
-    style S9 fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style S3 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S4 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S5 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S6 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S7 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S8 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S9 fill:#e65100,stroke:#ffffff,color:#ffffff
     style S10 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
 ```
 
@@ -948,16 +954,18 @@ graph TB
 4. section_508_compliance - Accessibility standards
 
 **File Locations:**
-- Skills: `G:\My Drive\06_Skills\`
-- Tools: `G:\My Drive\06_Skills\_tools\`
-- Scripts: `G:\My Drive\06_Skills\_scripts\`
-- Credentials: `G:\My Drive\03_Areas\Keys\Environments\environments.json`
+- Skills: `${SKILLS_ROOT}/`
+- Tools: `${SKILLS_ROOT}/_tools/`
+- Scripts: `${SKILLS_ROOT}/_scripts/`
+- Credentials: `${PARA_ROOT}/03_Areas/Keys/Environments/environments.json`
 
 **PARA Method:**
-- Projects: `G:\My Drive\01_Operate\Projects\` (active work)
-- Areas: `G:\My Drive\03_Areas\` (responsibilities)
-- Resources: `G:\My Drive\04_Resources\` (reference)
-- Archive: `G:\My Drive\05_Archive\` (completed)
+- Projects: `${PARA_ROOT}/01_Operate/Projects/` (active work)
+- Areas: `${PARA_ROOT}/03_Areas/` (responsibilities)
+- Resources: `${PARA_ROOT}/04_Resources/` (reference)
+- Archive: `${PARA_ROOT}/05_Archive/` (completed)
+
+**Note:** `${PARA_ROOT}` typically equals `G:\My Drive` on Windows or your Google Drive mount point. Configure in `skills_config.json`.
 
 **Task/Note/Event Storage:**
 - Tasks → Todoist (permanent)
@@ -986,20 +994,22 @@ graph LR
     PS[powershell_automation] --> SCRIPTS[Scripts]
     TD[torrent_downloads] --> DL[Downloads]
     AR[archive_parts_recovery] --> FILES[File Recovery]
+    KB[keepass_backup_automation ⭐] --> BACKUP[KeePass Backups]
     
     style PN fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
-    style DP fill:#ff6f00,stroke:#ffffff,stroke-width:3px,color:#ffffff
-    style EP fill:#ff6f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
-    style FO fill:#ff6f00,stroke:#ffffff,stroke-width:3px,color:#ffffff
-    style BA fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
-    style PS fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
-    style TD fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
-    style AR fill:#ff8f00,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style DP fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style EP fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style FO fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style BA fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style PS fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style TD fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style AR fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style KB fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
 ```
 
 **Daily Use:** daily_planning, file_organization, process_new  
 **Weekly Use:** email_processing  
-**As-Needed:** browser_automation, powershell_automation, torrent_downloads, archive_parts_recovery
+**As-Needed:** browser_automation, powershell_automation, torrent_downloads, archive_parts_recovery, keepass_backup_automation
 
 ---
 
@@ -1202,7 +1212,7 @@ Documentation and template skills.
 - **[visio_section_508](documentation/skill_visio_section_508.md)** - Section 508 compliant Visio diagrams
 - **[section_508_color_palette](documentation/skill_section_508_color_palette.md)** - Official Section 508 color palette for diagrams
 - **[diagram_icons](documentation/skill_diagram_icons.md)** - Complete icon library for accessible diagrams
-- **[hrsa_visio_icons](documentation/skill_hrsa_visio_icons.md)** - 100 Microsoft Visio icons from HRSA template
+- **[visio_icons](documentation/skill_visio_icons.md)** - 100 Microsoft Visio Section 508 compliant icons
 - **[diagram_tools](documentation/diagram-tools/README.md)** - Complete diagram creation toolkit
 
 **Templates & Standards:**
@@ -1261,7 +1271,7 @@ Core system configuration and workflow skills.
 **Added 18 New Skills:**
 - **Tools Category (2):** Skill Creator, HOW_TO_FILE_TOOLS
 - **Development (3):** MCP Builder, GitHub Pull Requests, GitFlow Workflow
-- **Documentation (12):** Doc Co-Authoring, Internal Comms, Document Processing (DOCX, PPTX, PDF, XLSX), Diagram Tools, Media Filing Guide, Section 508 Color Palette, Diagram Icons, HRSA Visio Icons
+- **Documentation (12):** Doc Co-Authoring, Internal Comms, Document Processing (DOCX, PPTX, PDF, XLSX), Diagram Tools, Media Filing Guide, Section 508 Color Palette, Diagram Icons, Visio Template Icons
 - **System (1):** Devin Integration
 
 **Updated:**
@@ -1277,5 +1287,6 @@ Core system configuration and workflow skills.
 ---
 
 **Last Updated:** March 1, 2026  
-**Total Skills:** 54 across 6 categories  
-**Location:** `G:\My Drive\06_Skills\README.md`
+**Total Skills:** 57 across 6 categories  
+**Location:** `${SKILLS_ROOT}/README.md`
+

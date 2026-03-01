@@ -10,7 +10,7 @@ This skill provides a comprehensive icon library and visual element guide for di
 
 **Important:** This skill uses Unicode characters (emoji), NOT Flaticon or other commercial icon libraries. All icons are part of the Unicode standard and are free to use without attribution requirements.
 
-**Based on:** HRSA Visio 508 Compliant Template V1.0 accessibility standards (color palette and structure only)
+**Based on:** Visio 508 Compliant Template accessibility standards (color palette and structure only)
 
 ---
 
@@ -575,9 +575,9 @@ flowchart TB
 
 ## Important Notes
 
-### About HRSA Template
+### About Visio Template
 
-**What we used from HRSA Visio 508 Compliant Template V1.0:**
+**What we used from Visio 508 Compliant Template:**
 - ✅ Section 508 accessibility standards
 - ✅ Color palette guidelines
 - ✅ Diagram structure best practices
@@ -588,7 +588,7 @@ flowchart TB
 - ❌ Commercial icon libraries
 - ❌ Proprietary graphics
 
-**All icons in this skill are Unicode emoji** selected to match the accessibility and visual clarity standards established by the HRSA template.
+**All icons in this skill are Unicode emoji** selected to match the accessibility and visual clarity standards established by the Visio Template.
 
 ### If You Need Commercial Icons
 
@@ -617,4 +617,5 @@ flowchart TB
 **Category:** Documentation  
 **Difficulty:** Beginner  
 **Icons:** Unicode Standard (free, no attribution required)  
-**Accessibility Standards:** Based on HRSA Visio 508 Compliant Template V1.0
+**Accessibility Standards:** Based on Visio 508 Compliant Template
+

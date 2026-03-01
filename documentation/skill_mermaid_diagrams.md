@@ -214,9 +214,9 @@ flowchart LR
     A[Start]:::startClass --> B[Process]:::processClass
     B --> C[End]:::endClass
     
-    classDef startClass fill:#e1f5e1,stroke:#4caf50,stroke-width:2px
-    classDef processClass fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
-    classDef endClass fill:#fce4ec,stroke:#e91e63,stroke-width:2px
+    classDef startClass fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef processClass fill:#e1f5fe,stroke:#0d47a1,stroke-width:2px
+    classDef endClass fill:#fce4ec,stroke:#880e4f,stroke-width:2px
 ```
 
 **Styling syntax:**

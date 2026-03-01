@@ -1,16 +1,137 @@
-# HRSA Visio Template Icon Library
+# SKILL: Section 508 Visio Template Icon Library
 
-Complete icon library extracted from HRSA Visio 508 Compliant Template V1.0 with usage guidelines and licensing information.
+**Actionable workflow for using and extracting icons from Section 508 Visio 508 Compliant Template V1.0.**
+
+**Last Updated:** March 1, 2026  
+**Version:** 2.0.0  
+**Category:** Documentation
+
+---
+
+## What This Skill Does
+
+Provides complete documentation and workflows for:
+- Using 100 Section 508 compliant icons in Visio diagrams
+- Extracting icons as PNG files for use in other applications
+- Understanding icon categories and use cases
+- Maintaining accessibility compliance
+
+## When to Use This Skill
+
+- **User says:** "What icons are available in Section 508 template?"
+- **User says:** "Extract Visio icons as images"
+- **User says:** "Show me the icon library"
+- **User creates:** Visio diagrams requiring Section 508 compliance
+- **Trigger:** Need to reference or export Section 508 template icons
+
+## What You'll Need
+
+- Microsoft Visio installed
+- Section 508 Visio 508 Compliant Template V1.0.vsdx
+- Python with pywin32 (for automated extraction)
+- Access to `${SKILLS_ROOT}/documentation/Section 508_icons/` (for exported PNGs)
 
 ---
 
 ## Overview
 
-This skill documents all icons and symbols available in the HRSA Visio 508 Compliant Template V1.0. These are **Microsoft Visio shapes** that are part of the template and do not require additional licensing beyond the Visio license.
+This skill documents all icons and symbols available in the Section 508 Visio 508 Compliant Template V1.0. These are **Microsoft Visio shapes** that are part of the template and do not require additional licensing beyond the Visio license.
 
-**Source:** HRSA Visio 508 Compliant Template V1.0.vsdx  
+**Source:** Section 508 Visio 508 Compliant Template V1.0.vsdx  
 **Total Icons/Shapes:** 100 master shapes  
+**Exported PNG Icons:** 95 (5 failed due to guarded cells)  
 **License:** Microsoft Visio shapes (included with template)
+
+---
+
+## Workflow: Extract Icons as PNG Files
+
+### Step 1: Verify Prerequisites
+
+**Check that you have:**
+```bash
+# Verify Visio is installed
+Test-Path "C:\Program Files\Microsoft Office\root\Office16\VISIO.EXE"
+
+# Verify Python and pywin32
+python -c "import win32com.client; print('pywin32 installed')"
+
+# Verify template exists
+Test-Path "G:\My Drive\Section 508 Visio 508 Compliant Template V1.0.vsdx"
+```
+
+### Step 2: Close Any Open Visio Instances
+
+**Important:** Visio file must not be open elsewhere
+
+```powershell
+# Close all Visio instances
+Get-Process -Name "VISIO" -ErrorAction SilentlyContinue | Stop-Process -Force
+Start-Sleep -Seconds 2
+```
+
+### Step 3: Run Icon Extraction Script
+
+**Execute the extraction:**
+
+```bash
+cd "${SKILLS_ROOT}/_tools"
+python export_visio_icons_v2.py
+```
+
+**Expected output:**
+```
+============================================================
+Section 508 Visio Template Icon Exporter v2.0
+============================================================
+
+Starting Visio application...
+Opening file: G:\My Drive\Section 508 Visio 508 Compliant Template V1.0.vsdx
+Document opened successfully
+Found 100 master shapes
+
+Exporting icons as PNG images...
+  [1/100] Exported: Circle.png
+  [2/100] Exported: Ellipse.png
+  ...
+  [100/100] Exported: Circle.1110.png
+
+✅ Export complete!
+   Newly exported: 95 icons
+   Total icons: 95
+```
+
+### Step 4: Verify Extraction Results
+
+**Check output directory:**
+
+```powershell
+# Count exported icons
+(Get-ChildItem "${SKILLS_ROOT}/documentation/Section 508_icons" -Filter "*.png").Count
+
+# List all exported icons
+Get-ChildItem "${SKILLS_ROOT}/documentation/Section 508_icons" | Select-Object Name
+```
+
+**Expected:** 95 PNG files (5 icons fail due to Visio guarded cells)
+
+### Step 5: Handle Failed Icons (Optional)
+
+**If specific icons are needed that failed automated extraction:**
+
+1. Open Visio template manually
+2. Drag icon onto page
+3. Resize to 1" x 1"
+4. Select icon
+5. File > Export > Save as PNG
+6. Save to `${SKILLS_ROOT}/documentation/Section 508_icons/`
+
+**Failed icons (guarded cells):**
+- Dynamic connector
+- Arrow Loop  
+- Primary Key Attribute
+- Attribute
+- 6-Step Arrow Circle
 
 ---
 
@@ -221,12 +342,12 @@ This skill documents all icons and symbols available in the HRSA Visio 508 Compl
 
 ## Usage Guidelines
 
-### How to Use HRSA Template Icons
+### How to Use Section 508 Template Icons
 
 **Step 1: Open Template in Visio**
 ```
 1. Open Microsoft Visio
-2. File > Open > HRSA Visio 508 Compliant Template V1.0.vsdx
+2. File > Open > Section 508 Visio 508 Compliant Template V1.0.vsdx
 3. Icons are available in the stencils panel
 ```
 
@@ -274,13 +395,13 @@ This skill documents all icons and symbols available in the HRSA Visio 508 Compl
 
 ### Microsoft Visio Shapes
 
-**License:** These shapes are part of Microsoft Visio and the HRSA template
+**License:** These shapes are part of Microsoft Visio and the Section 508 template
 - ✅ **Included with Visio license** - No additional licensing required
-- ✅ **Part of HRSA template** - Approved for federal use
+- ✅ **Part of Section 508 template** - Approved for federal use
 - ✅ **No attribution required** - Microsoft Visio built-in shapes
 - ⚠️ **Requires Visio** - Must have Microsoft Visio installed
 
-**Template Source:** HRSA Visio 508 Compliant Template V1.0
+**Template Source:** Section 508 Visio 508 Compliant Template V1.0
 
 ### Usage Rights
 
@@ -392,21 +513,28 @@ python G:\My Drive\06_Skills\_tools\extract_visio_icons.py
 - **[skill_visio_section_508](skill_visio_section_508.md)** - Visio Section 508 compliance
 - **[skill_diagram_icons](skill_diagram_icons.md)** - Unicode emoji icons (alternative)
 - **[skill_visio_via_mermaid](skill_visio_via_mermaid.md)** - Mermaid to Visio conversion
+- **Section 508_ICON_GALLERY.md** - Visual reference with Unicode approximations
+- **skill_mermaid_Section 508_icons.md** - Using Section 508 icons in Mermaid diagrams
 
 ---
 
 ## Changelog
 
-- **2026-03-01:** Created HRSA Visio icon library skill
+- **2026-03-01:** Created Section 508 Visio icon library skill
 - **2026-03-01:** Extracted 100 master shapes from template
 - **2026-03-01:** Categorized icons into 16 categories
 - **2026-03-01:** Added licensing and usage guidelines
+- **2026-03-01:** Converted to actionable AI agent skill
+- **2026-03-01:** Added icon extraction workflow with Python COM automation
+- **2026-03-01:** Documented 95 successfully exported PNG icons
+- **2026-03-01:** Added AI agent instructions and troubleshooting
 
 ---
 
-**Location:** `G:\My Drive\06_Skills\documentation\skill_hrsa_visio_icons.md`  
+**Location:** `G:\My Drive\06_Skills\documentation\skill_Section 508_visio_icons.md`  
 **Category:** Documentation  
 **Difficulty:** Intermediate  
-**Icons:** 100 Microsoft Visio shapes from HRSA template  
+**Icons:** 100 Microsoft Visio shapes from Section 508 template  
 **License:** Microsoft Visio (included with template)  
 **Requires:** Microsoft Visio installed
+

@@ -57,21 +57,21 @@ flowchart TB
     SYS --> MCP[Run MCP Server - Windsurf integration]
     
     %% Styling
-    style USER fill:#4fc3f7,stroke:#0277bd,stroke-width:3px,color:#000
+    style USER fill:#e1f5fe,stroke:#0d47a1,stroke-width:3px,color:#000
     
-    style DAILY fill:#fff176,stroke:#f57f17,stroke-width:2px
-    style INTEG fill:#ce93d8,stroke:#4a148c,stroke-width:2px
-    style DEV fill:#81c784,stroke:#1b5e20,stroke-width:2px
-    style FILE fill:#ffb74d,stroke:#e65100,stroke-width:2px
-    style DOC fill:#f48fb1,stroke:#880e4f,stroke-width:2px
+    style DAILY fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style INTEG fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    style DEV fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px
+    style FILE fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style DOC fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
     style SYS fill:#fff59d,stroke:#f57f17,stroke-width:2px
     
-    style PN fill:#ffd54f,stroke:#f57f17,stroke-width:3px
+    style PN fill:#fff9c4,stroke:#f57f17,stroke-width:3px
     style PD fill:#ffe0b2,stroke:#e65100,stroke-width:2px
     style PE fill:#ffe0b2,stroke:#e65100,stroke-width:2px
     
-    style SFDC fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
-    style GIT fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
+    style SFDC fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px
+    style GIT fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px
 ```
 
 **Command Categories:**

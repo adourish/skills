@@ -1,7 +1,7 @@
 # Microsoft Graph API Access Request - Tech Support
 
 **Date:** February 22, 2026  
-**Requestor:** Anthony Dourish (adourish@reisystems.com)  
+**Requestor:** User Name (user@example.com)  
 **Purpose:** Enable automated daily planning workflow with work email and SharePoint integration
 
 ---
@@ -71,7 +71,7 @@ The application uses **OAuth 2.0 Authorization Code Flow with PKCE** for delegat
 
 1. User runs: `python setup_microsoft_oauth.py`
 2. Browser opens to Microsoft login page
-3. User signs in with work credentials (adourish@reisystems.com)
+3. User signs in with work credentials (user@example.com)
 4. User grants consent for the requested permissions
 5. Access token is saved locally at: `G:\My Drive\03_Areas\Keys\Microsoft365\token.json`
 6. Token is used to make Graph API calls on behalf of the signed-in user
@@ -134,8 +134,8 @@ This automation will:
 
 ## CONTACT
 
-**Name:** Anthony Dourish  
-**Email:** adourish@reisystems.com  
+**Name:** User Name  
+**Email:** user@example.com  
 **Team:** DME BHCMIS Purple  
 
 **Questions?** Feel free to reach out if you need any additional information or clarification.
@@ -153,7 +153,7 @@ python setup_microsoft_oauth.py
 
 **Expected Result:**
 - Browser opens to Microsoft login
-- I sign in with adourish@reisystems.com
+- I sign in with user@example.com
 - Consent screen shows the 5 permissions
 - I click "Accept"
 - Token is saved successfully
@@ -174,3 +174,4 @@ python daily_planner.py
 ---
 
 **Thank you for your assistance!**
+

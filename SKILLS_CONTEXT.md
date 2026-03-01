@@ -148,19 +148,19 @@ All other skills - reference when specific functionality needed
 
 **Daily Planning:**
 ```powershell
-cd "G:\My Drive\06_Skills\_tools"
+cd "${SKILLS_ROOT}/_tools"
 python run_process_new.py
 ```
 
 **Refresh Amplenote Token:**
 ```powershell
-cd "G:\My Drive\06_Skills\_scripts"
+cd "${SKILLS_ROOT}/_scripts"
 node refresh_amplenote_token.js
 ```
 
 **Query Todoist:**
 ```powershell
-cd "G:\My Drive\06_Skills\_tools"
+cd "${SKILLS_ROOT}/_tools"
 python query_todoist.py
 ```
 
@@ -257,20 +257,20 @@ sfdx force:source:push
 
 ## File Locations
 
-**Skills:** `G:\My Drive\06_Skills\`  
-**Tools:** `G:\My Drive\06_Skills\_tools\`  
-**Scripts:** `G:\My Drive\06_Skills\_scripts\`  
-**Credentials:** `G:\My Drive\03_Areas\Keys\Environments\environments.json`  
-**KeePass:** `G:\My Drive\03_Areas\Keys\keys pass.kdbx`
+**Skills:** `${SKILLS_ROOT}/`  
+**Tools:** `${SKILLS_ROOT}/_tools/`  
+**Scripts:** `${SKILLS_ROOT}/_scripts/`  
+**Credentials:** `${PARA_ROOT}/03_Areas/Keys/Environments/environments.json`  
+**KeePass:** `${PARA_ROOT}/03_Areas/Keys/keys pass.kdbx`
 
 ---
 
 ## PARA Method (Routing Rules)
 
-**Projects:** `G:\My Drive\01_Operate\Projects\` - Active work with deadlines  
-**Areas:** `G:\My Drive\03_Areas\` - Ongoing responsibilities  
-**Resources:** `G:\My Drive\04_Resources\` - Reference material  
-**Archive:** `G:\My Drive\05_Archive\` - Completed/inactive items
+**Projects:** `${PARA_ROOT}/01_Operate/Projects/` - Active work with deadlines  
+**Areas:** `${PARA_ROOT}/03_Areas/` - Ongoing responsibilities  
+**Resources:** `${PARA_ROOT}/04_Resources/` - Reference material  
+**Archive:** `${PARA_ROOT}/05_Archive/` - Completed/inactive items
 
 **Tasks:** Todoist (permanent storage)  
 **Notes:** Amplenote (reference + daily view)  
@@ -312,5 +312,5 @@ sfdx force:source:push
 ---
 
 **Last Updated:** March 1, 2026  
-**Location:** `G:\My Drive\06_Skills\SKILLS_CONTEXT.md`  
+**Location:** `${SKILLS_ROOT}/SKILLS_CONTEXT.md`  
 **For:** Windsurf, Cascade, and other AI agents

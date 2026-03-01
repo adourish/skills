@@ -1,21 +1,82 @@
-# How to File New Tools in Skills Folder
+# SKILL: Tool Filing and Organization
 
-Complete guide for organizing tools in the `G:\My Drive\06_Skills\` folder structure.
+**Actionable workflow for AI agents to correctly file new tools in the Skills repository.**
+
+**Last Updated:** March 1, 2026  
+**Version:** 2.0.0  
+**Category:** Tools
 
 ---
 
-## Quick Decision Tree
+## What This Skill Does
 
-```
-New Tool → Ask: What is its PRIMARY purpose?
+Automatically determines the correct location for new tools, scripts, and integrations in the Skills repository based on their purpose, usage pattern, and dependencies.
 
-├─ Daily automation/planning → _tools/
-├─ Utility scripts → _scripts/
-├─ Workflow automation → automation/
-├─ API integration → integrations/
-├─ Development setup → development/
-├─ Documentation generation → documentation/
-└─ System configuration → system/
+## When to Use This Skill
+
+- **User says:** "Where should I put this new tool?"
+- **User says:** "File this script for me"
+- **User says:** "Organize this integration"
+- **User creates:** A new Python script, Node.js tool, or automation
+- **Trigger:** Any new file that needs to be added to the Skills repository
+
+## What You'll Need
+
+- Access to `${SKILLS_ROOT}/` directory
+- Information about the tool's purpose and usage
+- Understanding of the tool's dependencies and integrations
+
+---
+
+## Workflow: File a New Tool
+
+### Step 1: Analyze the Tool
+
+**Ask the user these questions:**
+
+1. **What does this tool do?** (primary function)
+2. **When will you use it?** (daily, weekly, as-needed, one-time)
+3. **What does it integrate with?** (APIs, services, other tools)
+4. **Who/what triggers it?** (user, schedule, automation)
+
+### Step 2: Determine Folder Using Decision Tree
+
+**Decision Logic:**
+
+```mermaid
+flowchart TD
+    Start[New Tool to File] --> Q1{Runs daily/scheduled?}
+    Q1 -->|Yes| Q2{Part of daily workflow?}
+    Q1 -->|No| Q3{One-time or occasional?}
+    
+    Q2 -->|Yes| TOOLS[File in _tools/]
+    Q2 -->|No| Q4{Orchestrates workflow?}
+    
+    Q3 -->|Yes| SCRIPTS[File in _scripts/]
+    Q3 -->|No| Q5{Creates documentation?}
+    
+    Q4 -->|Yes| AUTO[File in automation/]
+    Q4 -->|No| Q6{Reusable API client?}
+    
+    Q5 -->|Yes| DOCS[File in documentation/]
+    Q5 -->|No| Q7{Development tool?}
+    
+    Q6 -->|Yes| INTEG[File in integrations/]
+    Q6 -->|No| Q8{System configuration?}
+    
+    Q7 -->|Yes| DEV[File in development/]
+    Q7 -->|No| SCRIPTS
+    
+    Q8 -->|Yes| SYS[File in system/]
+    Q8 -->|No| SCRIPTS
+    
+    style TOOLS fill:#00695c,stroke:#ffffff,color:#ffffff
+    style SCRIPTS fill:#e65100,stroke:#ffffff,color:#ffffff
+    style AUTO fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style INTEG fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style DOCS fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style DEV fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style SYS fill:#f57f17,stroke:#ffffff,color:#ffffff
 ```
 
 ---
@@ -191,26 +252,64 @@ documentation/
 
 ---
 
-## Filing Process
+### Step 3: Execute Filing Action
 
-### Step 1: Identify Purpose
+**Based on decision tree result, execute the appropriate action:**
 
-Ask yourself:
-1. **What does this tool do?** (primary function)
-2. **When do I use it?** (frequency, context)
-3. **Who uses it?** (me, team, automated)
-4. **What does it integrate with?** (services, APIs)
+#### Action: File in `_tools/`
+```bash
+# Move/copy tool to _tools directory
+mv {tool_file} ${SKILLS_ROOT}/_tools/
+```
+**Reason:** Daily automation, scheduled tasks, multi-service integration
 
-### Step 2: Choose Folder
+#### Action: File in `_scripts/`
+```bash
+# Move/copy script to _scripts directory
+mv {tool_file} ${SKILLS_ROOT}/_scripts/
+```
+**Reason:** One-time utility, occasional use, testing/debugging
 
-Use the decision tree above to select the appropriate folder.
+#### Action: File in `automation/`
+```bash
+# Create workflow directory
+mkdir -p ${SKILLS_ROOT}/automation/{workflow_name}
+mv {tool_files} ${SKILLS_ROOT}/automation/{workflow_name}/
+```
+**Reason:** Multi-step workflow, process orchestration
 
-**If unsure between two folders:**
-- Choose based on **primary purpose**
-- Consider **who/what triggers it**
-- Think about **maintenance** (where would you look for it?)
+#### Action: File in `integrations/`
+```bash
+# Create integration directory
+mkdir -p ${SKILLS_ROOT}/integrations/{service_name}
+mv {tool_files} ${SKILLS_ROOT}/integrations/{service_name}/
+```
+**Reason:** Reusable API client, service wrapper
 
-### Step 3: Organize Files
+#### Action: File in `documentation/`
+```bash
+# File in appropriate documentation subfolder
+mv {tool_file} ${SKILLS_ROOT}/documentation/{subfolder}/
+```
+**Reason:** Creates/converts documentation, generates diagrams
+
+#### Action: File in `development/`
+```bash
+# Move to development tools
+mv {tool_file} ${SKILLS_ROOT}/development/
+```
+**Reason:** Development setup, linters, build scripts
+
+#### Action: File in `system/`
+```bash
+# Move to system configuration
+mv {tool_file} ${SKILLS_ROOT}/system/
+```
+**Reason:** System setup, configuration management
+
+### Step 4: Organize File Structure
+
+**Determine structure based on complexity:**
 
 **Single file tool:**
 ```
@@ -242,33 +341,56 @@ folder/
     └── config/
 ```
 
-### Step 4: Document
+### Step 5: Create Documentation
 
-**Minimum documentation:**
-- Purpose (one sentence)
-- Usage (command to run)
-- Prerequisites (dependencies)
+**Execute: Create README.md**
 
-**Create README.md:**
-```markdown
-# Tool Name
+```bash
+# Navigate to tool directory
+cd ${SKILLS_ROOT}/{folder}/{tool_name}/
 
-Brief description of what it does.
+# Create README.md
+cat > README.md << 'EOF'
+# {Tool Name}
+
+{Brief description of what it does}
+
+## Purpose
+
+{Why this tool exists and what problem it solves}
 
 ## Usage
 
-\`\`\`bash
+```bash
 python tool_name.py [options]
-\`\`\`
+```
 
 ## Prerequisites
 
 - Python 3.8+
 - Dependencies: `pip install -r requirements.txt`
+- API Keys: {List required keys}
 
 ## Configuration
 
-Environment variables or config files needed.
+{Environment variables or config files needed}
+
+## When to Use
+
+- {Trigger condition 1}
+- {Trigger condition 2}
+
+EOF
+```
+
+### Step 6: Update Skills Index
+
+**If this is a new skill (not just a tool), update the README.md:**
+
+```bash
+# Add to appropriate category in ${SKILLS_ROOT}/README.md
+# Update skill count
+# Add to Skills Organization Diagram if it's a ⭐ featured skill
 ```
 
 ---
@@ -501,10 +623,30 @@ This guide covers:
 
 ---
 
+---
+
+## AI Agent Instructions
+
+**When user requests filing a tool:**
+
+1. **Gather information** - Ask the 4 key questions (Step 1)
+2. **Apply decision tree** - Use the flowchart logic (Step 2)
+3. **Execute filing** - Move files to correct location (Step 3)
+4. **Organize structure** - Single file vs multi-file (Step 4)
+5. **Create README** - Document the tool (Step 5)
+6. **Update index** - Add to README if it's a skill (Step 6)
+
+**Output to user:**
+- Chosen location and reasoning
+- File structure created
+- README.md content
+- Next steps (if any)
+
+---
+
 ## Changelog
 
-- **2026-03-01:** Created initial guide
-- **2026-03-01:** Moved Mermaid converter to `documentation/diagram-tools/`
-- **2026-03-01:** Added reference to media filing guide for private content
-- **2026-03-01:** Added document processing skills (DOCX, PPTX, PDF, XLSX)
-- **2026-03-01:** Added MCP Builder, Doc Co-Authoring, Skill Creator, and Internal Comms skills
+- **2026-03-01:** Converted to actionable AI agent skill
+- **2026-03-01:** Added decision tree flowchart diagram
+- **2026-03-01:** Added step-by-step workflow with commands
+- **2026-03-01:** Added AI agent instructions section

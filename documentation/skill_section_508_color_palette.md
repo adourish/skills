@@ -1,6 +1,6 @@
 # Section 508 Color Palette for Diagrams
 
-Complete color palette reference for creating Section 508 compliant diagrams in Mermaid and Visio, based on HRSA accessibility standards.
+Complete color palette reference for creating Section 508 compliant diagrams in Mermaid and Visio, based on Section 508 accessibility standards.
 
 ---
 
@@ -8,7 +8,7 @@ Complete color palette reference for creating Section 508 compliant diagrams in 
 
 This skill provides the official Section 508 compliant color palette for all diagram creation. These colors meet WCAG AA standards (4.5:1 contrast ratio minimum) and are approved for use in federal documentation.
 
-**Based on:** HRSA Visio 508 Compliant Template V1.0
+**Based on:** Visio 508 Compliant Template
 
 ---
 
@@ -348,11 +348,12 @@ Light: fill:#e1f5fe,stroke:#0d47a1,stroke-width:2px,color:#000000
 
 ## Changelog
 
-- **2026-03-01:** Created Section 508 color palette skill based on HRSA template
+- **2026-03-01:** Created Section 508 color palette skill based on Visio template
 
 ---
 
 **Location:** `G:\My Drive\06_Skills\documentation\skill_section_508_color_palette.md`  
 **Category:** Documentation  
 **Difficulty:** Beginner  
-**Source:** HRSA Visio 508 Compliant Template V1.0
+**Source:** Visio 508 Compliant Template
+

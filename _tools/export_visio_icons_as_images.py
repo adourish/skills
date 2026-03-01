@@ -1,5 +1,5 @@
 """
-Export HRSA Visio Template icons as PNG images for visual documentation
+Export Section 508 Visio Template icons as PNG images for visual documentation
 
 This script exports each master shape from the Visio template as a PNG image
 so they can be displayed in markdown documentation.
@@ -29,7 +29,7 @@ def export_visio_icons_as_images(visio_file_path, output_dir):
     # Initialize Visio application
     print("Starting Visio application...")
     visio = win32com.client.Dispatch("Visio.Application")
-    visio.Visible = False
+    # Note: Some Visio versions don't allow setting Visible property via COM
     
     # Open the document
     print(f"Opening file: {visio_file_path}")
@@ -98,8 +98,8 @@ def main():
     """Main execution"""
     
     # Paths
-    visio_file = r"G:\My Drive\HRSA Visio 508 Compliant Template V1.0.vsdx"
-    output_dir = r"G:\My Drive\06_Skills\documentation\hrsa_icons"
+    visio_file = r"G:\My Drive\Section 508 Visio 508 Compliant Template V1.0.vsdx"
+    output_dir = r"G:\My Drive\06_Skills\documentation\Section 508_icons"
     
     # Check if file exists
     if not os.path.exists(visio_file):
@@ -107,7 +107,7 @@ def main():
         return
     
     print("=" * 60)
-    print("HRSA Visio Template Icon Exporter")
+    print("Section 508 Visio Template Icon Exporter")
     print("=" * 60)
     
     try:
@@ -122,3 +122,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

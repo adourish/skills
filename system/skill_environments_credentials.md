@@ -66,22 +66,24 @@ Layer 3: Application Security
 **Before creating new credentials, ALWAYS check these locations:**
 
 #### 1. KeePass Database (Passwords & Secrets)
-- **Location:** `G:\My Drive\03_Areas\Keys\keys pass.kdbx`
+- **Location:** `${PARA_ROOT}/03_Areas/Keys/keys pass.kdbx`
 - **Contains:** Passwords, API keys, secrets, secure notes
 - **Access:** KeePass application with master password
 - **Use for:** All passwords, sensitive API keys, personal credentials
 
 #### 2. Environments JSON (API Configurations)
-- **Location:** `G:\My Drive\03_Areas\Keys\Environments\environments.json`
+- **Location:** `${PARA_ROOT}/03_Areas/Keys/Environments/environments.json`
 - **Contains:** API endpoints, OAuth configs, service credentials
 - **Access:** Direct file access (encrypted on Google Drive)
 - **Use for:** Development environments, API integrations, automation
 - **Current services:** Salesforce, GEMS, Azure DevOps, Todoist, Amplenote, Gmail
 
 #### 3. Environment Variables (.env)
-- **Location:** `G:\My Drive\03_Areas\Keys\.env`
+- **Location:** `${PARA_ROOT}/03_Areas/Keys/.env`
 - **Contains:** Legacy environment variables
 - **Use for:** Backward compatibility with older scripts
+
+**Note:** `${PARA_ROOT}` is configured in `${SKILLS_ROOT}/skills_config.json`. Typically `G:\My Drive` on Windows.
 
 ### Credential Lookup Workflow
 
@@ -104,7 +106,7 @@ Need a credential?
 
 ### Primary Location
 
-**Path**: `G:\My Drive\03_Areas\Keys\`
+**Path**: `${PARA_ROOT}/03_Areas/Keys/`
 
 ```
 03_Areas/Keys/
@@ -120,7 +122,7 @@ Need a credential?
 
 ### Backup Location
 
-**Path**: `G:\My Drive\05_Archive\Credentials_Backup\`
+**Path**: `${PARA_ROOT}/05_Archive/Credentials_Backup/`
 
 - Monthly encrypted backups
 - Stored separately from active credentials
@@ -132,7 +134,7 @@ Need a credential?
 
 ### File Format
 
-**Location**: `G:\My Drive\03_Areas\Keys\.env`
+**Location**: `${PARA_ROOT}/03_Areas/Keys/.env`
 
 ```bash
 # ===================================

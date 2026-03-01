@@ -61,7 +61,7 @@ flowchart TB
     %% Styling
     style Root fill:#e1f5fe,stroke:#01579b,stroke-width:3px
     style Automation fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    style Integrations fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style Integrations fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
     style Development fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     style Documentation fill:#fce4ec,stroke:#880e4f,stroke-width:2px
     style System fill:#fff9c4,stroke:#f57f17,stroke-width:2px
@@ -74,11 +74,11 @@ flowchart TB
     style A6 fill:#ffe0b2,stroke:#e65100
     style A7 fill:#ffe0b2,stroke:#e65100
     
-    style I1 fill:#e1bee7,stroke:#4a148c
-    style I2 fill:#e1bee7,stroke:#4a148c
-    style I3 fill:#e1bee7,stroke:#4a148c
-    style I4 fill:#e1bee7,stroke:#4a148c
-    style I5 fill:#e1bee7,stroke:#4a148c
+    style I1 fill:#f3e5f5,stroke:#6a1b9a
+    style I2 fill:#f3e5f5,stroke:#6a1b9a
+    style I3 fill:#f3e5f5,stroke:#6a1b9a
+    style I4 fill:#f3e5f5,stroke:#6a1b9a
+    style I5 fill:#f3e5f5,stroke:#6a1b9a
     
     style D1 fill:#c8e6c9,stroke:#1b5e20
     style D2 fill:#c8e6c9,stroke:#1b5e20
@@ -142,17 +142,17 @@ flowchart LR
     EC --> GMAIL
     
     %% Styling
-    style DP fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style EP fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style FO fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style PN fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
+    style DP fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style EP fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style FO fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style PN fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#fff
     
-    style AMP fill:#ce93d8,stroke:#4a148c,stroke-width:2px
-    style TODO fill:#ce93d8,stroke:#4a148c,stroke-width:2px
-    style GMAIL fill:#ce93d8,stroke:#4a148c,stroke-width:2px
+    style AMP fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    style TODO fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    style GMAIL fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
     
-    style RR fill:#aed581,stroke:#1b5e20,stroke-width:2px
-    style EC fill:#aed581,stroke:#1b5e20,stroke-width:2px
+    style RR fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px
+    style EC fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px
 ```
 
 ---
@@ -181,11 +181,11 @@ flowchart TD
     EC --> ADO
     
     %% Styling
-    style SF fill:#81c784,stroke:#1b5e20,stroke-width:3px
-    style GIT fill:#81c784,stroke:#1b5e20,stroke-width:2px
-    style ADO fill:#81c784,stroke:#1b5e20,stroke-width:2px
-    style FLS fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
-    style ACT fill:#a5d6a7,stroke:#1b5e20,stroke-width:2px
+    style SF fill:#c8e6c9,stroke:#1b5e20,stroke-width:3px
+    style GIT fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px
+    style ADO fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px
+    style FLS fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    style ACT fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     style EC fill:#fff59d,stroke:#f57f17,stroke-width:2px
 ```
 
@@ -244,8 +244,8 @@ flowchart TD
     EC --> CW
     
     %% Styling
-    style EC fill:#fff176,stroke:#f57f17,stroke-width:3px
-    style RR fill:#fff176,stroke:#f57f17,stroke-width:3px
+    style EC fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style RR fill:#fff9c4,stroke:#f57f17,stroke-width:3px
     style MCP fill:#fff59d,stroke:#f57f17,stroke-width:2px
     style CW fill:#fff59d,stroke:#f57f17,stroke-width:2px
     style AH fill:#fff59d,stroke:#f57f17,stroke-width:2px
@@ -340,14 +340,14 @@ graph TB
     OS --> CW
     
     %% Styling
-    style DP fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style EP fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style FO fill:#ffd54f,stroke:#f57f17,stroke-width:3px
-    style PN fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
+    style DP fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style EP fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style FO fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style PN fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#fff
     
-    style EC fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
-    style RR fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
-    style MCP fill:#ff6f00,stroke:#e65100,stroke-width:3px,color:#fff
+    style EC fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#fff
+    style RR fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#fff
+    style MCP fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#fff
 ```
 
 ---
@@ -376,19 +376,19 @@ flowchart LR
         AN7[And 22 more...]
     end
     
-    style D1 fill:#4caf50,stroke:#1b5e20,stroke-width:3px,color:#fff
-    style D2 fill:#4caf50,stroke:#1b5e20,stroke-width:3px,color:#fff
-    style D3 fill:#4caf50,stroke:#1b5e20,stroke-width:3px,color:#fff
+    style D1 fill:#2e7d32,stroke:#ffffff,stroke-width:3px,color:#fff
+    style D2 fill:#2e7d32,stroke:#ffffff,stroke-width:3px,color:#fff
+    style D3 fill:#2e7d32,stroke:#ffffff,stroke-width:3px,color:#fff
     
-    style W1 fill:#ff9800,stroke:#e65100,stroke-width:3px,color:#fff
+    style W1 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#fff
     
-    style AN1 fill:#9e9e9e,stroke:#424242,stroke-width:2px
-    style AN2 fill:#9e9e9e,stroke:#424242,stroke-width:2px
-    style AN3 fill:#9e9e9e,stroke:#424242,stroke-width:2px
-    style AN4 fill:#9e9e9e,stroke:#424242,stroke-width:2px
-    style AN5 fill:#9e9e9e,stroke:#424242,stroke-width:2px
-    style AN6 fill:#9e9e9e,stroke:#424242,stroke-width:2px
-    style AN7 fill:#9e9e9e,stroke:#424242,stroke-width:2px
+    style AN1 fill:#757575,stroke:#ffffff,stroke-width:2px,color:#fff
+    style AN2 fill:#757575,stroke:#ffffff,stroke-width:2px,color:#fff
+    style AN3 fill:#757575,stroke:#ffffff,stroke-width:2px,color:#fff
+    style AN4 fill:#757575,stroke:#ffffff,stroke-width:2px,color:#fff
+    style AN5 fill:#757575,stroke:#ffffff,stroke-width:2px,color:#fff
+    style AN6 fill:#757575,stroke:#ffffff,stroke-width:2px,color:#fff
+    style AN7 fill:#757575,stroke:#ffffff,stroke-width:2px,color:#fff
 ```
 
 ---

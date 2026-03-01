@@ -57,7 +57,7 @@ Generate weekly or custom-period developer activity reports that include:
 
 | Developer | Primary Email Pattern | Common Git Names |
 |-----------|----------------------|------------------|
-| Anthony Dourish | adourish@hrsa.gov | Anthony Dourish |
+| Developer 1 | developer1@example.com | Developer 1 |
 | Baldev | baldev@* | Baldev |
 | Harika | harika@* | Harika |
 | Jaipaul | jaipaul@* | Jaipaul |
@@ -66,7 +66,7 @@ Generate weekly or custom-period developer activity reports that include:
 | Priyanka | priyanka@* | Priyanka |
 | Ravi | ravi@* | Ravi |
 | Reshmi | reshmi@* | Reshmi |
-| Ron (Ronald Almeida) | ralmeida@hrsa.gov, ronald.almeida@reisystems.com | Ronald Almeida |
+| Developer 2 | developer2@example.com, developer2-alt@example.com | Developer 2 |
 | Sathya | sathya@* | Sathya |
 | Siobhan | siobhan@* | Siobhan |
 | Siva | siva@* | Siva |
@@ -349,7 +349,7 @@ if(!classes.isEmpty()) {
 # Define date range
 $startDate = Get-Date "2026-02-20"
 $endDate = Get-Date "2026-02-27"
-$developers = @("Vamsi Indukuri", "Anthony Dourish", "Srivarsha Thota", "Siva Nadimpalli")
+$developers = @("Vamsi Indukuri", "Developer 1", "Srivarsha Thota", "Siva Nadimpalli")
 
 # Loop through each day
 for($date = $startDate; $date -le $endDate; $date = $date.AddDays(1)) {
@@ -491,7 +491,7 @@ Get-ChildItem -Recurse -File | Where-Object {
 
 ```powershell
 # If Git is available, get LWC changes by developer
-git log --since="$startDate" --until="$endDate" --author="Anthony Dourish" --all -- "**/lwc/**" --oneline
+git log --since="$startDate" --until="$endDate" --author="Developer 1" --all -- "**/lwc/**" --oneline
 ```
 
 ### Step 6: Query Git Commits (Optional - If Available)
@@ -503,7 +503,7 @@ git log --since="$startDate" --until="$endDate" --author="Anthony Dourish" --all
 cd c:\projects\POCs\src\dmedev5
 
 # Get commits for specific developer on specific day
-$developer = "Anthony Dourish"
+$developer = "Developer 1"
 $dayStart = "2026-02-26 00:00:00"
 $dayEnd = "2026-02-26 23:59:59"
 
@@ -642,7 +642,7 @@ param(
 
 # Team roster
 $developers = @(
-    "Anthony Dourish",
+    "Developer 1",
     "Baldev",
     "Harika",
     "Jaipaul",
@@ -651,7 +651,7 @@ $developers = @(
     "Priyanka",
     "Ravi",
     "Reshmi",
-    "Ronald Almeida",
+    "Developer 2",
     "Sathya",
     "Siobhan",
     "Siva",
@@ -767,7 +767,7 @@ Write-Host "`nReport generated: $OutputPath" -ForegroundColor Green
 
 ```powershell
 # Quick developer stats
-# Usage: .\Get-QuickStats.ps1 -Developer "Anthony Dourish" -Period "7 days ago"
+# Usage: .\Get-QuickStats.ps1 -Developer "Developer 1" -Period "7 days ago"
 
 param(
     [string]$Developer,
@@ -804,7 +804,7 @@ git log --since="$Period" --author="$Developer" --all --oneline | Select-Object 
 git log --since="7 days ago" --all --oneline
 
 # Get commits by specific author
-git log --since="7 days ago" --author="Anthony Dourish" --all --oneline
+git log --since="7 days ago" --author="Developer 1" --all --oneline
 
 # Get unique list of authors
 git log --since="7 days ago" --all --format="%an" | Sort-Object -Unique
@@ -928,7 +928,7 @@ git log --since="7 days ago" --author="Developer Name" --all --name-only | Selec
 ### Issue 1: Developer Name Variations
 
 **Problem:** Same developer appears with different names in git log
-- "Ronald Almeida" vs "Ron Almeida"
+- "Developer 2" vs "Ron Almeida"
 - Different email addresses
 
 **Solution:**
@@ -938,8 +938,8 @@ git log --since="7 days ago" --author="Ronald" --all --oneline
 git log --since="7 days ago" --author="Almeida" --all --oneline
 
 # Combine results from multiple email patterns
-$commits1 = git log --since="7 days ago" --author="ralmeida@hrsa.gov" --all --oneline
-$commits2 = git log --since="7 days ago" --author="ronald.almeida@reisystems.com" --all --oneline
+$commits1 = git log --since="7 days ago" --author="developer2@example.com" --all --oneline
+$commits2 = git log --since="7 days ago" --author="developer2-alt@example.com" --all --oneline
 $totalCommits = ($commits1 + $commits2 | Sort-Object -Unique | Measure-Object -Line).Lines
 ```
 
@@ -1049,13 +1049,13 @@ Write-Host "Total Commits: $totalCommits"
 For one developer, manually verify:
 ```powershell
 # Get their commits
-git log --since="7 days ago" --author="Anthony Dourish" --all --oneline
+git log --since="7 days ago" --author="Developer 1" --all --oneline
 
 # Count them
-(git log --since="7 days ago" --author="Anthony Dourish" --all --oneline | Measure-Object -Line).Lines
+(git log --since="7 days ago" --author="Developer 1" --all --oneline | Measure-Object -Line).Lines
 
 # Get detailed stats
-git log --since="7 days ago" --author="Anthony Dourish" --all --shortstat
+git log --since="7 days ago" --author="Developer 1" --all --shortstat
 ```
 
 **Expected:** Numbers should match what appears in the report
@@ -1125,7 +1125,7 @@ Get-Content ".\Developer_Activity_Report.md" | Select-Object -First 50
 
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
-| 1.0 | 2026-02-27 | Initial creation with 20-developer team support | Anthony Dourish |
+| 1.0 | 2026-02-27 | Initial creation with 20-developer team support | Developer 1 |
 
 ---
 
@@ -1136,3 +1136,4 @@ Get-Content ".\Developer_Activity_Report.md" | Select-Object -First 50
 - Customize work summary extraction based on commit message patterns
 - Consider adding Salesforce-specific metrics (components deployed, test coverage, etc.)
 - Archive reports for historical tracking and trend analysis
+

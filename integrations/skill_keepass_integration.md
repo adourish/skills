@@ -43,9 +43,11 @@ This guide shows how to programmatically access your KeePass database to retriev
 
 ## KeePass Database Location
 
-**Primary Database:** `G:\My Drive\03_Areas\Keys\keys pass.kdbx`
+**Primary Database:** `${PARA_ROOT}/03_Areas/Keys/keys pass.kdbx`
 
-**Backup Databases:** `G:\My Drive\03_Areas\Keys\Backup\`
+**Backup Databases:** `${PARA_ROOT}/03_Areas/Keys/Backup/`
+
+**Note:** `${PARA_ROOT}` is configured in `${SKILLS_ROOT}/skills_config.json`. Typically `G:\My Drive` on Windows or your Google Drive mount point.
 
 ---
 
@@ -254,7 +256,7 @@ python keepass_helper.py Gmail
 python keepass_helper.py Todoist
 
 # Search by username
-python keepass_helper.py sol9001@gmail.com
+python keepass_helper.py user@example.com
 ```
 
 ---
@@ -653,3 +655,4 @@ $entry = Get-KeePassEntry -KeePassConnection $conn -Title "Gmail"
 **End of Master Guide**
 
 For credential management best practices, see [MASTER_GUIDE_Environments_and_Credentials.md](MASTER_GUIDE_Environments_and_Credentials.md)
+

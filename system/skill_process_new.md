@@ -251,9 +251,9 @@ Next: Run sync_plan_to_amplenote.js to create Action Plan
 - marketing@, promo@, newsletter@
 
 **Personal Exclusions:**
-- Alexandra Hartnett emails (sender contains 'hartnett' or 'alexandra')
-- Alexandra Hartnett calendar events (organizer email: ahartnet@gmail.com)
-- **Automatic filtering** - Any event organized by ahartnet@gmail.com is excluded
+- Excluded User emails (sender contains 'hartnett' or 'alexandra')
+- Excluded User calendar events (organizer email: excluded-user@example.com)
+- **Automatic filtering** - Any event organized by excluded-user@example.com is excluded
 - Works for ALL future events from Alex's calendar
 
 ### Always Included
@@ -517,3 +517,4 @@ python daily_planner.py
 - Don't try to fix it (requires admin approval)
 
 **The system is designed to be fully autonomous. Trust it.**
+

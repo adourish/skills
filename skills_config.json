@@ -1,15 +1,29 @@
 {
   "SKILLS_ROOT": "G:\\My Drive\\06_Skills",
-  "description": "Configuration for the Skills repository. Update SKILLS_ROOT to match your local clone location.",
+  "PARA_ROOT": "G:\\My Drive",
+  "description": "Configuration for the Skills repository and PARA method locations.",
   "examples": {
-    "windows": "G:\\My Drive\\06_Skills",
-    "windows_alt": "C:\\Users\\YourName\\Documents\\06_Skills",
-    "linux": "/home/username/06_Skills",
-    "mac": "/Users/username/Documents/06_Skills"
+    "windows": {
+      "SKILLS_ROOT": "G:\\My Drive\\06_Skills",
+      "PARA_ROOT": "G:\\My Drive"
+    },
+    "windows_alt": {
+      "SKILLS_ROOT": "C:\\Users\\YourName\\Documents\\06_Skills",
+      "PARA_ROOT": "C:\\Users\\YourName\\Documents"
+    },
+    "linux": {
+      "SKILLS_ROOT": "/home/username/06_Skills",
+      "PARA_ROOT": "/home/username/GoogleDrive"
+    },
+    "mac": {
+      "SKILLS_ROOT": "/Users/username/Documents/06_Skills",
+      "PARA_ROOT": "/Users/username/Google Drive"
+    }
   },
   "usage": {
-    "note": "All skill paths in documentation are relative to SKILLS_ROOT",
-    "format": "${SKILLS_ROOT}/automation/skill_daily_planning.md",
-    "actual_example": "If SKILLS_ROOT is 'C:\\Skills', then the path becomes 'C:\\Skills\\automation\\skill_daily_planning.md'"
+    "note": "All skill paths use SKILLS_ROOT, PARA method locations use PARA_ROOT",
+    "skills_format": "${SKILLS_ROOT}/automation/skill_daily_planning.md",
+    "para_format": "${PARA_ROOT}/03_Areas/Keys/Environments/environments.json",
+    "actual_example": "If SKILLS_ROOT is 'C:\\Skills' and PARA_ROOT is 'C:\\GoogleDrive', then paths become 'C:\\Skills\\automation\\skill_daily_planning.md' and 'C:\\GoogleDrive\\03_Areas\\Keys\\Environments\\environments.json'"
   }
 }

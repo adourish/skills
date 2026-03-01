@@ -1,8 +1,8 @@
-# HRSA Visio Template Icon Gallery
+# Visio 508 Template Icon Gallery
 
-Visual reference guide for all 100 icons in the HRSA Visio 508 Compliant Template V1.0.
+Visual reference guide for all 100 icons in the Visio 508 508 Compliant Template V1.0.
 
-**Note:** This gallery shows Unicode approximations of the Visio icons. For exact icons, open the HRSA template in Microsoft Visio.
+**Note:** This gallery shows Unicode approximations of the Visio icons. For exact icons, open the Section 508 template in Microsoft Visio.
 
 ---
 
@@ -215,7 +215,7 @@ Visual reference guide for all 100 icons in the HRSA Visio 508 Compliant Templat
 ### Method 1: Open in Visio
 ```
 1. Open Microsoft Visio
-2. File > Open > HRSA Visio 508 Compliant Template V1.0.vsdx
+2. File > Open > Visio 508 508 Compliant Template V1.0.vsdx
 3. View stencils panel on left
 4. Drag icons onto page
 ```
@@ -228,7 +228,7 @@ python export_visio_icons_as_images.py
 ```
 
 This will export all 100 icons as PNG images to:
-`G:\My Drive\06_Skills\documentation\hrsa_icons\`
+`G:\My Drive\06_Skills\documentation\Section 508_icons\`
 
 ---
 
@@ -267,6 +267,7 @@ This will export all 100 icons as PNG images to:
 ---
 
 **Last Updated:** March 1, 2026  
-**Source:** HRSA Visio 508 Compliant Template V1.0  
+**Source:** Visio 508 508 Compliant Template V1.0  
 **Total Icons:** 100 master shapes  
 **License:** Microsoft Visio (included with template)
+

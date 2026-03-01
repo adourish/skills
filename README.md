@@ -12,6 +12,70 @@ AI agent skills organized by category. Each skill provides detailed instructions
 
 **🚀 New to this repository?** See [QUICKSTART.md](QUICKSTART.md) for a complete guide on using these skills in Windsurf Cascade, Claude Code, and Devin AI.
 
+---
+
+## How It Works
+
+```mermaid
+graph TB
+    subgraph Platforms["🤖 AI Platforms"]
+        W[Windsurf Cascade]
+        C[Claude Code]
+        D[Devin AI]
+    end
+    
+    subgraph Skills["📚 51 Skills Repository"]
+        AUTO[🤖 Automation<br/>Daily workflows]
+        DOC[📝 Documentation<br/>Diagrams & templates]
+        DEV[💻 Development<br/>Git & Salesforce]
+        SYS[⚙️ System<br/>Configuration]
+        INT[🔌 Integrations<br/>APIs & services]
+        TOOL[🛠️ Tools<br/>Skill creation]
+    end
+    
+    subgraph Outcomes["✨ Outcomes"]
+        A11Y[♿ Section 508<br/>Accessible code]
+        QUAL[⭐ Quality<br/>Best practices]
+        SPEED[⚡ Speed<br/>Automated workflows]
+        DOCS[📖 Documentation<br/>Professional output]
+    end
+    
+    W --> Skills
+    C --> Skills
+    D --> Skills
+    
+    AUTO --> Outcomes
+    DOC --> Outcomes
+    DEV --> Outcomes
+    SYS --> Outcomes
+    INT --> Outcomes
+    TOOL --> Outcomes
+    
+    style Platforms fill:#0d47a1,stroke:#ffffff,color:#ffffff
+    style Skills fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style Outcomes fill:#e65100,stroke:#ffffff,color:#ffffff
+    
+    style W fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style C fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    
+    style AUTO fill:#388e3c,stroke:#ffffff,color:#ffffff
+    style DOC fill:#388e3c,stroke:#ffffff,color:#ffffff
+    style DEV fill:#388e3c,stroke:#ffffff,color:#ffffff
+    style SYS fill:#388e3c,stroke:#ffffff,color:#ffffff
+    style INT fill:#388e3c,stroke:#ffffff,color:#ffffff
+    style TOOL fill:#388e3c,stroke:#ffffff,color:#ffffff
+    
+    style A11Y fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style QUAL fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style SPEED fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style DOCS fill:#f57f17,stroke:#ffffff,color:#ffffff
+```
+
+**The Flow:** Your AI platform → Loads skills → Produces quality outcomes
+
+---
+
 ## Skills Organization Diagram
 
 ```mermaid

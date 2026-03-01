@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Output files
+output/
+*.json
+daily_plans/
+
+# Credentials (already in separate location)
+credentials.json
+token.json
+environments.json
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Session summaries
+SESSION_SUMMARY_*.md

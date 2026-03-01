@@ -26,6 +26,50 @@ This repository contains 50+ AI agent skills for automation, development, docume
 
 ## Getting Started
 
+### Initial Setup
+
+**Step 1: Clone the Repository**
+
+```bash
+# Clone to your preferred location
+git clone https://github.com/adourish/skills.git "G:\My Drive\06_Skills"
+
+# Or if already exists, pull latest
+cd "G:\My Drive\06_Skills"
+git pull origin main
+```
+
+**Step 2: Setup for Windsurf Cascade**
+
+Windsurf automatically has access to files in your workspace. Simply:
+
+```
+1. Open Windsurf
+2. Set workspace to: G:\My Drive\06_Skills
+3. Start using skills with natural language:
+   "Load the daily_planning skill"
+   "Show me all automation skills"
+```
+
+**No additional configuration needed!** Cascade can read any file in your workspace.
+
+**Step 3: Setup for Claude Code**
+
+Claude Code uses @ mentions to reference files. To use skills:
+
+```
+1. Open Claude Code
+2. Navigate to skills folder or open any file in it
+3. Use @ mentions to load skills:
+   @README.md
+   @SKILLS_CONTEXT.md
+   @automation/skill_daily_planning.md
+```
+
+**Pro Tip:** Add skills folder to your IDE workspace for easier @ mention autocomplete.
+
+---
+
 ### Prerequisites
 
 - **Local Access:** Clone or download the repository to your machine
@@ -508,6 +552,38 @@ git pull origin main
 
 # Or download latest release
 # https://github.com/adourish/skills/releases
+```
+
+---
+
+## Quick Commands
+
+### Setup Commands
+
+**Clone Repository:**
+```bash
+git clone https://github.com/adourish/skills.git "G:\My Drive\06_Skills"
+```
+
+**Update Repository:**
+```bash
+cd "G:\My Drive\06_Skills"
+git pull origin main
+```
+
+**Windsurf - Load Skills:**
+```
+"Load the daily_planning skill"
+"Show me all documentation skills"
+"Reference SKILLS_CONTEXT.md"
+```
+
+**Claude Code - Load Skills:**
+```
+@README.md
+@SKILLS_CONTEXT.md
+@automation/skill_daily_planning.md
+@documentation/
 ```
 
 ---

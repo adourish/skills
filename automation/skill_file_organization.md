@@ -407,6 +407,18 @@ Maintain original naming but organize by year:
 ### Overview
 Media files (videos, photos, magazines, music) require special handling due to volume and specific organizational needs.
 
+**For complete media filing instructions, see:**
+`G:\My Drive\04_Resources\Media\HOW_TO_FILE_MEDIA.md`
+
+This separate guide covers:
+- Video organization (movies, TV shows, documentaries, tutorials)
+- Picture management (photos, screenshots, wallpapers)
+- Audio filing (music, podcasts, audiobooks)
+- Magazine and document organization
+- Privacy considerations and folder structure
+
+**Note:** The media filing guide is kept separate to maintain privacy of certain folder structures.
+
 ### Video Filing
 
 **Location**: `G:\My Drive\04_Resources\Media\Video\`

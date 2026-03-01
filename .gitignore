@@ -40,6 +40,9 @@ environments.json
 !skills_manifest.json
 !skills_context.json
 
+# Optional: Uncomment to ignore user-specific config (if you don't want to share your local path)
+# skills_config.json
+
 # Temporary files
 *.tmp
 *.bak

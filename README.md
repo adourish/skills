@@ -396,7 +396,7 @@ graph TB
 
 ```markdown
 # Method 1: Reference Specific Skill
-"Check the daily_planning skill at G:\My Drive\06_Skills\automation\skill_daily_planning.md"
+"Check the daily_planning skill at ${SKILLS_ROOT}/automation/skill_daily_planning.md"
 
 # Method 2: Load Multiple Skills
 "Load the following skills:
@@ -405,7 +405,7 @@ graph TB
 - skill_creator"
 
 # Method 3: Load by Category
-"Load all documentation skills from G:\My Drive\06_Skills\documentation\"
+"Load all documentation skills from ${SKILLS_ROOT}/documentation/"
 
 # Method 4: Use Skills Context
 "Reference SKILLS_CONTEXT.md for complete skill overview"
@@ -418,7 +418,7 @@ graph TB
 User: "Plan my day"
 
 Cascade Workflow:
-1. Read: G:\My Drive\06_Skills\automation\skill_daily_planning.md
+1. Read: ${SKILLS_ROOT}/automation/skill_daily_planning.md
 2. Check prerequisites: environments.json configured?
 3. Navigate: cd "C:\Users\sol90\CascadeProjects\mcptools"
 4. Execute: python run_process_new_v2.py
@@ -434,7 +434,7 @@ User: "How do I organize my downloads?"
 Cascade Workflow:
 1. Search: skills_manifest.json for "file" or "organization"
 2. Find: file_organization skill
-3. Load: G:\My Drive\06_Skills\automation\skill_file_organization.md
+3. Load: ${SKILLS_ROOT}/automation/skill_file_organization.md
 4. Reference: routing_rules for PARA method
 5. Guide: Walk user through filing process
 6. Suggest: Related skills (media_filing_guide for media files)
@@ -445,8 +445,8 @@ Cascade Workflow:
 User: "Create a new skill for X"
 
 Cascade Workflow:
-1. Load: G:\My Drive\06_Skills\_tools\skill-creator\README.md
-2. Load: G:\My Drive\06_Skills\_tools\HOW_TO_FILE_TOOLS.md
+1. Load: ${SKILLS_ROOT}/_tools/skill-creator/README.md
+2. Load: ${SKILLS_ROOT}/_tools/HOW_TO_FILE_TOOLS.md
 3. Follow: Skill creation template
 4. Determine: Correct folder based on purpose
 5. Create: Skill markdown with proper structure
@@ -458,7 +458,7 @@ Cascade Workflow:
 User: "Write a guide for Y"
 
 Cascade Workflow:
-1. Load: G:\My Drive\06_Skills\documentation\doc-coauthoring\README.md
+1. Load: ${SKILLS_ROOT}/documentation/doc-coauthoring/README.md
 2. Stage 1: Context Gathering (ask questions)
 3. Stage 2: Refinement & Structure (draft content)
 4. Stage 3: Reader Testing (validate clarity)
@@ -474,10 +474,10 @@ Cascade Workflow:
 
 ```markdown
 # Method 1: Direct File Reference
-@G:\My Drive\06_Skills\automation\skill_daily_planning.md
+@${SKILLS_ROOT}/automation/skill_daily_planning.md
 
 # Method 2: Folder Reference
-@G:\My Drive\06_Skills\documentation\
+@${SKILLS_ROOT}/documentation/
 
 # Method 3: Multiple Skills
 @skill_file_organization.md
@@ -626,7 +626,7 @@ User: "Help me plan my day"
 AI Workflow:
 1. Check skills_manifest.json for "daily_planning"
 2. Read: frequency=daily, difficulty=beginner
-3. Command: cd "G:\My Drive\06_Skills\_tools" && python run_process_new.py
+3. Command: cd "${SKILLS_ROOT}/_tools" && python run_process_new.py
 4. Explain: Scans Gmail, Calendar, Todoist → Creates Kanban board
 5. Output: Todoist tasks (5), Amplenote note, JSON file
 6. Time: ~30 seconds

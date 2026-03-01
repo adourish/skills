@@ -13,13 +13,16 @@ Mermaid is a JavaScript-based diagramming and charting tool that uses text-based
 
 ## Setup: VS Code & Windsurf Extension
 
-To preview Mermaid diagrams in VS Code or Windsurf, install the required extension:
+To preview Mermaid diagrams in VS Code or Windsurf, install the official Mermaid extension:
 
 ### Install Extension
 
 1. Open Extensions panel (`Ctrl+Shift+X`)
-2. Search for **"Markdown Preview Mermaid Support"** by Matt Bierner
+2. Search for **"Mermaid Chart"** by Mermaid Chart
 3. Click Install
+4. Reload window: `Ctrl+Shift+P` → "Reload Window"
+
+**Note:** If you have "Markdown Preview Mermaid Support" installed, uninstall it first to avoid conflicts.
 
 ### Usage
 
@@ -39,14 +42,21 @@ To preview Mermaid diagrams in VS Code or Windsurf, install the required extensi
 # My Diagram
 
 ```mermaid
-graph TD
+flowchart TD
     A[Start] --> B[End]
 ```
 ````
 
+**Supported Syntax:**
+- Both `flowchart` (recommended) and `graph` syntax work
+- Supports all Mermaid diagram types: flowchart, sequence, class, state, ER, Gantt, Git graph
+- Interactive features: zoom, pan, and export diagrams
+
 **Troubleshooting:**
 - Ensure code blocks use ` ```mermaid ` (not `mmd` or `mer`)
 - Reload window if diagrams don't render: `Ctrl+Shift+P` → "Reload Window"
+- If you see "No diagram type detected", check for emojis in node labels or subgraph titles - remove them
+- Use `flowchart` instead of `graph` for better compatibility
 
 ---
 
@@ -65,6 +75,7 @@ flowchart TD
 
 **Syntax:**
 - `flowchart TD` - Top Down (also: `LR` Left-Right, `RL` Right-Left, `BT` Bottom-Top)
+- Note: `graph` syntax is deprecated, use `flowchart` instead
 - `A[Text]` - Rectangle node
 - `A(Text)` - Rounded rectangle
 - `A{Text}` - Diamond (decision)

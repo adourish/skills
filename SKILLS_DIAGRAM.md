@@ -111,7 +111,7 @@ flowchart TB
 ```mermaid
 flowchart LR
     %% Core Daily Workflow
-    DP[daily_planning ⭐]
+    DP[daily_planning]
     EP[email_processing]
     FO[file_organization]
     
@@ -356,17 +356,17 @@ graph TB
 
 ```mermaid
 flowchart LR
-    subgraph "Daily Use ⭐"
+    subgraph "Daily Use"
         D1[daily_planning]
         D2[file_organization]
         D3[routing_rules]
     end
     
-    subgraph "Weekly Use 📅"
+    subgraph "Weekly Use"
         W1[email_processing]
     end
     
-    subgraph "As-Needed 🔧"
+    subgraph "As-Needed"
         AN1[salesforce_development]
         AN2[git_version_control]
         AN3[browser_automation]

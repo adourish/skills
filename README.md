@@ -394,6 +394,51 @@ AI Workflow:
 
 ### Skill Discovery Strategy
 
+```mermaid
+graph TD
+    A[User Request] --> B{Identify Intent}
+    B -->|Planning| C[daily_planning<br/>file_organization<br/>routing_rules]
+    B -->|Email| D[email_processing<br/>gmail_automation]
+    B -->|Tasks| E[todoist_api<br/>daily_planning]
+    B -->|Documentation| F[mermaid_diagrams<br/>doc_coauthoring]
+    B -->|Development| G[git_version_control<br/>github_pull_requests]
+    B -->|Accessibility| H[section_508_compliance<br/>mermaid_section_508]
+    
+    C --> I[Check Prerequisites]
+    D --> I
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    
+    I --> J{API Access?}
+    J -->|Yes| K[environments_credentials]
+    J -->|No| L[Execute Workflow]
+    K --> L
+    
+    L --> M[Provide Command]
+    M --> N[Explain & Execute]
+    N --> O[Show Output]
+    O --> P[Suggest Next Steps]
+    
+    style A fill:#0d47a1,stroke:#ffffff,color:#ffffff
+    style B fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style C fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style E fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style F fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style G fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style H fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style I fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style J fill:#0d47a1,stroke:#ffffff,color:#ffffff
+    style K fill:#e65100,stroke:#ffffff,color:#ffffff
+    style L fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style M fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style N fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style O fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style P fill:#880e4f,stroke:#ffffff,color:#ffffff
+```
+
 **Step 1: Identify User Intent**
 - Planning/Organization → daily_planning, file_organization, routing_rules
 - Email Management → email_processing, gmail_automation
@@ -431,6 +476,59 @@ AI Workflow:
 
 ### Dependency Chains
 
+```mermaid
+graph LR
+    subgraph Setup["🔧 Setup Chain (Do First)"]
+        EC1[environments_credentials] --> API[All API Integrations]
+        RR[routing_rules] --> FO[file_organization]
+        MCP[mcp_server_setup] --> BA[browser_automation]
+        MCP --> DP1[daily_planning]
+    end
+    
+    subgraph Daily["📅 Daily Planning Chain"]
+        EC2[environments_credentials] --> GA[gmail_automation]
+        GA --> EP[email_processing]
+        EP --> DP2[daily_planning]
+        EC2 --> TA[todoist_api]
+        TA --> DP2
+        EC2 --> AA[amplenote_api]
+        AA --> DP2
+    end
+    
+    subgraph Docs["📝 Documentation Chain"]
+        MD[mermaid_diagrams] --> VVM[visio_via_mermaid]
+        VVM --> V508[visio_section_508]
+        S508[section_508_compliance] --> M508[mermaid_section_508]
+        S508 --> V508
+    end
+    
+    subgraph Dev["💻 Development Chain"]
+        EC3[environments_credentials] --> SF[salesforce_development]
+        SF --> GIT[git_version_control]
+        ADO[azure_devops_automation] --> SF
+    end
+    
+    style EC1 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style EC2 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style EC3 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style RR fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style MCP fill:#f57f17,stroke:#ffffff,color:#ffffff
+    style DP1 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style DP2 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style GA fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style EP fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style TA fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style AA fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+    style MD fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style VVM fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style V508 fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style S508 fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style M508 fill:#880e4f,stroke:#ffffff,color:#ffffff
+    style SF fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style GIT fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style ADO fill:#2e7d32,stroke:#ffffff,color:#ffffff
+```
+
 **Setup Chain (Do First):**
 ```
 environments_credentials → All API integrations
@@ -459,6 +557,47 @@ azure_devops_automation → salesforce_development
 
 ### Skills by Frequency
 
+```mermaid
+graph TB
+    subgraph Daily["📅 Daily Use (5 skills)"]
+        D1[daily_planning<br/>30 sec]
+        D2[file_organization<br/>10-30 min]
+        D3[user_commands<br/>instant]
+        D4[routing_rules<br/>instant]
+        D5[git_version_control<br/>ongoing]
+    end
+    
+    subgraph Weekly["📆 Weekly Use (1 skill)"]
+        W1[email_processing<br/>5-10 min]
+    end
+    
+    subgraph Setup["🔧 Setup First (3 skills)"]
+        S1[environments_credentials<br/>5-10 min]
+        S2[routing_rules<br/>5 min]
+        S3[mcp_server_setup<br/>15 min]
+    end
+    
+    subgraph AsNeeded["🔍 As-Needed (41 skills)"]
+        AN[Reference when needed<br/>See skills_manifest.json]
+    end
+    
+    Setup --> Daily
+    Setup --> Weekly
+    Daily -.-> AsNeeded
+    Weekly -.-> AsNeeded
+    
+    style D1 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style D2 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style D3 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style D4 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style D5 fill:#1b5e20,stroke:#ffffff,color:#ffffff
+    style W1 fill:#0d47a1,stroke:#ffffff,color:#ffffff
+    style S1 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S2 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S3 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style AN fill:#6a1b9a,stroke:#ffffff,color:#ffffff
+```
+
 **Daily Use (5 skills):**
 - daily_planning - `python run_process_new.py` (30 sec)
 - file_organization - Ask AI to help (10-30 min)
@@ -474,7 +613,7 @@ azure_devops_automation → salesforce_development
 - routing_rules - Learn PARA method (5 min)
 - mcp_server_setup - Windsurf integration (15 min)
 
-**As-Needed (27 skills):**
+**As-Needed (41 skills):**
 - Reference when specific functionality needed
 - See skills_manifest.json for complete list
 

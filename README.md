@@ -4,7 +4,7 @@
 
 Master Section 508 compliance, Salesforce workflows, professional diagramming, API integrations, GitFlow strategies, and comprehensive documentation. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
 
-**51 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
+**57 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
 
 ---
 
@@ -164,7 +164,7 @@ flowchart TB
         D[Devin AI]
     end
     
-    subgraph Skills["51 Skills Repository"]
+    subgraph Skills["57 Skills Repository"]
         AUTO[Automation - Daily workflows]
         DOC[Documentation - Diagrams & templates]
         DEV[Development - Git & Salesforce]
@@ -225,7 +225,7 @@ graph TB
     Root --> Tools["🛠️ TOOLS<br/>3 Skills<br/>Skill Development"]
     Root --> Automation["🤖 AUTOMATION<br/>8 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>9 Skills<br/>Dev Tools"]
+    Root --> Development["💻 DEVELOPMENT<br/>15 Skills<br/>Dev Tools"]
     Root --> Documentation["📝 DOCUMENTATION<br/>21 Skills<br/>Templates & Diagrams"]
     Root --> System["⚙️ SYSTEM<br/>10 Skills<br/>Core Configuration"]
     
@@ -261,6 +261,12 @@ graph TB
     Development --> D7["github_pull_requests ⭐<br/>PR workflow"]
     Development --> D8["gitflow_workflow ⭐<br/>GitFlow branching"]
     Development --> D9["splunk_monitoring ⭐<br/>Splunk queries & monitoring"]
+    Development --> D10["soql_sosl ⭐<br/>SOQL/SOSL queries"]
+    Development --> D11["apex_testing ⭐<br/>Test patterns & coverage"]
+    Development --> D12["salesforce_deployment ⭐<br/>Deployment & cache"]
+    Development --> D13["lwc_development ⭐<br/>LWC components"]
+    Development --> D14["salesforce_rest_api ⭐<br/>OAuth & REST API"]
+    Development --> D15["sfsync_script ⭐<br/>Generic deployment script"]
     
     %% Documentation Skills
     Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
@@ -335,6 +341,12 @@ graph TB
     style D7 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D8 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D9 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D10 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D11 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D12 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D13 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D14 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D15 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style Doc1 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc2 fill:#ad1457,stroke:#ffffff,color:#ffffff
@@ -1188,6 +1200,12 @@ Development tools and workflow skills.
 - **[salesforce_fls_automation](development/skill_salesforce_fls_automation.md)** - Field-level security automation
 - **[salesforce_developer_activity_report](development/skill_salesforce_developer_activity_report.md)** - Developer activity tracking and reporting
 - **[azure_devops_automation](development/skill_azure_devops_automation.md)** - Azure DevOps work item automation
+- **[soql_sosl](development/skill_soql_sosl.md)** - SOQL/SOSL query patterns and optimization
+- **[apex_testing](development/skill_apex_testing.md)** - Test class patterns and code coverage strategies
+- **[salesforce_deployment](development/skill_salesforce_deployment.md)** - Deployment patterns and cache invalidation
+- **[lwc_development](development/skill_lwc_development.md)** - Lightning Web Component development patterns
+- **[salesforce_rest_api](development/skill_salesforce_rest_api.md)** - OAuth authentication and REST API calls
+- **[sfsync_script](_scripts/sfsync.ps1)** - Generic Salesforce metadata deployment script
 
 ### 📝 Documentation
 Documentation and template skills.
@@ -1267,6 +1285,11 @@ Core system configuration and workflow skills.
 
 ## Changelog
 
+### March 2, 2026
+**Added 6 New Salesforce Development Skills:**
+- **Development (6):** SOQL/SOSL Queries, Apex Testing, Salesforce Deployment, LWC Development, Salesforce REST API, sfsync Script
+- **Focus:** Comprehensive Salesforce development patterns including query optimization, testing strategies, deployment best practices, component development, and API authentication
+
 ### March 1, 2026
 **Added 18 New Skills:**
 - **Tools Category (2):** Skill Creator, HOW_TO_FILE_TOOLS
@@ -1286,7 +1309,7 @@ Core system configuration and workflow skills.
 
 ---
 
-**Last Updated:** March 1, 2026  
-**Total Skills:** 57 across 6 categories  
+**Last Updated:** March 2, 2026  
+**Total Skills:** 63 across 6 categories  
 **Location:** `${SKILLS_ROOT}/README.md`
 

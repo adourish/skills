@@ -205,11 +205,22 @@ A standard that connects AI systems with external tools and data sources, enabli
 **Example:** The daily planner MCP server provides tools for Gmail, Todoist, Calendar, and Amplenote operations.
 
 ### **PARA Method**
-A file organization system used throughout this repository:
-- **Projects** - Active work with deadlines
-- **Areas** - Ongoing responsibilities
-- **Resources** - Reference materials
-- **Archive** - Completed items
+A file organization system used throughout this repository for managing all files, credentials, and resources.
+
+**Four Core Folders:**
+- **Projects** (`01_Operate/Projects/`) - Active work with deadlines and deliverables
+- **Areas** (`03_Areas/`) - Ongoing responsibilities (credentials, keys, configurations)
+- **Resources** (`04_Resources/`) - Reference materials and documentation
+- **Archive** (`05_Archive/`) - Completed items and historical records
+
+**Additional Folder:**
+- **Skills** (`06_Skills/`) - AI assistant skills and workflows (this repository)
+
+**Path Variable:** `${PARA_ROOT}` points to your PARA root folder (typically `G:\My Drive` on Windows)
+
+**Key Usage:** Many skills reference `${PARA_ROOT}/03_Areas/Keys/` for credential storage and `${PARA_ROOT}/06_Skills/` for skill files.
+
+**Example:** `${PARA_ROOT}/03_Areas/Keys/Environments/environments.json` contains API configurations for Salesforce, Azure DevOps, Gmail, Todoist, and other services.
 
 ---
 

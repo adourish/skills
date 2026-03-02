@@ -38,6 +38,44 @@ Many skills reference `${PARA_ROOT}` for file organization and credentials. This
 ```
 
 **PARA Method Structure:**
+
+```mermaid
+graph TB
+    Root["📁 PARA_ROOT<br/>(G:\My Drive)"]
+    
+    Root --> Operate["📂 01_Operate<br/>Active Operations"]
+    Root --> Areas["📂 03_Areas<br/>Ongoing Responsibilities"]
+    Root --> Resources["📂 04_Resources<br/>Reference Materials"]
+    Root --> Archive["📂 05_Archive<br/>Completed Items"]
+    Root --> Skills["📂 06_Skills<br/>AI Assistant Skills"]
+    
+    Operate --> Projects["Projects/<br/>Active work with deadlines"]
+    
+    Areas --> Keys["Keys/<br/>🔑 Credentials & API Keys"]
+    Areas --> Config["Configurations/<br/>⚙️ Settings & Configs"]
+    
+    Keys --> Envs["Environments/<br/>environments.json"]
+    Keys --> EnvFile[".env<br/>Legacy variables"]
+    Keys --> KeePass["keys pass.kdbx<br/>Password database"]
+    
+    Skills --> DevSkills["development/<br/>Dev skills"]
+    Skills --> AutoSkills["automation/<br/>Automation skills"]
+    Skills --> DocSkills["documentation/<br/>Doc skills"]
+    
+    style Root fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Operate fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Areas fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Resources fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Archive fill:#757575,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Skills fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    
+    style Keys fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Envs fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style EnvFile fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style KeePass fill:#ef6c00,stroke:#ffffff,color:#ffffff
+```
+
+**Key Folders:**
 - `01_Operate/Projects/` - Active work with deadlines
 - `03_Areas/` - Ongoing responsibilities (credentials, keys, configurations)
 - `04_Resources/` - Reference materials

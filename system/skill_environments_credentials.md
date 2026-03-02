@@ -83,7 +83,21 @@ Layer 3: Application Security
 - **Contains:** Legacy environment variables
 - **Use for:** Backward compatibility with older scripts
 
-**Note:** `${PARA_ROOT}` is configured in `${SKILLS_ROOT}/skills_config.json`. Typically `G:\My Drive` on Windows.
+**Note on Path Variables:**
+
+- **`${PARA_ROOT}`**: Your main PARA organizational folder (typically `G:\My Drive` on Windows)
+  - Configured in `${SKILLS_ROOT}/skills_config.json`
+  - Points to your PARA method structure:
+    - `01_Operate/Projects/` - Active work with deadlines
+    - `03_Areas/` - Ongoing responsibilities (credentials stored here)
+    - `04_Resources/` - Reference materials
+    - `05_Archive/` - Completed items
+    - `06_Skills/` - AI assistant skills and workflows
+  - Example: `${PARA_ROOT}\03_Areas\Keys\` resolves to `G:\My Drive\03_Areas\Keys\`
+
+- **`${SKILLS_ROOT}`**: Location of your skills repository
+  - Configured in `skills_config.json`
+  - Contains all AI assistant skills organized by category
 
 ### Credential Lookup Workflow
 

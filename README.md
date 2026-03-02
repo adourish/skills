@@ -27,6 +27,27 @@ Master Section 508 compliance, Salesforce workflows, professional diagramming, A
 - Replace `${SKILLS_ROOT}` with your actual path from `skills_config.json`
 - Example: `${SKILLS_ROOT}/automation/skill_daily_planning.md` → `C:\Skills\automation\skill_daily_planning.md`
 
+**📂 PARA_ROOT Variable:**
+
+Many skills reference `${PARA_ROOT}` for file organization and credentials. This points to your main PARA method organizational folder:
+
+```json
+{
+  "PARA_ROOT": "G:\\My Drive"
+}
+```
+
+**PARA Method Structure:**
+- `01_Operate/Projects/` - Active work with deadlines
+- `03_Areas/` - Ongoing responsibilities (credentials, keys, configurations)
+- `04_Resources/` - Reference materials
+- `05_Archive/` - Completed items
+- `06_Skills/` - AI assistant skills and workflows
+
+**Example:** `${PARA_ROOT}/03_Areas/Keys/` resolves to `G:\My Drive\03_Areas\Keys\`
+
+**Note:** Configure both `SKILLS_ROOT` and `PARA_ROOT` in `skills_config.json` for your environment.
+
 ---
 
 AI agent skills organized by category. Each skill provides detailed instructions for specific workflows and integrations.

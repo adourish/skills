@@ -1,9 +1,10 @@
 # Salesforce Developer Activity Report - Master Guide
 
-**Last Updated:** February 27, 2026  
-**Version:** 1.0  
+**Last Updated:** March 3, 2026  
+**Version:** 1.1  
 **Purpose:** Generate comprehensive team activity reports for Salesforce development projects  
-**Success Rate:** 100% (Tested with 20-developer team)
+**Success Rate:** 100% (Tested with 20-developer team)  
+**Latest Fix:** LoginHistory bug resolved - now captures all login activity correctly
 
 ---
 
@@ -628,7 +629,44 @@ For top contributors, add detailed commit breakdown with:
 
 ## PowerShell Automation Scripts
 
-### Complete Report Generator Script
+### Enhanced Day-by-Day Matrix Report Generator (RECOMMENDED)
+
+**Script:** `scripts/Generate-DailyActivityMatrix.ps1`
+
+This script queries Salesforce for each day individually and builds a true day-by-day matrix showing ALL activity types:
+- Apex classes (with LOC and time ranges)
+- Custom objects
+- LWC component changes (via SetupAuditTrail)
+- Field changes (via SetupAuditTrail)
+- Permission changes (via SetupAuditTrail)
+- Login activity
+
+**Usage:**
+```powershell
+.\scripts\Generate-DailyActivityMatrix.ps1 -Org dmedev5 -DaysBack 7
+```
+
+**Output:** `Developer_Activity_Matrix_Report_YYYYMMDD.md`
+
+**Key Features:**
+- ✅ Queries each day separately for accurate daily breakdowns
+- ✅ Captures ALL metadata types (not just Apex)
+- ✅ Shows time ranges for code changes
+- ✅ Includes LWC, fields, permissions via SetupAuditTrail
+- ✅ Displays login-only days (FIXED: v1.1 - LoginHistory now properly mapped via UserId)
+- ✅ Generates week totals automatically
+- ✅ Builds UserId-to-Name mapping for accurate login tracking
+
+**Example Output:**
+```markdown
+| Developer | Mon | Tue | Wed | Thu | Fri | Week Total |
+|-----------|-----|-----|-----|-----|-----|------------|
+| **Siva** | - | **2 classes**<br>2,700 LOC<br>17:37<br>19 LWC | 14 LWC | 2 LWC | **3 classes**<br>28,555 LOC<br>12:36-12:52<br>10 LWC | **5 classes**<br>**31,255 LOC**<br>**45 LWC** |
+```
+
+### Legacy Git-Based Report Generator
+
+**Note:** This approach only works if developers have Git/DevOps access. Use the enhanced script above for comprehensive Salesforce metadata tracking.
 
 ```powershell
 # Salesforce Developer Activity Report Generator

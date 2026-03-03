@@ -2,9 +2,9 @@
 
 **One repository to train your AI coding assistants in the ways of accessibility, automation, documentation, and enterprise development.**
 
-Master Section 508 compliance, Salesforce workflows, professional diagramming, API integrations, GitFlow strategies, and comprehensive documentation. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
+Master Section 508 compliance, Salesforce workflows, Copado DevOps, professional diagramming, API integrations, GitFlow strategies, and comprehensive documentation. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
 
-**57 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
+**64 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
 
 ---
 
@@ -290,14 +290,14 @@ flowchart TB
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>57 AI Skills<br/>6 Categories"]
+    Root["📁 06_Skills<br/>64 AI Skills<br/>6 Categories"]
     
     Root --> Tools["🛠️ TOOLS<br/>3 Skills<br/>Skill Development"]
-    Root --> Automation["🤖 AUTOMATION<br/>8 Skills<br/>Daily Workflows"]
+    Root --> Automation["🤖 AUTOMATION<br/>10 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>15 Skills<br/>Dev Tools"]
+    Root --> Development["💻 DEVELOPMENT<br/>19 Skills<br/>Dev Tools"]
     Root --> Documentation["📝 DOCUMENTATION<br/>21 Skills<br/>Templates & Diagrams"]
-    Root --> System["⚙️ SYSTEM<br/>10 Skills<br/>Core Configuration"]
+    Root --> System["⚙️ SYSTEM<br/>11 Skills<br/>Core Configuration"]
     
     %% Tools Skills
     Tools --> T1["skill_creator ⭐<br/>Create new skills"]
@@ -313,6 +313,8 @@ graph TB
     Automation --> A6["torrent_downloads<br/>Torrent management"]
     Automation --> A7["archive_parts_recovery<br/>Archive recovery"]
     Automation --> A8["keepass_backup_automation ⭐<br/>KeePass backup automation"]
+    Automation --> A9["copado_cli_cicd_integration ⭐<br/>CI/CD pipelines"]
+    Automation --> A10["copado_cli_automation_scripts ⭐<br/>Automation scripts"]
     
     %% Integration Skills
     Integrations --> I1["amplenote_api<br/>Amplenote integration"]
@@ -337,6 +339,10 @@ graph TB
     Development --> D13["lwc_development ⭐<br/>LWC components"]
     Development --> D14["salesforce_rest_api ⭐<br/>OAuth & REST API"]
     Development --> D15["sfsync_script ⭐<br/>Generic deployment script"]
+    Development --> D16["copado_user_stories ⭐<br/>User Story management"]
+    Development --> D17["copado_deployments ⭐<br/>Deployment execution"]
+    Development --> D18["copado_promotion_paths<br/>Pipeline configuration"]
+    Development --> D19["copado_cli_metadata_operations ⭐<br/>Metadata ops"]
     
     %% Documentation Skills
     Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
@@ -373,6 +379,7 @@ graph TB
     System --> S8["mcp_server_setup<br/>MCP configuration"]
     System --> S9["organizing_skills<br/>Skill organization"]
     System --> S10["devin_integration ⭐<br/>Devin AI integration"]
+    System --> S11["copado_cli_installation ⭐<br/>Copado CLI setup"]
     
     %% Section 508 Compliant Styling (4.5:1 contrast minimum)
     style Root fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
@@ -395,6 +402,8 @@ graph TB
     style A6 fill:#e65100,stroke:#ffffff,color:#ffffff
     style A7 fill:#e65100,stroke:#ffffff,color:#ffffff
     style A8 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style A9 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style A10 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style I1 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
     style I2 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
@@ -417,6 +426,10 @@ graph TB
     style D13 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D14 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D15 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D16 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D17 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D18 fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D19 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style Doc1 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc2 fill:#ad1457,stroke:#ffffff,color:#ffffff
@@ -451,6 +464,7 @@ graph TB
     style S8 fill:#e65100,stroke:#ffffff,color:#ffffff
     style S9 fill:#e65100,stroke:#ffffff,color:#ffffff
     style S10 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style S11 fill:#e65100,stroke:#ffffff,color:#ffffff
 ```
 
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.

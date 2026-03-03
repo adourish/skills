@@ -4,7 +4,7 @@
 
 Master Section 508 compliance, Salesforce workflows, Copado DevOps, professional diagramming, API integrations, GitFlow strategies, and comprehensive documentation. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
 
-**64 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
+**69 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
 
 ---
 
@@ -290,14 +290,14 @@ flowchart TB
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>64 AI Skills<br/>6 Categories"]
+    Root["📁 06_Skills<br/>69 AI Skills<br/>6 Categories"]
     
-    Root --> Tools["🛠️ TOOLS<br/>3 Skills<br/>Skill Development"]
+    Root --> Tools["🛠️ TOOLS<br/>2 Skills<br/>Skill Development"]
     Root --> Automation["🤖 AUTOMATION<br/>10 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>19 Skills<br/>Dev Tools"]
+    Root --> Development["💻 DEVELOPMENT<br/>23 Skills<br/>Dev Tools"]
     Root --> Documentation["📝 DOCUMENTATION<br/>21 Skills<br/>Templates & Diagrams"]
-    Root --> System["⚙️ SYSTEM<br/>11 Skills<br/>Core Configuration"]
+    Root --> System["⚙️ SYSTEM<br/>12 Skills<br/>Core Configuration"]
     
     %% Tools Skills
     Tools --> T1["skill_creator ⭐<br/>Create new skills"]
@@ -343,6 +343,9 @@ graph TB
     Development --> D17["copado_deployments ⭐<br/>Deployment execution"]
     Development --> D18["copado_promotion_paths<br/>Pipeline configuration"]
     Development --> D19["copado_cli_metadata_operations ⭐<br/>Metadata ops"]
+    Development --> D20["azure_sql_queries ⭐<br/>Azure SQL patterns"]
+    Development --> D21["salesforce_cache_busting ⭐<br/>Cache invalidation"]
+    Development --> D22["sfsync_deployment ⭐<br/>sfsync script usage"]
     
     %% Documentation Skills
     Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
@@ -367,6 +370,7 @@ graph TB
     Documentation --> Doc20["mermaid_visio_icons ⭐<br/>Visio icons in Mermaid"]
     Documentation --> Doc21["wireframing_markdown ⭐<br/>UI wireframes in markdown"]
     Documentation --> Doc22["engineering_design_process ⭐<br/>Design methodology"]
+    Documentation --> Doc23["teg_one_pager ⭐<br/>TEG one-pager template"]
     
     %% System Skills
     System --> S1["user_commands ⭐<br/>Quick command reference"]
@@ -380,6 +384,7 @@ graph TB
     System --> S9["organizing_skills<br/>Skill organization"]
     System --> S10["devin_integration ⭐<br/>Devin AI integration"]
     System --> S11["copado_cli_installation ⭐<br/>Copado CLI setup"]
+    System --> S12["readme_maintenance ⭐<br/>README skills list"]
     
     %% Section 508 Compliant Styling (4.5:1 contrast minimum)
     style Root fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
@@ -430,6 +435,9 @@ graph TB
     style D17 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D18 fill:#2e7d32,stroke:#ffffff,color:#ffffff
     style D19 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D20 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D21 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D22 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style Doc1 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc2 fill:#ad1457,stroke:#ffffff,color:#ffffff
@@ -453,6 +461,7 @@ graph TB
     style Doc20 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc21 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc22 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Doc23 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style S1 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style S2 fill:#f57f17,stroke:#ffffff,color:#ffffff
@@ -465,6 +474,7 @@ graph TB
     style S9 fill:#e65100,stroke:#ffffff,color:#ffffff
     style S10 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style S11 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S12 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
 ```
 
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.
@@ -609,8 +619,8 @@ Claude Workflow:
 User: "Build an MCP server for X"
 
 Claude Workflow:
-1. Load: @mcp-builder/README.md
-2. Load: @mcp-builder/SKILL.md
+1. Load: @mcp_builder/README.md
+2. Load: @mcp_builder/SKILL.md
 3. Follow: 4-phase development process
 4. Phase 1: Research and planning
 5. Phase 2: Implementation
@@ -701,7 +711,7 @@ Devin Workflow:
 ### AI-Optimized Features
 
 **Structured Metadata:**
-- 36 skills with tags, categories, and difficulty levels
+- 69 skills with tags, categories, and difficulty levels
 - Dependencies mapped (e.g., daily_planning requires todoist_api, amplenote_api)
 - Related skills linked (e.g., email_processing → gmail_automation)
 - Frequency indicators (daily/weekly/as-needed)
@@ -970,7 +980,7 @@ graph TB
         S3[mcp_server_setup<br/>15 min]
     end
     
-    subgraph AsNeeded["🔍 As-Needed (41 skills)"]
+    subgraph AsNeeded["🔍 As-Needed (60 skills)"]
         AN[Reference when needed<br/>See skills_manifest.json]
     end
     
@@ -1006,7 +1016,7 @@ graph TB
 - routing_rules - Learn PARA method (5 min)
 - mcp_server_setup - Windsurf integration (15 min)
 
-**As-Needed (41 skills):**
+**As-Needed (60 skills):**
 - Reference when specific functionality needed
 - See skills_manifest.json for complete list
 
@@ -1296,6 +1306,9 @@ Development tools and workflow skills.
 - **[copado_deployments](development/skill_copado_deployments.md)** - Copado deployment execution and monitoring
 - **[copado_promotion_paths](development/skill_copado_promotion_paths.md)** - Copado pipeline configuration and quality gates
 - **[copado_cli_metadata_operations](development/skill_copado_cli_metadata_operations.md)** - Copado CLI metadata retrieve, deploy, and compare
+- **[azure_sql_queries](development/skill_azure_sql_queries.md)** - Azure SQL query patterns and optimization
+- **[salesforce_cache_busting](development/skill_salesforce_cache_busting.md)** - Salesforce cache invalidation strategies
+- **[sfsync_deployment](development/skill_sfsync_deployment.md)** - Generic sfsync deployment script usage
 
 ### 📝 Documentation
 Documentation and template skills.
@@ -1341,6 +1354,7 @@ Core system configuration and workflow skills.
 - **[process_new](system/skill_process_new.md)** - Complete workflow for processing new items
 - **[organizing_skills](system/skill_organizing_skills.md)** - Guidelines for organizing skills and creating tools
 - **[copado_cli_installation](system/skill_copado_cli_installation.md)** - Copado CLI installation, authentication, and configuration
+- **[readme_maintenance](system/skill_readme_maintenance.md)** - Maintaining README skills list and documentation
 
 ## Quick Start
 

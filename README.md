@@ -1262,6 +1262,8 @@ Daily workflows and process automation skills.
 - **[powershell_automation](automation/skill_powershell_automation.md)** - PowerShell scripting and automation patterns
 - **[torrent_downloads](automation/skill_torrent_downloads.md)** - Automated torrent download management
 - **[archive_parts_recovery](automation/skill_archive_parts_recovery.md)** - Archive file recovery and extraction
+- **[copado_cli_cicd_integration](automation/skill_copado_cli_cicd_integration.md)** - Copado CLI CI/CD pipeline integration (GitHub Actions, Azure DevOps, GitLab)
+- **[copado_cli_automation_scripts](automation/skill_copado_cli_automation_scripts.md)** - Copado CLI automation scripts for deployments and backups
 
 ### 🔌 Integrations
 API and service integration skills.
@@ -1290,6 +1292,10 @@ Development tools and workflow skills.
 - **[lwc_development](development/skill_lwc_development.md)** - Lightning Web Component development patterns
 - **[salesforce_rest_api](development/skill_salesforce_rest_api.md)** - OAuth authentication and REST API calls
 - **[sfsync_script](_scripts/sfsync.ps1)** - Generic Salesforce metadata deployment script
+- **[copado_user_stories](development/skill_copado_user_stories.md)** - Copado User Story creation and management
+- **[copado_deployments](development/skill_copado_deployments.md)** - Copado deployment execution and monitoring
+- **[copado_promotion_paths](development/skill_copado_promotion_paths.md)** - Copado pipeline configuration and quality gates
+- **[copado_cli_metadata_operations](development/skill_copado_cli_metadata_operations.md)** - Copado CLI metadata retrieve, deploy, and compare
 
 ### 📝 Documentation
 Documentation and template skills.
@@ -1334,6 +1340,7 @@ Core system configuration and workflow skills.
 - **[cascade_workflow](system/skill_cascade_workflow.md)** - Windsurf Cascade workflow patterns and best practices
 - **[process_new](system/skill_process_new.md)** - Complete workflow for processing new items
 - **[organizing_skills](system/skill_organizing_skills.md)** - Guidelines for organizing skills and creating tools
+- **[copado_cli_installation](system/skill_copado_cli_installation.md)** - Copado CLI installation, authentication, and configuration
 
 ## Quick Start
 

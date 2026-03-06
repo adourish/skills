@@ -1,10 +1,11 @@
 # Salesforce Developer Activity Report - Master Guide
 
-**Last Updated:** March 3, 2026  
-**Version:** 1.1  
+**Last Updated:** March 6, 2026  
+**Version:** 2.0  
 **Purpose:** Generate comprehensive team activity reports for Salesforce development projects  
 **Success Rate:** 100% (Tested with 20-developer team)  
-**Latest Fix:** LoginHistory bug resolved - now captures all login activity correctly
+**Latest Enhancement:** Complete metadata coverage - ALL Salesforce changes tracked with LOC  
+**Previous Fix:** LoginHistory bug resolved - now captures all login activity correctly
 
 ---
 
@@ -648,14 +649,27 @@ This script queries Salesforce for each day individually and builds a true day-b
 
 **Output:** `Developer_Activity_Matrix_Report_YYYYMMDD.md`
 
-**Key Features:**
-- ✅ Queries each day separately for accurate daily breakdowns
-- ✅ Captures ALL metadata types (not just Apex)
-- ✅ Shows time ranges for code changes
-- ✅ Includes LWC, fields, permissions via SetupAuditTrail
-- ✅ Displays login-only days (FIXED: v1.1 - LoginHistory now properly mapped via UserId)
-- ✅ Generates week totals automatically
-- ✅ Builds UserId-to-Name mapping for accurate login tracking
+**Key Features (v2.0):**
+- ✅ **Complete Metadata Coverage** - Tracks ALL Salesforce development activity
+- ✅ **Lines of Code (LOC)** - Apex Classes, Triggers, and VisualForce Pages
+- ✅ **Per-Person Per-Day Analysis** - Granular daily breakdowns for each developer
+- ✅ **All Code Types:**
+  - Apex Classes (with LOC)
+  - Apex Triggers (with LOC)
+  - VisualForce Pages (with LOC)
+  - Flows
+- ✅ **All Configuration Changes:**
+  - Custom Objects
+  - Custom Tabs
+  - LWC Components
+  - Custom Fields
+  - Permissions/Profiles
+  - Validation Rules
+  - Workflows
+- ✅ **Login Activity** - Properly mapped via UserId (v1.1 fix)
+- ✅ **Time Ranges** - Shows when developers were active
+- ✅ **Week Totals** - Automatic aggregation
+- ✅ **Login-Only Days** - Captures days with no code changes
 
 **Example Output:**
 ```markdown

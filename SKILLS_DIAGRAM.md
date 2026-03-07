@@ -1,6 +1,6 @@
 # Skills Organization Diagram
 
-Complete visual map of all 32 AI skills organized by category.
+Complete visual map of all 63 AI skills organized by category.
 
 ---
 
@@ -8,11 +8,11 @@ Complete visual map of all 32 AI skills organized by category.
 
 ```mermaid
 flowchart TB
-    Root[06_Skills - 32 AI Skills - 5 Categories]
+    Root[06_Skills - 63 AI Skills - 6 Categories]
     
     Root --> Automation[AUTOMATION - 7 Skills - Daily Workflows]
     Root --> Integrations[INTEGRATIONS - 5 Skills - API & Services]
-    Root --> Development[DEVELOPMENT - 5 Skills - Dev Tools]
+    Root --> Development[DEVELOPMENT - 15 Skills - Dev Tools]
     Root --> Documentation[DOCUMENTATION - 8 Skills - Templates & Diagrams]
     Root --> System[SYSTEM - 7 Skills - Core Configuration]
     
@@ -38,6 +38,16 @@ flowchart TB
     Development --> D3[salesforce_developer_activity_report - Activity tracking]
     Development --> D4[git_version_control - Git workflows]
     Development --> D5[azure_devops_automation - ADO work items]
+    Development --> D6[mcp_builder - Build MCP servers]
+    Development --> D7[github_pull_requests - PR workflow]
+    Development --> D8[gitflow_workflow - GitFlow branching]
+    Development --> D9[splunk_monitoring - Splunk queries]
+    Development --> D10[soql_sosl - SOQL/SOSL queries]
+    Development --> D11[apex_testing - Test patterns]
+    Development --> D12[salesforce_deployment - Deployment & cache]
+    Development --> D13[lwc_development - LWC components]
+    Development --> D14[salesforce_rest_api - OAuth & REST API]
+    Development --> D15[sfsync_script - Deployment script]
     
     %% Documentation Skills
     Documentation --> Doc1[mermaid_diagrams - Diagram syntax]
@@ -85,6 +95,16 @@ flowchart TB
     style D3 fill:#c8e6c9,stroke:#1b5e20
     style D4 fill:#c8e6c9,stroke:#1b5e20
     style D5 fill:#c8e6c9,stroke:#1b5e20
+    style D6 fill:#c8e6c9,stroke:#1b5e20
+    style D7 fill:#c8e6c9,stroke:#1b5e20
+    style D8 fill:#c8e6c9,stroke:#1b5e20
+    style D9 fill:#c8e6c9,stroke:#1b5e20
+    style D10 fill:#c8e6c9,stroke:#1b5e20
+    style D11 fill:#c8e6c9,stroke:#1b5e20
+    style D12 fill:#c8e6c9,stroke:#1b5e20
+    style D13 fill:#c8e6c9,stroke:#1b5e20
+    style D14 fill:#c8e6c9,stroke:#1b5e20
+    style D15 fill:#c8e6c9,stroke:#1b5e20
     
     style Doc1 fill:#f8bbd0,stroke:#880e4f
     style Doc2 fill:#f8bbd0,stroke:#880e4f
@@ -393,6 +413,6 @@ flowchart LR
 
 ---
 
-**Last Updated:** March 1, 2026  
-**Total Skills:** 32  
+**Last Updated:** March 2, 2026  
+**Total Skills:** 63  
 **Location:** `G:\My Drive\06_Skills\SKILLS_DIAGRAM.md`

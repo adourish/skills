@@ -2,9 +2,9 @@
 
 **One repository to train your AI coding assistants in the ways of accessibility, automation, documentation, and enterprise development.**
 
-Master Section 508 compliance, Salesforce workflows, professional diagramming, API integrations, GitFlow strategies, and comprehensive documentation. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
+Master Section 508 compliance, Salesforce workflows, Copado DevOps, professional diagramming, API integrations, GitFlow strategies, and comprehensive documentation. Whether you're using Windsurf Cascade, Devin AI, or Claude Code—teach your code-generating robot the right way to build.
 
-**51 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
+**69 battle-tested skills. 6 categories. 3 AI platforms. Zero excuses for bad code.**
 
 ---
 
@@ -26,6 +26,65 @@ Master Section 508 compliance, Salesforce workflows, professional diagramming, A
 - All paths are shown as: `${SKILLS_ROOT}/category/skill_name.md`
 - Replace `${SKILLS_ROOT}` with your actual path from `skills_config.json`
 - Example: `${SKILLS_ROOT}/automation/skill_daily_planning.md` → `C:\Skills\automation\skill_daily_planning.md`
+
+**📂 PARA_ROOT Variable:**
+
+Many skills reference `${PARA_ROOT}` for file organization and credentials. This points to your main PARA method organizational folder:
+
+```json
+{
+  "PARA_ROOT": "G:\\My Drive"
+}
+```
+
+**PARA Method Structure:**
+
+```mermaid
+graph TB
+    Root["📁 PARA_ROOT<br/>(G:\My Drive)"]
+    
+    Root --> Operate["📂 01_Operate<br/>Active Operations"]
+    Root --> Areas["📂 03_Areas<br/>Ongoing Responsibilities"]
+    Root --> Resources["📂 04_Resources<br/>Reference Materials"]
+    Root --> Archive["📂 05_Archive<br/>Completed Items"]
+    Root --> Skills["📂 06_Skills<br/>AI Assistant Skills"]
+    
+    Operate --> Projects["Projects/<br/>Active work with deadlines"]
+    
+    Areas --> Keys["Keys/<br/>🔑 Credentials & API Keys"]
+    Areas --> Config["Configurations/<br/>⚙️ Settings & Configs"]
+    
+    Keys --> Envs["Environments/<br/>environments.json"]
+    Keys --> EnvFile[".env<br/>Legacy variables"]
+    Keys --> KeePass["keys pass.kdbx<br/>Password database"]
+    
+    Skills --> DevSkills["development/<br/>Dev skills"]
+    Skills --> AutoSkills["automation/<br/>Automation skills"]
+    Skills --> DocSkills["documentation/<br/>Doc skills"]
+    
+    style Root fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Operate fill:#1b5e20,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Areas fill:#e65100,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Resources fill:#6a1b9a,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Archive fill:#757575,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Skills fill:#880e4f,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    
+    style Keys fill:#f57f17,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style Envs fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style EnvFile fill:#ef6c00,stroke:#ffffff,color:#ffffff
+    style KeePass fill:#ef6c00,stroke:#ffffff,color:#ffffff
+```
+
+**Key Folders:**
+- `01_Operate/Projects/` - Active work with deadlines
+- `03_Areas/` - Ongoing responsibilities (credentials, keys, configurations)
+- `04_Resources/` - Reference materials
+- `05_Archive/` - Completed items
+- `06_Skills/` - AI assistant skills and workflows
+
+**Example:** `${PARA_ROOT}/03_Areas/Keys/` resolves to `G:\My Drive\03_Areas\Keys\`
+
+**Note:** Configure both `SKILLS_ROOT` and `PARA_ROOT` in `skills_config.json` for your environment.
 
 ---
 
@@ -146,11 +205,22 @@ A standard that connects AI systems with external tools and data sources, enabli
 **Example:** The daily planner MCP server provides tools for Gmail, Todoist, Calendar, and Amplenote operations.
 
 ### **PARA Method**
-A file organization system used throughout this repository:
-- **Projects** - Active work with deadlines
-- **Areas** - Ongoing responsibilities
-- **Resources** - Reference materials
-- **Archive** - Completed items
+A file organization system used throughout this repository for managing all files, credentials, and resources.
+
+**Four Core Folders:**
+- **Projects** (`01_Operate/Projects/`) - Active work with deadlines and deliverables
+- **Areas** (`03_Areas/`) - Ongoing responsibilities (credentials, keys, configurations)
+- **Resources** (`04_Resources/`) - Reference materials and documentation
+- **Archive** (`05_Archive/`) - Completed items and historical records
+
+**Additional Folder:**
+- **Skills** (`06_Skills/`) - AI assistant skills and workflows (this repository)
+
+**Path Variable:** `${PARA_ROOT}` points to your PARA root folder (typically `G:\My Drive` on Windows)
+
+**Key Usage:** Many skills reference `${PARA_ROOT}/03_Areas/Keys/` for credential storage and `${PARA_ROOT}/06_Skills/` for skill files.
+
+**Example:** `${PARA_ROOT}/03_Areas/Keys/Environments/environments.json` contains API configurations for Salesforce, Azure DevOps, Gmail, Todoist, and other services.
 
 ---
 
@@ -164,7 +234,7 @@ flowchart TB
         D[Devin AI]
     end
     
-    subgraph Skills["51 Skills Repository"]
+    subgraph Skills["57 Skills Repository"]
         AUTO[Automation - Daily workflows]
         DOC[Documentation - Diagrams & templates]
         DEV[Development - Git & Salesforce]
@@ -220,14 +290,14 @@ flowchart TB
 
 ```mermaid
 graph TB
-    Root["📁 06_Skills<br/>57 AI Skills<br/>6 Categories"]
+    Root["📁 06_Skills<br/>69 AI Skills<br/>6 Categories"]
     
-    Root --> Tools["🛠️ TOOLS<br/>3 Skills<br/>Skill Development"]
-    Root --> Automation["🤖 AUTOMATION<br/>8 Skills<br/>Daily Workflows"]
+    Root --> Tools["🛠️ TOOLS<br/>2 Skills<br/>Skill Development"]
+    Root --> Automation["🤖 AUTOMATION<br/>10 Skills<br/>Daily Workflows"]
     Root --> Integrations["🔌 INTEGRATIONS<br/>5 Skills<br/>API & Services"]
-    Root --> Development["💻 DEVELOPMENT<br/>9 Skills<br/>Dev Tools"]
+    Root --> Development["💻 DEVELOPMENT<br/>23 Skills<br/>Dev Tools"]
     Root --> Documentation["📝 DOCUMENTATION<br/>21 Skills<br/>Templates & Diagrams"]
-    Root --> System["⚙️ SYSTEM<br/>10 Skills<br/>Core Configuration"]
+    Root --> System["⚙️ SYSTEM<br/>12 Skills<br/>Core Configuration"]
     
     %% Tools Skills
     Tools --> T1["skill_creator ⭐<br/>Create new skills"]
@@ -243,6 +313,8 @@ graph TB
     Automation --> A6["torrent_downloads<br/>Torrent management"]
     Automation --> A7["archive_parts_recovery<br/>Archive recovery"]
     Automation --> A8["keepass_backup_automation ⭐<br/>KeePass backup automation"]
+    Automation --> A9["copado_cli_cicd_integration ⭐<br/>CI/CD pipelines"]
+    Automation --> A10["copado_cli_automation_scripts ⭐<br/>Automation scripts"]
     
     %% Integration Skills
     Integrations --> I1["amplenote_api<br/>Amplenote integration"]
@@ -261,6 +333,19 @@ graph TB
     Development --> D7["github_pull_requests ⭐<br/>PR workflow"]
     Development --> D8["gitflow_workflow ⭐<br/>GitFlow branching"]
     Development --> D9["splunk_monitoring ⭐<br/>Splunk queries & monitoring"]
+    Development --> D10["soql_sosl ⭐<br/>SOQL/SOSL queries"]
+    Development --> D11["apex_testing ⭐<br/>Test patterns & coverage"]
+    Development --> D12["salesforce_deployment ⭐<br/>Deployment & cache"]
+    Development --> D13["lwc_development ⭐<br/>LWC components"]
+    Development --> D14["salesforce_rest_api ⭐<br/>OAuth & REST API"]
+    Development --> D15["sfsync_script ⭐<br/>Generic deployment script"]
+    Development --> D16["copado_user_stories ⭐<br/>User Story management"]
+    Development --> D17["copado_deployments ⭐<br/>Deployment execution"]
+    Development --> D18["copado_promotion_paths<br/>Pipeline configuration"]
+    Development --> D19["copado_cli_metadata_operations ⭐<br/>Metadata ops"]
+    Development --> D20["azure_sql_queries ⭐<br/>Azure SQL patterns"]
+    Development --> D21["salesforce_cache_busting ⭐<br/>Cache invalidation"]
+    Development --> D22["sfsync_deployment ⭐<br/>sfsync script usage"]
     
     %% Documentation Skills
     Documentation --> Doc1["mermaid_diagrams<br/>Diagram syntax"]
@@ -285,6 +370,7 @@ graph TB
     Documentation --> Doc20["mermaid_visio_icons ⭐<br/>Visio icons in Mermaid"]
     Documentation --> Doc21["wireframing_markdown ⭐<br/>UI wireframes in markdown"]
     Documentation --> Doc22["engineering_design_process ⭐<br/>Design methodology"]
+    Documentation --> Doc23["teg_one_pager ⭐<br/>TEG one-pager template"]
     
     %% System Skills
     System --> S1["user_commands ⭐<br/>Quick command reference"]
@@ -297,6 +383,8 @@ graph TB
     System --> S8["mcp_server_setup<br/>MCP configuration"]
     System --> S9["organizing_skills<br/>Skill organization"]
     System --> S10["devin_integration ⭐<br/>Devin AI integration"]
+    System --> S11["copado_cli_installation ⭐<br/>Copado CLI setup"]
+    System --> S12["readme_maintenance ⭐<br/>README skills list"]
     
     %% Section 508 Compliant Styling (4.5:1 contrast minimum)
     style Root fill:#0d47a1,stroke:#ffffff,stroke-width:3px,color:#ffffff
@@ -319,6 +407,8 @@ graph TB
     style A6 fill:#e65100,stroke:#ffffff,color:#ffffff
     style A7 fill:#e65100,stroke:#ffffff,color:#ffffff
     style A8 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style A9 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style A10 fill:#e65100,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style I1 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
     style I2 fill:#6a1b9a,stroke:#ffffff,color:#ffffff
@@ -335,6 +425,19 @@ graph TB
     style D7 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D8 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style D9 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D10 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D11 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D12 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D13 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D14 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D15 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D16 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D17 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D18 fill:#2e7d32,stroke:#ffffff,color:#ffffff
+    style D19 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D20 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D21 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style D22 fill:#1b5e20,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style Doc1 fill:#ad1457,stroke:#ffffff,color:#ffffff
     style Doc2 fill:#ad1457,stroke:#ffffff,color:#ffffff
@@ -358,6 +461,7 @@ graph TB
     style Doc20 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc21 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style Doc22 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style Doc23 fill:#880e4f,stroke:#ffffff,stroke-width:3px,color:#ffffff
     
     style S1 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
     style S2 fill:#f57f17,stroke:#ffffff,color:#ffffff
@@ -369,6 +473,8 @@ graph TB
     style S8 fill:#e65100,stroke:#ffffff,color:#ffffff
     style S9 fill:#e65100,stroke:#ffffff,color:#ffffff
     style S10 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
+    style S11 fill:#e65100,stroke:#ffffff,color:#ffffff
+    style S12 fill:#f57f17,stroke:#ffffff,stroke-width:3px,color:#ffffff
 ```
 
 **📊 More Diagrams:** See [SKILLS_DIAGRAM.md](SKILLS_DIAGRAM.md) for additional views including skill relationships, workflows, and dependencies.
@@ -513,8 +619,8 @@ Claude Workflow:
 User: "Build an MCP server for X"
 
 Claude Workflow:
-1. Load: @mcp-builder/README.md
-2. Load: @mcp-builder/SKILL.md
+1. Load: @mcp_builder/README.md
+2. Load: @mcp_builder/SKILL.md
 3. Follow: 4-phase development process
 4. Phase 1: Research and planning
 5. Phase 2: Implementation
@@ -605,7 +711,7 @@ Devin Workflow:
 ### AI-Optimized Features
 
 **Structured Metadata:**
-- 36 skills with tags, categories, and difficulty levels
+- 69 skills with tags, categories, and difficulty levels
 - Dependencies mapped (e.g., daily_planning requires todoist_api, amplenote_api)
 - Related skills linked (e.g., email_processing → gmail_automation)
 - Frequency indicators (daily/weekly/as-needed)
@@ -874,7 +980,7 @@ graph TB
         S3[mcp_server_setup<br/>15 min]
     end
     
-    subgraph AsNeeded["🔍 As-Needed (41 skills)"]
+    subgraph AsNeeded["🔍 As-Needed (60 skills)"]
         AN[Reference when needed<br/>See skills_manifest.json]
     end
     
@@ -910,7 +1016,7 @@ graph TB
 - routing_rules - Learn PARA method (5 min)
 - mcp_server_setup - Windsurf integration (15 min)
 
-**As-Needed (41 skills):**
+**As-Needed (60 skills):**
 - Reference when specific functionality needed
 - See skills_manifest.json for complete list
 
@@ -1166,6 +1272,8 @@ Daily workflows and process automation skills.
 - **[powershell_automation](automation/skill_powershell_automation.md)** - PowerShell scripting and automation patterns
 - **[torrent_downloads](automation/skill_torrent_downloads.md)** - Automated torrent download management
 - **[archive_parts_recovery](automation/skill_archive_parts_recovery.md)** - Archive file recovery and extraction
+- **[copado_cli_cicd_integration](automation/skill_copado_cli_cicd_integration.md)** - Copado CLI CI/CD pipeline integration (GitHub Actions, Azure DevOps, GitLab)
+- **[copado_cli_automation_scripts](automation/skill_copado_cli_automation_scripts.md)** - Copado CLI automation scripts for deployments and backups
 
 ### 🔌 Integrations
 API and service integration skills.
@@ -1188,6 +1296,19 @@ Development tools and workflow skills.
 - **[salesforce_fls_automation](development/skill_salesforce_fls_automation.md)** - Field-level security automation
 - **[salesforce_developer_activity_report](development/skill_salesforce_developer_activity_report.md)** - Developer activity tracking and reporting
 - **[azure_devops_automation](development/skill_azure_devops_automation.md)** - Azure DevOps work item automation
+- **[soql_sosl](development/skill_soql_sosl.md)** - SOQL/SOSL query patterns and optimization
+- **[apex_testing](development/skill_apex_testing.md)** - Test class patterns and code coverage strategies
+- **[salesforce_deployment](development/skill_salesforce_deployment.md)** - Deployment patterns and cache invalidation
+- **[lwc_development](development/skill_lwc_development.md)** - Lightning Web Component development patterns
+- **[salesforce_rest_api](development/skill_salesforce_rest_api.md)** - OAuth authentication and REST API calls
+- **[sfsync_script](_scripts/sfsync.ps1)** - Generic Salesforce metadata deployment script
+- **[copado_user_stories](development/skill_copado_user_stories.md)** - Copado User Story creation and management
+- **[copado_deployments](development/skill_copado_deployments.md)** - Copado deployment execution and monitoring
+- **[copado_promotion_paths](development/skill_copado_promotion_paths.md)** - Copado pipeline configuration and quality gates
+- **[copado_cli_metadata_operations](development/skill_copado_cli_metadata_operations.md)** - Copado CLI metadata retrieve, deploy, and compare
+- **[azure_sql_queries](development/skill_azure_sql_queries.md)** - Azure SQL query patterns and optimization
+- **[salesforce_cache_busting](development/skill_salesforce_cache_busting.md)** - Salesforce cache invalidation strategies
+- **[sfsync_deployment](development/skill_sfsync_deployment.md)** - Generic sfsync deployment script usage
 
 ### 📝 Documentation
 Documentation and template skills.
@@ -1232,6 +1353,8 @@ Core system configuration and workflow skills.
 - **[cascade_workflow](system/skill_cascade_workflow.md)** - Windsurf Cascade workflow patterns and best practices
 - **[process_new](system/skill_process_new.md)** - Complete workflow for processing new items
 - **[organizing_skills](system/skill_organizing_skills.md)** - Guidelines for organizing skills and creating tools
+- **[copado_cli_installation](system/skill_copado_cli_installation.md)** - Copado CLI installation, authentication, and configuration
+- **[readme_maintenance](system/skill_readme_maintenance.md)** - Maintaining README skills list and documentation
 
 ## Quick Start
 
@@ -1267,6 +1390,11 @@ Core system configuration and workflow skills.
 
 ## Changelog
 
+### March 2, 2026
+**Added 6 New Salesforce Development Skills:**
+- **Development (6):** SOQL/SOSL Queries, Apex Testing, Salesforce Deployment, LWC Development, Salesforce REST API, sfsync Script
+- **Focus:** Comprehensive Salesforce development patterns including query optimization, testing strategies, deployment best practices, component development, and API authentication
+
 ### March 1, 2026
 **Added 18 New Skills:**
 - **Tools Category (2):** Skill Creator, HOW_TO_FILE_TOOLS
@@ -1286,7 +1414,7 @@ Core system configuration and workflow skills.
 
 ---
 
-**Last Updated:** March 1, 2026  
-**Total Skills:** 57 across 6 categories  
+**Last Updated:** March 2, 2026  
+**Total Skills:** 63 across 6 categories  
 **Location:** `${SKILLS_ROOT}/README.md`
 

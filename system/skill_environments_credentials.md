@@ -90,7 +90,21 @@ Layer 3: Application Security
 - **Contains:** Legacy environment variables
 - **Use for:** Backward compatibility with older scripts
 
-**Note:** `${PARA_ROOT}` is configured in `${SKILLS_ROOT}/skills_config.json`. Typically `G:\My Drive` on Windows.
+**Note on Path Variables:**
+
+- **`${PARA_ROOT}`**: Your main PARA organizational folder (typically `G:\My Drive` on Windows)
+  - Configured in `${SKILLS_ROOT}/skills_config.json`
+  - Points to your PARA method structure:
+    - `01_Operate/Projects/` - Active work with deadlines
+    - `03_Areas/` - Ongoing responsibilities (credentials stored here)
+    - `04_Resources/` - Reference materials
+    - `05_Archive/` - Completed items
+    - `06_Skills/` - AI assistant skills and workflows
+  - Example: `${PARA_ROOT}\03_Areas\Keys\` resolves to `G:\My Drive\03_Areas\Keys\`
+
+- **`${SKILLS_ROOT}`**: Location of your skills repository
+  - Configured in `skills_config.json`
+  - Contains all AI assistant skills organized by category
 
 ### Credential Lookup Workflow
 
@@ -162,8 +176,8 @@ ADO_USERNAME=your_ado_username
 # ===================================
 # GOOGLE SERVICES
 # ===================================
-GOOGLE_CREDENTIALS_PATH=G:\My Drive\credentials.json
-GOOGLE_TOKEN_PATH=G:\My Drive\token.json
+GOOGLE_CREDENTIALS_PATH=${PARA_ROOT}\credentials.json
+GOOGLE_TOKEN_PATH=${PARA_ROOT}\token.json
 GMAIL_API_SCOPES=https://www.googleapis.com/auth/gmail.modify
 
 # ===================================
@@ -225,7 +239,7 @@ Examples:
 
 ### Setup
 
-**File**: `G:\My Drive\03_Areas\Keys\load_credentials.py`
+**File**: `${PARA_ROOT}\03_Areas\Keys\load_credentials.py`
 
 ```python
 import os
@@ -309,7 +323,7 @@ from pathlib import Path
 import sys
 
 # Add keys folder to path
-keys_path = Path(r"G:\My Drive\03_Areas\Keys")
+keys_path = Path(r"${PARA_ROOT}\03_Areas\Keys")
 sys.path.insert(0, str(keys_path))
 
 from load_credentials import load_env, get_credential, get_cigna_credentials
@@ -335,7 +349,7 @@ optional_key = get_credential('OPTIONAL_KEY', required=False)
 
 ### Setup
 
-**File**: `G:\My Drive\03_Areas\Keys\load_credentials.ps1`
+**File**: `${PARA_ROOT}\03_Areas\Keys\load_credentials.ps1`
 
 ```powershell
 # Load environment variables from .env file
@@ -408,7 +422,7 @@ function Get-GoogleCredentials {
 
 ```powershell
 # Import credential loader
-. "G:\My Drive\03_Areas\Keys\load_credentials.ps1"
+. "${PARA_ROOT}\03_Areas\Keys\load_credentials.ps1"
 
 # Load all credentials
 Load-Env
@@ -433,7 +447,7 @@ $optionalKey = Get-Credential-Value -Key "OPTIONAL_KEY" -Required $false
 
 #### 1. Add to .env File
 
-Edit `G:\My Drive\03_Areas\Keys\.env`:
+Edit `${PARA_ROOT}\03_Areas\Keys\.env`:
 
 ```bash
 # ===================================
@@ -447,7 +461,7 @@ NEWSERVICE_BASE_URL=https://api.newservice.com
 
 #### 2. Add Python Helper Function
 
-Edit `G:\My Drive\03_Areas\Keys\load_credentials.py`:
+Edit `${PARA_ROOT}\03_Areas\Keys\load_credentials.py`:
 
 ```python
 def get_newservice_credentials():
@@ -462,7 +476,7 @@ def get_newservice_credentials():
 
 #### 3. Add PowerShell Helper Function
 
-Edit `G:\My Drive\03_Areas\Keys\load_credentials.ps1`:
+Edit `${PARA_ROOT}\03_Areas\Keys\load_credentials.ps1`:
 
 ```powershell
 function Get-NewServiceCredentials {
@@ -491,7 +505,7 @@ print(creds)
 
 ```powershell
 # PowerShell test
-. "G:\My Drive\03_Areas\Keys\load_credentials.ps1"
+. "${PARA_ROOT}\03_Areas\Keys\load_credentials.ps1"
 Load-Env
 $creds = Get-NewServiceCredentials
 $creds
@@ -516,11 +530,11 @@ $creds
 - **Auth Type**: OAuth 2.0 Delegated Permissions (user context)
 - **Client ID**: `1e1de7bf-6be5-4795-ad73-bf753ccb5ba5`
 - **Tenant ID**: `31996441-7546-4120-826b-df0c3e239671`
-- **Token Location**: `G:\My Drive\03_Areas\Keys\Microsoft365\token.json`
+- **Token Location**: `${PARA_ROOT}\03_Areas\Keys\Microsoft365\token.json`
 - **Purpose**: Work email (Outlook), calendar, SharePoint/OneDrive documents
 - **Scopes**: Mail.Read, Calendars.Read, Files.Read.All, Sites.Read.All, User.Read
 - **Setup**: Run `python setup_microsoft_oauth.py` for user consent flow
-- **Setup Guide**: See `G:\My Drive\01_Projects\Development\OAUTH_SETUP_GUIDE.md`
+- **Setup Guide**: See `${PARA_ROOT}\01_Projects\Development\OAUTH_SETUP_GUIDE.md`
 - **Endpoints**:
   - Mail: `https://graph.microsoft.com/v1.0/me/messages`
   - Calendar: `https://graph.microsoft.com/v1.0/me/events`
@@ -669,7 +683,7 @@ else:
 ```python
 # Verify .env file exists
 import os
-print(os.path.exists("G:\\My Drive\\03_Areas\\Keys\\.env"))
+print(os.path.exists("${PARA_ROOT}\\03_Areas\\Keys\\.env"))
 
 # Check if variable is loaded
 print(os.getenv('CIGNA_USERNAME'))  # Should not be None
@@ -686,7 +700,7 @@ load_env()
 ```python
 from pathlib import Path
 
-env_path = Path(r"G:\My Drive\03_Areas\Keys\.env")
+env_path = Path(r"${PARA_ROOT}\03_Areas\Keys\.env")
 print(f"Exists: {env_path.exists()}")
 print(f"Path: {env_path.absolute()}")
 ```
@@ -698,10 +712,10 @@ print(f"Path: {env_path.absolute()}")
 **Solution**:
 ```powershell
 # Check permissions
-Get-Acl "G:\My Drive\03_Areas\Keys\.env" | Format-List
+Get-Acl "${PARA_ROOT}\03_Areas\Keys\.env" | Format-List
 
 # Fix permissions (Windows)
-icacls "G:\My Drive\03_Areas\Keys\.env" /grant:r "$env:USERNAME:(R)"
+icacls "${PARA_ROOT}\03_Areas\Keys\.env" /grant:r "$env:USERNAME:(R)"
 ```
 
 ### Issue: Credentials work locally but not in automation
@@ -723,7 +737,7 @@ load_env()  # Must be called before using credentials
 ```python
 # Delete token.json to force re-authentication
 import os
-token_path = "G:\\My Drive\\token.json"
+token_path = "${PARA_ROOT}\\token.json"
 if os.path.exists(token_path):
     os.remove(token_path)
 # Run script again - will prompt for re-auth
@@ -793,7 +807,7 @@ creds = get_cigna_credentials()
 
 ### Load Credentials (PowerShell)
 ```powershell
-. "G:\My Drive\03_Areas\Keys\load_credentials.ps1"
+. "${PARA_ROOT}\03_Areas\Keys\load_credentials.ps1"
 Load-Env
 $creds = Get-CignaCredentials
 ```

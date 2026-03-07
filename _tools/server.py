@@ -31,14 +31,12 @@ logger = logging.getLogger(__name__)
 # Paths
 BASE_DIR = Path(__file__).parent
 CONFIG_PATH = BASE_DIR / 'config.json'
-ENV_PATH = Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json')
-
 class DailyPlannerMCP:
     """MCP Server for daily planning automation"""
     
     def __init__(self):
         self.server = Server("daily-planner")
-        self.auth_manager = AuthManager(ENV_PATH)
+        self.auth_manager = AuthManager()
         
         # Initialize service tools
         self.gmail = GmailTools(self.auth_manager)

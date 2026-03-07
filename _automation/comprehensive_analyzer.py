@@ -26,7 +26,7 @@ class ComprehensiveAnalyzer:
             self._openrouter_key_loaded = True
         return self.openrouter_key is not None
     
-    async def analyze_email_thread(self, emails: List[Dict[str, Any]], thread_subject: str) -> Dict[str, Any]:
+    async def analyze_email_thread(self, emails: List[Dict[str, Any]], thread_subject: str, is_cluster: bool = False) -> Dict[str, Any]:
         """
         Analyze a complete email thread to understand context, outcomes, and action items
         
@@ -50,47 +50,64 @@ class ComprehensiveAnalyzer:
         thread_text = self._build_thread_context(emails)
         
         # Create analysis prompt
-        prompt = f"""Analyze this email thread and extract ONLY specific, concrete actions I need to take.
+        cluster_instruction = ""
+        if is_cluster:
+            cluster_instruction = """
+IMPORTANT: These emails are from the SAME sender about RELATED topics (possibly the same appointment, transaction, or request).
+Consolidate into ONE set of non-redundant action items.
+Do NOT create duplicate or overlapping actions — if multiple emails reference the same form, payment, or task, produce a SINGLE action for it.
 
+"""
+        prompt = f"""You are a strict executive assistant. Analyze this email thread and determine if I need to DO anything.
+{cluster_instruction}
 THREAD SUBJECT: {thread_subject}
 
 THREAD CONTENT (chronological order, oldest to newest):
 {thread_text}
 
-CRITICAL INSTRUCTIONS:
-- Only include action items that are SPECIFIC and CONCRETE (e.g., "Reply to Sarah about the meeting time", "Review the attached budget spreadsheet")
-- NEVER include vague actions like "consider best practices", "review options", "think about", "explore possibilities"
-- If the email is just informational (newsletter, announcement, FYI), state "None - informational only"
-- If someone else is handling it, state "None - waiting on [person]"
-- Focus on what I can DO RIGHT NOW, not general advice
+DECISION FRAMEWORK - Answer these 3 questions:
+1. Is there a SPECIFIC action I must take? (not "be aware of" or "keep in mind")
+2. Is there a DEADLINE or time pressure?
+3. Will something BAD happen if I ignore this for a week?
+
+If the answer to ALL three is NO, this is informational - set PRIORITY to "low" and ACTION ITEMS to "None - informational only".
+
+CLASSIFICATION RULES:
+- Newsletters, announcements, FYI updates, status reports with no ask = "None - informational only"
+- Someone else is handling it = "None - waiting on [person]"
+- Routine confirmations (payment received, order placed, appointment confirmed with no prep needed) = "None - informational only"
+- Emails where I already replied/acted = "None - already handled"
+- Vague suggestions (consider, explore, think about, review options) = NOT action items
+
+ONLY include actions that are:
+- SPECIFIC: "Reply to Sarah confirming Tuesday 2pm" not "respond to Sarah"
+- CONCRETE: "Sign and return the attached form" not "review the document"
+- MINE TO DO: Something I personally must act on, not observe
 
 Please provide:
 
-1. **SUMMARY** (1-2 sentences): What is this about? What happened?
+1. **SUMMARY** (1 sentence): What is this about?
 
-2. **OUTCOME** (1 sentence): What's been decided/resolved? If nothing, state "Pending"
+2. **OUTCOME** (1 sentence): What's resolved? If nothing, "Pending - [what's needed]"
 
-3. **ACTION ITEMS** (bullet list): ONLY specific actions I must take. Examples of GOOD actions:
-   - "Reply to confirm attendance"
-   - "Review the attached agenda and note conflicts"
-   - "Forward the certification details to Justin"
-   
-   Examples of BAD actions (DO NOT INCLUDE):
-   - "Consider best practices"
-   - "Review current processes"
-   - "Think about options"
-   - "Explore strategies"
+3. **ACTION ITEMS**: ONLY specific actions I must take, or "None - [reason]"
+   GOOD: "Reply to confirm attendance by Friday"
+   GOOD: "Pay invoice #4521 ($235) before March 15"
+   BAD: "Review the situation" / "Consider options" / "Stay informed"
 
-4. **FOLLOW_UP**: Yes/No - if yes, specify WHO and WHEN
+4. **FOLLOW_UP**: Yes/No - if yes, WHO and by WHEN
 
-5. **PRIORITY**: High (urgent/time-sensitive), Medium (important but not urgent), Low (FYI/informational)
+5. **PRIORITY**:
+   - High = deadline within 48hrs OR someone is blocked waiting on me
+   - Medium = needs action this week but no immediate consequence
+   - Low = informational, no action needed, or action can wait 7+ days
 
-6. **CONTEXT** (1 sentence): Why this matters
+6. **CONTEXT** (1 sentence): Why this matters (or "FYI only" if informational)
 
 Format:
 SUMMARY: [summary]
 OUTCOME: [outcome]
-ACTION ITEMS: [specific actions or "None"]
+ACTION ITEMS: [specific actions or "None - reason"]
 FOLLOW_UP: [Yes/No - details]
 PRIORITY: [level - reason]
 CONTEXT: [context]
@@ -107,7 +124,7 @@ CONTEXT: [context]
                 json={
                     "model": "openai/gpt-4o-mini",
                     "messages": [{"role": "user", "content": prompt}],
-                    "max_tokens": 500
+                    "max_tokens": 700 if is_cluster else 500
                 },
                 timeout=30
             )
@@ -232,6 +249,83 @@ CONTEXT: [context]
             'latest_date': latest_email.get('date', 'Unknown')
         }
     
+    def _normalize_action(self, action: str) -> str:
+        """Normalize an action string for comparison"""
+        import string
+        text = action.lower()
+        text = text.translate(str.maketrans('', '', string.punctuation))
+        return ' '.join(text.split())
+
+    def _actions_overlap(self, a: str, b: str) -> bool:
+        """Check if two normalized action strings are semantically similar"""
+        # Substring check
+        if a in b or b in a:
+            return True
+        # Word overlap check
+        words_a = set(a.split())
+        words_b = set(b.split())
+        # Remove stop words
+        stop_words = {'the', 'a', 'an', 'to', 'for', 'and', 'or', 'is', 'in', 'on', 'at', 'of', 'your', 'this', 'that', 'it', 'from', 'with', 'by'}
+        words_a -= stop_words
+        words_b -= stop_words
+        if not words_a or not words_b:
+            return False
+        overlap = words_a & words_b
+        smaller = min(len(words_a), len(words_b))
+        return len(overlap) / smaller >= 0.6 if smaller > 0 else False
+
+    def deduplicate_action_items(self, analyses: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        Remove duplicate action items across different thread analyses.
+        When duplicates are found, keep the one from the higher-priority analysis.
+
+        Args:
+            analyses: List of analysis dicts with 'action_items' and 'priority'
+
+        Returns:
+            Cleaned list of analyses with duplicate actions removed
+        """
+        priority_order = {'high': 0, 'medium': 1, 'low': 2}
+
+        # Build a global list of (normalized_action, priority, analysis_idx, action_idx)
+        all_actions = []
+        for ai, analysis in enumerate(analyses):
+            for ji, action in enumerate(analysis.get('action_items', [])):
+                norm = self._normalize_action(action)
+                pri = priority_order.get(analysis.get('priority', 'low'), 2)
+                all_actions.append((norm, pri, ai, ji))
+
+        # Find duplicates: for each pair across different analyses
+        to_remove = set()  # (analysis_idx, action_idx) to remove
+        for i in range(len(all_actions)):
+            for j in range(i + 1, len(all_actions)):
+                norm_i, pri_i, ai_i, ji_i = all_actions[i]
+                norm_j, pri_j, ai_j, ji_j = all_actions[j]
+                if ai_i == ai_j:
+                    continue  # Same analysis — skip
+                if self._actions_overlap(norm_i, norm_j):
+                    # Remove the lower-priority one (higher number = lower priority)
+                    if pri_i >= pri_j:
+                        to_remove.add((ai_i, ji_i))
+                    else:
+                        to_remove.add((ai_j, ji_j))
+
+        if to_remove:
+            logger.info(f"Dedup: removing {len(to_remove)} duplicate action items across analyses")
+
+        # Rebuild analyses with duplicates removed
+        result = []
+        for ai, analysis in enumerate(analyses):
+            cleaned_actions = [
+                action for ji, action in enumerate(analysis.get('action_items', []))
+                if (ai, ji) not in to_remove
+            ]
+            cleaned = dict(analysis)
+            cleaned['action_items'] = cleaned_actions
+            result.append(cleaned)
+
+        return result
+
     async def create_comprehensive_daily_summary(
         self,
         email_analyses: List[Dict[str, Any]],

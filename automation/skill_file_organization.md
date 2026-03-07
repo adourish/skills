@@ -1,5 +1,12 @@
 # G Drive Complete Filing Guide
 
+## Quick Reference
+**Use when:** Downloads folder is cluttered, new files need routing, unsure where something belongs in G Drive
+**Don't use when:** File already has an obvious home or you're organizing work deliverables (use pskills routing instead)
+**Trigger phrases:** "file my downloads", "where does this go", "organize my files", "file organization", "clean up downloads"
+**Time:** 10-30 minutes depending on volume
+**Command:** Ask AI to review Downloads folder and suggest PARA locations
+
 ## Table of Contents
 1. [Overview](#overview)
 2. [Input Locations - Where New Files Enter the System](#input-locations---where-new-files-enter-the-system)

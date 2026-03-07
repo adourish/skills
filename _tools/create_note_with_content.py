@@ -5,7 +5,7 @@ from auth_manager import AuthManager
 import requests
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     
     # Read the V3.0 guide
     guide_path = Path(r'G:\My Drive\04_Resources\Notes\Amplenote_Organized\uncle-bens-mushroom-guide-V3.0.md')

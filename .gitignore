@@ -31,10 +31,14 @@ Thumbs.db
 output/
 daily_plans/
 
-# Credentials (already in separate location)
+# Credentials — never commit
 credentials.json
 token.json
 environments.json
+environments.*.json
+*-keys.json
+09_environments/keys/
+09_environments/keys/**
 
 # Exclude specific JSON files from ignore (allow skills manifest)
 !skills_manifest.json

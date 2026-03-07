@@ -14,7 +14,7 @@ async def main():
     content_lines = lines[3:]  # Skip title, subtitle, blank line
     
     # Initialize tools
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     print("Creating note...")

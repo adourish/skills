@@ -7,7 +7,7 @@ from gmail_tools import GmailTools
 from datetime import datetime
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     gmail = GmailTools(auth)
     
     # Get all emails from last month

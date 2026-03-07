@@ -5,7 +5,7 @@ from auth_manager import AuthManager
 from amplenote_tools import AmplenoteTools
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     # Read the V3.0 guide

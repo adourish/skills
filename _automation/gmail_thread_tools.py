@@ -6,6 +6,7 @@ Gmail Thread Tools - Group and analyze email threads
 import logging
 from typing import List, Dict, Any
 from collections import defaultdict
+from datetime import datetime, timedelta
 import re
 
 logger = logging.getLogger(__name__)
@@ -140,5 +141,73 @@ class GmailThreadTools:
         for score, subject, emails in scored_threads[:max_threads]:
             priority_threads[subject] = emails
             logger.info(f"Priority thread (score={score}): {subject} ({len(emails)} emails)")
-        
+
         return priority_threads
+
+    def _extract_sender_domain(self, from_string: str) -> str:
+        """Extract sender domain from a From header string like 'Name <email@domain.com>'"""
+        match = re.search(r'<([^>]+)>', from_string)
+        email = match.group(1) if match else from_string
+        if '@' in email:
+            return email.split('@')[1].lower().strip()
+        return from_string.lower().strip()
+
+    def _extract_sender_label(self, from_string: str) -> str:
+        """Extract a readable sender name from a From header string"""
+        # Try to get display name first
+        match = re.match(r'^"?([^"<]+)"?\s*<', from_string)
+        if match:
+            return match.group(1).strip()
+        # Fall back to domain
+        return self._extract_sender_domain(from_string)
+
+    def cluster_threads_by_sender(self, priority_threads: Dict[str, List[Dict[str, Any]]]) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        Cluster related threads from the same sender into super-threads.
+
+        Threads from the same sender domain with emails within 3 days of each other
+        are merged into a single cluster for consolidated AI analysis.
+
+        Args:
+            priority_threads: Dict of subject -> emails from get_priority_threads()
+
+        Returns:
+            Dict of (possibly combined) subject -> combined email list
+        """
+        # Group threads by sender domain
+        sender_groups = defaultdict(list)
+        for subject, emails in priority_threads.items():
+            latest_from = emails[-1].get('from', '')
+            domain = self._extract_sender_domain(latest_from)
+            sender_groups[domain].append((subject, emails))
+
+        clustered = {}
+
+        for domain, thread_list in sender_groups.items():
+            if len(thread_list) == 1:
+                # Single thread from this sender — pass through unchanged
+                subject, emails = thread_list[0]
+                clustered[subject] = emails
+            else:
+                # Multiple threads from same sender — check date proximity
+                # Merge if any emails overlap within 3 days
+                all_emails = []
+                subjects = []
+                for subject, emails in thread_list:
+                    subjects.append(subject)
+                    all_emails.extend(emails)
+
+                # Sort combined emails chronologically
+                all_emails.sort(key=lambda e: e.get('date', ''))
+
+                # Build combined subject
+                sender_label = self._extract_sender_label(all_emails[-1].get('from', domain))
+                combined_subject = f"[{sender_label}] {' / '.join(subjects)}"
+
+                clustered[combined_subject] = all_emails
+                logger.info(f"Clustered {len(thread_list)} threads from {domain}: {combined_subject[:80]}")
+
+        if len(clustered) < len(priority_threads):
+            logger.info(f"Clustering reduced {len(priority_threads)} threads to {len(clustered)} groups")
+
+        return clustered

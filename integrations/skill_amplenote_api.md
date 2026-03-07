@@ -5,6 +5,13 @@
 **Last Updated:** February 21, 2026  
 **Version:** 1.0.0
 
+## Quick Reference
+**Use when:** Amplenote token expired, need to create/search notes programmatically, debugging Amplenote integration
+**Don't use when:** You just want to read/write a note manually — open Amplenote directly
+**Trigger phrases:** "Amplenote token expired", "refresh Amplenote", "create note in Amplenote", "Amplenote API"
+**Time:** Token refresh ~30 seconds; API setup 10-15 minutes
+**Command:** `node refresh_amplenote_token.js` (in `_scripts/`)
+
 ---
 
 ## Table of Contents

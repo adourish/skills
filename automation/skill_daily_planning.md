@@ -2,8 +2,15 @@
 
 **Fully Autonomous Holistic Daily Planning: Gmail + Calendar + Todoist + Drive → Action-Priority Plan**
 
-**Last Updated:** February 22, 2026  
+**Last Updated:** February 22, 2026
 **Version:** 2.0.0 - Fully Autonomous Holistic Planning
+
+## Quick Reference
+**Use when:** Morning planning session; need a prioritized action list pulled from email/calendar/tasks/Drive
+**Don't use when:** Just need to check one task or one email — go to Todoist or Gmail directly
+**Trigger phrases:** "plan my day", "process new", "daily planner", "what should I do today", "morning routine"
+**Time:** ~30-45 seconds
+**Command:** `python run_process_new_v2.py` (in `_automation/`) or use MCP server `process_new` tool
 
 ---
 

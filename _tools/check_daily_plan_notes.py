@@ -9,7 +9,7 @@ from auth_manager import AuthManager
 from amplenote_tools import AmplenoteTools
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     print("Fetching notes with 'daily-plan' tag...")

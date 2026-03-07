@@ -7,7 +7,7 @@ import requests
 
 async def search_amplenote(search_term: str):
     """Search Amplenote notes using the improved API endpoint"""
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     print("=" * 100)

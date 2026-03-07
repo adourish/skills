@@ -14,7 +14,7 @@ async def main():
     content = '\n'.join(lines[3:])
     
     # Use the amplenote_tools directly (same as MCP server uses)
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     print(f"Creating Amplenote note with {len(content)} characters...")

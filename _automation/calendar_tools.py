@@ -42,25 +42,23 @@ class CalendarTools:
             ).execute()
             
             events = events_result.get('items', [])
-            
+
             # Filter calendar events
-            # Note: Only events from calendars you have access to will appear here
-            # Alexandra's personal calendar is not accessible, so those events won't show
             filtered_events = []
             for event in events:
                 summary = event.get('summary', '').lower()
                 attendees = event.get('attendees', [])
-                
+
                 # Skip personal reminders (birthdays, anniversaries with no attendees)
                 if any(word in summary for word in ['birthday', 'anniversary', 'bday']):
                     if not attendees or len(attendees) <= 1:
-                        # No attendees or just you = personal reminder, skip it
                         continue
-                
+
                 start = event['start'].get('dateTime', event['start'].get('date'))
                 summary = event.get('summary', 'No title')
                 organizer = event.get('organizer', {}).get('email', 'Unknown')
-                
+                is_recurring = 'recurringEventId' in event
+
                 # Parse time
                 if 'T' in start:
                     event_time = datetime.fromisoformat(start.replace('Z', '+00:00'))
@@ -68,13 +66,14 @@ class CalendarTools:
                 else:
                     event_time = datetime.fromisoformat(start + 'T00:00:00+00:00')
                     time_str = 'All day'
-                
+
                 filtered_events.append({
                     'id': event['id'],
                     'summary': summary,
                     'date': event_time.strftime('%Y-%m-%d'),
                     'time': time_str,
-                    'organizer': organizer
+                    'organizer': organizer,
+                    'is_recurring': is_recurring
                 })
             
             logger.info(f"Retrieved {len(filtered_events)} calendar events (Alex's events filtered)")

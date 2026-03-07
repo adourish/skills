@@ -2,6 +2,13 @@
 
 **For AI agents helping with "process new" workflow**
 
+## Quick Reference
+**Use when:** Setting up the MCP server for the first time, MCP connection lost, adding new MCP tools, AI agent needs direct tool access to Gmail/Todoist/Amplenote
+**Don't use when:** MCP is already running — just use it
+**Trigger phrases:** "set up MCP", "MCP server", "connect MCP", "MCP not working", "start the server"
+**Time:** Initial setup ~15 minutes; restart ~30 seconds
+**Command:** `python server.py` (in `_tools/`)
+
 ## Quick Start
 
 The user has a fully functional MCP server that handles all daily planning workflows. You have two options:

@@ -18,24 +18,17 @@ class TodoistTools:
     def __init__(self, auth_manager):
         self.auth_manager = auth_manager
         self.base_url = "https://api.todoist.com/api/v1"
-        # Load OpenRouter API key from environments.json
         self.openrouter_key = self._load_openrouter_key()
         if self.openrouter_key:
-            logger.info("Loaded OpenRouter API key from environments.json")
+            logger.info("Loaded OpenRouter API key via CredentialResolver")
         else:
             logger.warning("OpenRouter API key not found - AI summaries will be disabled")
     
     def _load_openrouter_key(self) -> Optional[str]:
-        """Load OpenRouter API key from environments.json"""
+        """Load OpenRouter API key via CredentialResolver."""
         try:
-            env_path = Path.home() / "Google Drive" / "My Drive" / "03_Areas" / "Keys" / "Environments" / "environments.json"
-            if not env_path.exists():
-                env_path = Path("G:/My Drive/03_Areas/Keys/Environments/environments.json")
-            
-            if env_path.exists():
-                with open(env_path, 'r') as f:
-                    config = json.load(f)
-                    return config.get('environments', {}).get('openrouter', {}).get('credentials', {}).get('apiKey')
+            from credential_resolver import CredentialResolver
+            return CredentialResolver().get("openrouter", "api.apiKey")
         except Exception as e:
             logger.warning(f"Could not load OpenRouter key: {e}")
         return None

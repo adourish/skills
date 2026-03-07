@@ -1,5 +1,12 @@
 # Gmail Organizer - Setup Guide
 
+## Quick Reference
+**Use when:** Setting up Gmail OAuth for the first time, token expired, need to search/read Gmail programmatically
+**Don't use when:** You just want to read email — open Gmail; use `skill_email_processing` for task extraction
+**Trigger phrases:** "Gmail OAuth", "set up Gmail", "Gmail token", "Gmail automation", "authenticate Gmail"
+**Time:** Initial OAuth setup ~5 minutes; token refresh ~30 seconds
+**Command:** `python setup_gmail_oauth.py` (in `_scripts/`)
+
 ## ✅ Secure OAuth 2.0 Implementation
 
 This script uses proper OAuth 2.0 flow - your credentials stay secure!

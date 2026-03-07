@@ -8,6 +8,13 @@
 
 **API Version**: v1 (Unified API - replaces REST v2 and Sync v9)
 
+## Quick Reference
+**Use when:** Creating/querying/updating Todoist tasks programmatically, building automations that touch tasks
+**Don't use when:** You want to manually add a task — open Todoist directly
+**Trigger phrases:** "query Todoist", "create Todoist task", "Todoist API", "get my tasks programmatically"
+**Time:** Instant for queries; ~5 minutes for initial API token setup
+**Command:** `python query_todoist.py` (in `_tools/`)
+
 **Success Rate**: Production-ready
 
 ---

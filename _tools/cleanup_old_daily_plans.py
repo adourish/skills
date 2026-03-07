@@ -11,7 +11,7 @@ from amplenote_tools import AmplenoteTools
 from datetime import datetime
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     today_date = datetime.now().strftime("%Y-%m-%d")

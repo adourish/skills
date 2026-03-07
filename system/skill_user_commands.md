@@ -3,6 +3,13 @@
 **Last Updated:** March 1, 2026  
 **Purpose:** Quick reference for common user commands and workflows.
 
+## Quick Reference
+**Use when:** Need to quickly find a command, shortcut, or workflow trigger; START HERE before loading any other skill
+**Don't use when:** You already know the specific skill to use
+**Trigger phrases:** "show me commands", "what can I do", "how do I", "list commands", "quick reference"
+**Time:** Instant
+**Command:** Reference this file — no script needed
+
 ---
 
 ## User Commands Workflow Diagram

@@ -5,7 +5,7 @@ from auth_manager import AuthManager
 from calendar_tools import CalendarTools
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     calendar = CalendarTools(auth)
     
     service = await calendar._get_service()

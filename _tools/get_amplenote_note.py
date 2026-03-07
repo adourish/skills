@@ -13,7 +13,7 @@ async def main():
     
     note_uuid = sys.argv[1]
     
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     try:

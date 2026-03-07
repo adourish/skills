@@ -3,6 +3,13 @@
 **Last Updated:** February 22, 2026  
 **Status:** ✅ Fully Functional - MCP Server Unified
 
+## Quick Reference
+**Use when:** Switching AI agents mid-session, resuming a "process new" workflow in a new session, agent needs handoff context
+**Don't use when:** Staying within the same AI session — just continue the conversation
+**Trigger phrases:** "hand off", "continue in new session", "agent handoff", "resume process new", "switching to Claude"
+**Time:** Instant — follow the Quick Start below
+**Command:** Check MCP server is running, then follow handoff protocol
+
 ---
 
 ## Quick Start for Any Agent

@@ -6,7 +6,7 @@ from amplenote_tools import AmplenoteTools
 import requests
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amplenote = AmplenoteTools(auth)
     
     print("=" * 100)

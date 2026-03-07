@@ -5,6 +5,13 @@
 **Last Updated:** February 21, 2026  
 **Version:** 1.0.0
 
+## Quick Reference
+**Use when:** Weekly email cleanup, extracting tasks/action items from email backlog, catching up after time off
+**Don't use when:** You want full daily planning — use `skill_daily_planning` which includes email processing
+**Trigger phrases:** "process my emails", "extract tasks from email", "weekly email cleanup", "what emails need action"
+**Time:** 5-10 minutes
+**Command:** `python email_processor.py` (in `_scripts/`) or use MCP `gmail_search` + `gmail_get_email` tools
+
 ---
 
 ## Table of Contents

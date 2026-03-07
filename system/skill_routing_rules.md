@@ -2,6 +2,13 @@
 
 **Last Updated:** February 22, 2026
 
+## Quick Reference
+**Use when:** Deciding where a task, note, event, or file belongs; setting up a new workflow; onboarding to the system
+**Don't use when:** You already know where something goes
+**Trigger phrases:** "where does this go", "where should I put", "routing rules", "which system", "Todoist or Amplenote"
+**Time:** Instant reference
+**Rule:** Tasks → Todoist | Notes/daily view → Amplenote | Events → Google Calendar | Files → PARA on G Drive
+
 ---
 
 ## 📍 The Golden Rule

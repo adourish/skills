@@ -9,7 +9,7 @@ from auth_manager import AuthManager
 from todoist_tools import TodoistTools
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     todoist = TodoistTools(auth)
     
     print("Fetching Todoist tasks...")

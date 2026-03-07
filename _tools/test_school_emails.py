@@ -5,7 +5,7 @@ from auth_manager import AuthManager
 from gmail_tools import GmailTools
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     gmail = GmailTools(auth)
     
     # Search for school-related emails

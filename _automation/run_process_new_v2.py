@@ -25,23 +25,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Default environment path (can be overridden via command line)
-DEFAULT_ENV_PATH = Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json')
-
-async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
-    """Execute comprehensive process new workflow with 2-week thread analysis
-    
-    Args:
-        env_path: Path to environments.json file (default: DEFAULT_ENV_PATH)
-    """
+async def process_new_comprehensive():
+    """Execute comprehensive process new workflow with 2-week thread analysis."""
     logger.info("=" * 80)
     logger.info("COMPREHENSIVE PROCESS NEW WORKFLOW - V2")
-    logger.info("Analyzing email threads over 2 weeks with full context")
-    logger.info(f"Using environment file: {env_path}")
+    logger.info("Analyzing email threads over 30 days with full context")
     logger.info("=" * 80)
-    
+
     # Initialize tools
-    auth_manager = AuthManager(env_path)
+    auth_manager = AuthManager()
     gmail = GmailTools(auth_manager)
     thread_tools = GmailThreadTools(gmail)
     analyzer = ComprehensiveAnalyzer(auth_manager)
@@ -50,25 +42,31 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
     amplenote = AmplenoteTools(auth_manager)
     
     # Step 1: Fetch email threads from last 2 weeks
-    logger.info("\n📧 STEP 1: Fetching email threads (2 week lookback)...")
-    all_threads = await thread_tools.get_thread_emails(days=14)
+    logger.info("\n📧 STEP 1: Fetching email threads (30 day lookback)...")
+    all_threads = await thread_tools.get_thread_emails(days=30)
     logger.info(f"   Found {len(all_threads)} total threads")
     
     # Step 2: Filter to priority threads
     logger.info("\n🎯 STEP 2: Identifying priority threads...")
     priority_threads = thread_tools.get_priority_threads(all_threads, max_threads=15)
     logger.info(f"   Selected {len(priority_threads)} priority threads for analysis")
-    
+
+    # Step 2.5: Cluster related threads by sender
+    logger.info("\n🔗 STEP 2.5: Clustering related threads by sender...")
+    clustered_threads = thread_tools.cluster_threads_by_sender(priority_threads)
+    logger.info(f"   Clustered {len(priority_threads)} threads into {len(clustered_threads)} groups")
+
     # Step 3: Analyze each priority thread comprehensively
     logger.info("\n🔍 STEP 3: Analyzing threads comprehensively...")
     thread_analyses = []
-    
-    for i, (subject, emails) in enumerate(priority_threads.items(), 1):
-        logger.info(f"\n   Analyzing thread {i}/{len(priority_threads)}: {subject}")
-        logger.info(f"      - {len(emails)} emails in thread")
+
+    for i, (subject, emails) in enumerate(clustered_threads.items(), 1):
+        is_cluster = subject.startswith('[')  # Clustered subjects start with [SenderName]
+        logger.info(f"\n   Analyzing thread {i}/{len(clustered_threads)}: {subject}")
+        logger.info(f"      - {len(emails)} emails in {'cluster' if is_cluster else 'thread'}")
         logger.info(f"      - Latest from: {emails[-1].get('from', 'Unknown')}")
-        
-        analysis = await analyzer.analyze_email_thread(emails, subject)
+
+        analysis = await analyzer.analyze_email_thread(emails, subject, is_cluster=is_cluster)
         thread_analyses.append(analysis)
         
         # Log key findings
@@ -82,8 +80,44 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
     logger.info("\n✅ STEP 4: Fetching Todoist tasks...")
     tasks = await todoist.get_tasks()
     today = datetime.now().strftime("%Y-%m-%d")
-    today_tasks = [t for t in tasks if t.get('due') and t.get('due', {}).get('date') == today]
+    today_dt = datetime.now().date()
+
+    # Classify tasks: today, upcoming, stale (>7 days overdue), no-date
+    STALE_THRESHOLD_DAYS = 7
+    today_tasks = []
+    upcoming_tasks = []
+    stale_tasks = []
+    no_date_tasks = []
+
+    for t in tasks:
+        due_info = t.get('due')
+        if not due_info or not due_info.get('date'):
+            no_date_tasks.append(t)
+            continue
+        due_date_str = due_info['date']
+        try:
+            due_date = datetime.strptime(due_date_str, "%Y-%m-%d").date()
+        except ValueError:
+            no_date_tasks.append(t)
+            continue
+
+        days_overdue = (today_dt - due_date).days
+
+        if days_overdue > STALE_THRESHOLD_DAYS:
+            stale_tasks.append(t)
+        elif due_date_str == today:
+            today_tasks.append(t)
+        else:
+            upcoming_tasks.append(t)
+
     logger.info(f"   Found {len(today_tasks)} tasks due today")
+    logger.info(f"   Found {len(upcoming_tasks)} upcoming tasks")
+    if stale_tasks:
+        logger.info(f"   Found {len(stale_tasks)} STALE tasks (>{STALE_THRESHOLD_DAYS} days overdue):")
+        for st in stale_tasks:
+            logger.info(f"      ⚠️  {st['content']} (due {st['due']['date']})")
+    if no_date_tasks:
+        logger.info(f"   Found {len(no_date_tasks)} tasks with no due date")
     
     logger.info("\n📅 STEP 5: Fetching calendar events...")
     events = await calendar.get_events(days_ahead=7)  # Get full week
@@ -116,6 +150,9 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
         "low_priority": [],
         "follow_ups_needed": [],
         "tasks_today": today_tasks,
+        "upcoming_tasks": upcoming_tasks,
+        "stale_tasks": stale_tasks,
+        "no_date_tasks": no_date_tasks,
         "events_today": today_events
     }
     
@@ -143,10 +180,12 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
             detailed_breakdown['follow_ups_needed'].append(item)
     
     # Log breakdown
-    logger.info(f"   🔴 High priority: {len(detailed_breakdown['high_priority'])} threads")
-    logger.info(f"   ⚠️  Medium priority: {len(detailed_breakdown['medium_priority'])} threads")
-    logger.info(f"   ℹ️  Low priority: {len(detailed_breakdown['low_priority'])} threads")
+    logger.info(f"   🔴 High priority (DO NOW): {len(detailed_breakdown['high_priority'])} threads")
+    logger.info(f"   ⚠️  Medium priority (DO SOON): {len(detailed_breakdown['medium_priority'])} threads")
+    logger.info(f"   ℹ️  Low priority (monitor): {len(detailed_breakdown['low_priority'])} threads")
     logger.info(f"   📧 Follow-ups needed: {len(detailed_breakdown['follow_ups_needed'])} threads")
+    if stale_tasks:
+        logger.info(f"   ⏳ Stale tasks (>{STALE_THRESHOLD_DAYS}d overdue): {len(stale_tasks)} — review or reschedule")
     
     # Step 7: Save comprehensive output
     output_dir = Path(__file__).parent / "output"
@@ -158,138 +197,290 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
     
     logger.info(f"\n💾 Full analysis saved to: {output_file}")
     
+    # Step 7.5: Deduplicate action items across analyses
+    logger.info("\n🧹 STEP 7.5: Deduplicating action items...")
+    thread_analyses = analyzer.deduplicate_action_items(thread_analyses)
+
+    # Step 7.55: Filter out informational-only threads (no real actions)
+    logger.info("\n🧹 STEP 7.55: Filtering out informational-only threads...")
+    actionable_analyses = []
+    informational_count = 0
+    for analysis in thread_analyses:
+        actions = analysis.get('action_items', [])
+        # Check if all actions are "None" variants or empty
+        is_informational = (
+            not actions
+            or all(
+                (a.lower().startswith('none') and 'waiting on' not in a.lower()) or
+                'informational' in a.lower() or
+                'already handled' in a.lower()
+                for a in actions
+            )
+        )
+        if is_informational:
+            informational_count += 1
+            logger.info(f"   Filtered (informational): {analysis['thread_subject'][:60]}")
+        else:
+            actionable_analyses.append(analysis)
+    logger.info(f"   Kept {len(actionable_analyses)} actionable, filtered {informational_count} informational")
+    thread_analyses = actionable_analyses
+
+    # Rebuild detailed_breakdown with deduped + filtered analyses
+    detailed_breakdown['high_priority'] = []
+    detailed_breakdown['medium_priority'] = []
+    detailed_breakdown['low_priority'] = []
+    detailed_breakdown['follow_ups_needed'] = []
+    for analysis in thread_analyses:
+        item = {
+            "subject": analysis['thread_subject'],
+            "summary": analysis['summary'],
+            "outcome": analysis['outcome'],
+            "action_items": analysis['action_items'],
+            "follow_up": analysis['follow_up_reason'] if analysis['follow_up_needed'] else None,
+            "context": analysis['context'],
+            "latest_from": analysis['latest_sender'],
+            "email_count": analysis['email_count']
+        }
+        if analysis['priority'] == 'high':
+            detailed_breakdown['high_priority'].append(item)
+        elif analysis['priority'] == 'medium':
+            detailed_breakdown['medium_priority'].append(item)
+        else:
+            detailed_breakdown['low_priority'].append(item)
+        if analysis['follow_up_needed']:
+            detailed_breakdown['follow_ups_needed'].append(item)
+
+    # Step 7.56: Cap DO NOW at 5 — overflow high priority items to medium
+    MAX_DO_NOW = 5
+    if len(detailed_breakdown['high_priority']) > MAX_DO_NOW:
+        overflow = detailed_breakdown['high_priority'][MAX_DO_NOW:]
+        detailed_breakdown['high_priority'] = detailed_breakdown['high_priority'][:MAX_DO_NOW]
+        detailed_breakdown['medium_priority'] = overflow + detailed_breakdown['medium_priority']
+        logger.info(f"   Capped DO NOW at {MAX_DO_NOW}, moved {len(overflow)} items to DO SOON")
+
+    # Step 7.6: Cross-reference calendar events with email analyses
+    logger.info("\n📅 STEP 7.6: Cross-referencing calendar with email threads...")
+    matched_event_indices = set()
+    stop_words = {'the', 'a', 'an', 'to', 'for', 'and', 'or', 'is', 'in', 'on', 'at', 'of', 'your', 'this', 'that'}
+    all_events_list = today_events + [e for e in events if e.get('date') != today]
+
+    for ei, event in enumerate(all_events_list):
+        event_summary = event.get('summary', '')
+        event_words = set(event_summary.lower().split()) - stop_words
+        if len(event_words) < 2:
+            continue
+        for analysis in thread_analyses:
+            subject_words = set(analysis.get('thread_subject', '').lower().split()) - stop_words
+            action_text = ' '.join(analysis.get('action_items', []))
+            action_words = set(action_text.lower().split()) - stop_words
+            combined_words = subject_words | action_words
+            overlap = event_words & combined_words
+            if len(overlap) >= 2:
+                matched_event_indices.add(ei)
+                logger.info(f"   Calendar event '{event_summary}' matched to email thread '{analysis['thread_subject'][:50]}' — skipping calendar task")
+                break
+
     # Step 8: Create individual Todoist tasks for each action
     logger.info("\n📋 STEP 8: Creating individual Todoist tasks...")
-    
+
     try:
-        # Delete old daily plan tasks first
+        # Delete old daily plan tasks first (including legacy formats)
         all_tasks = await todoist.get_tasks()
+        legacy_prefixes = ('📋', '🎯 TODAY:', '⏰ SOON:', '🎯 ')
         for task in all_tasks:
             content = task.get('content', '')
             labels = task.get('labels', [])
-            if content.startswith('📋') or 'daily-plan' in labels:
+            description = task.get('description', '')
+            is_daily_plan = (
+                'daily-plan' in labels
+                or any(content.startswith(p) for p in legacy_prefixes)
+                or 'Daily Planner' in description
+                or 'Source: Email' in description
+            )
+            if is_daily_plan:
                 await todoist.delete_task(task['id'])
                 logger.info(f"   Deleted old task: {content[:50]}")
         
         created_count = 0
-        
+        seen_actions = set()  # Track normalized actions to prevent duplicates
+
+        def normalize_for_dedup(text):
+            import string
+            return ' '.join(text.lower().translate(str.maketrans('', '', string.punctuation)).split())
+
+        def build_task(item, priority_level):
+            """Build a Todoist task from an analysis item. Returns (title, description) or None if duplicate/non-actionable."""
+            if not item.get('action_items'):
+                return None
+            action = item['action_items'][0]
+
+            # Skip non-actionable items that slipped through AI classification
+            action_lower = action.lower()
+            if action_lower.startswith('none'):
+                if 'waiting on' in action_lower:
+                    # Convert to a follow-up reminder
+                    who = action_lower.split('waiting on', 1)[-1].strip().rstrip('.')
+                    subject_short = item.get('subject', '')[:60]
+                    action = f"Follow up with {who} re: {subject_short}" if who else f"Follow up re: {subject_short}"
+                    action_lower = action.lower()
+                else:
+                    logger.info(f"   ⏭️  Skipped non-actionable: {action[:60]}")
+                    return None
+            if ('informational' in action_lower or
+                'already handled' in action_lower or
+                'no action' in action_lower or
+                'fyi only' in action_lower):
+                logger.info(f"   ⏭️  Skipped non-actionable: {action[:60]}")
+                return None
+
+            norm_action = normalize_for_dedup(action)
+            if norm_action in seen_actions:
+                logger.info(f"   ⏭️  Skipped duplicate action: {action[:60]}")
+                return None
+            seen_actions.add(norm_action)
+
+            sender = item.get('latest_from', 'Unknown').split('<')[0].strip()
+            summary = item.get('summary', '')
+            context = item.get('context', '')
+            outcome = item.get('outcome', '')
+            follow_up = item.get('follow_up', '')
+
+            # Title: action + summary (truncated for readability)
+            key_info = summary or context or ""
+            if len(key_info) > 120:
+                key_info = key_info[:117] + "..."
+            task_title = f"{action} - {key_info}" if key_info else action
+
+            # Rich description with all available context
+            description_parts = [
+                f"📧 From: {sender}",
+                f"📌 Subject: {item['subject']}",
+                "",
+                f"📝 Summary: {summary}" if summary else None,
+                f"🔍 Context: {context}" if context else None,
+                f"📊 Outcome: {outcome}" if outcome else None,
+                f"🔄 Follow-up: {follow_up}" if follow_up else None,
+            ]
+            # Filter out None entries
+            description_parts = [p for p in description_parts if p is not None]
+
+            # Add ALL action items (not just the first)
+            if len(item['action_items']) > 1:
+                description_parts.append("")
+                description_parts.append("✅ All action items:")
+                for i, a in enumerate(item['action_items'], 1):
+                    description_parts.append(f"  {i}. {a}")
+
+            # Add email count for clustered threads
+            if item.get('email_count', 1) > 1:
+                description_parts.append("")
+                description_parts.append(f"📬 {item['email_count']} emails in thread")
+
+            return task_title, "\n".join(description_parts)
+
         # Create tasks for high priority items
         for item in detailed_breakdown['high_priority']:
-            if item.get('action_items'):
-                action = item['action_items'][0]
-                sender = item.get('latest_from', 'Unknown').split('<')[0].strip()
-                summary = item.get('summary', '')
-                context = item.get('context', '')
-                
-                # Build comprehensive title for DakBoard (only place visible)
-                # Include action + key context/summary
-                if summary and len(summary) < 100:
-                    task_title = f"{action} - {summary}"
-                elif context and len(context) < 100:
-                    task_title = f"{action} - {context}"
-                else:
-                    # Use first 150 chars of summary/context
-                    key_info = summary or context or ""
-                    if len(key_info) > 100:
-                        key_info = key_info[:100] + "..."
-                    task_title = f"{action} - {key_info}" if key_info else action
-                
-                # Build description with full context
-                description_parts = [
-                    f"From: {sender}",
-                    f"Subject: {item['subject']}",
-                    "",
-                    f"Summary: {summary}",
-                    "",
-                    f"Context: {context}",
-                    "",
-                    f"Outcome: {item['outcome']}"
-                ]
-                
-                # Add additional actions if any
-                if len(item['action_items']) > 1:
-                    description_parts.append("")
-                    description_parts.append("Additional actions:")
-                    for additional_action in item['action_items'][1:]:
-                        description_parts.append(f"• {additional_action}")
-                
-                description = "\n".join(description_parts)
-                
-                await todoist.create_task(
-                    content=task_title,
-                    description=description,
-                    priority=4,  # High priority (red)
-                    due_string='today',
-                    labels=['daily-plan']
-                )
-                created_count += 1
-                logger.info(f"   ✅ Created: {task_title[:80]}")
-        
+            result = build_task(item, 'high')
+            if not result:
+                continue
+            task_title, description = result
+            await todoist.create_task(
+                content=task_title,
+                description=description,
+                priority=4,  # High priority (red)
+                due_string='today',
+                labels=['daily-plan']
+            )
+            created_count += 1
+            logger.info(f"   ✅ Created: {task_title[:80]}")
+
         # Create tasks for medium priority items
         for item in detailed_breakdown['medium_priority'][:3]:  # Top 3 medium
-            if item.get('action_items'):
-                action = item['action_items'][0]
-                sender = item.get('latest_from', 'Unknown').split('<')[0].strip()
-                summary = item.get('summary', '')
-                context = item.get('context', '')
-                
-                # Build comprehensive title for DakBoard
-                if summary and len(summary) < 100:
-                    task_title = f"{action} - {summary}"
-                elif context and len(context) < 100:
-                    task_title = f"{action} - {context}"
-                else:
-                    key_info = summary or context or ""
-                    if len(key_info) > 100:
-                        key_info = key_info[:100] + "..."
-                    task_title = f"{action} - {key_info}" if key_info else action
-                
-                description = f"From: {sender}\nSubject: {item['subject']}\n\nSummary: {summary}\n\nContext: {context}"
-                
-                await todoist.create_task(
-                    content=task_title,
-                    description=description,
-                    priority=3,  # Medium priority (orange)
-                    due_string='today',
-                    labels=['daily-plan']
-                )
-                created_count += 1
-                logger.info(f"   ✅ Created: {task_title[:80]}")
+            result = build_task(item, 'medium')
+            if not result:
+                continue
+            task_title, description = result
+            await todoist.create_task(
+                content=task_title,
+                description=description,
+                priority=3,  # Medium priority (orange)
+                due_string='today',
+                labels=['daily-plan']
+            )
+            created_count += 1
+            logger.info(f"   ✅ Created: {task_title[:80]}")
+
+        # Create follow-up reminders for "waiting on" threads (any priority)
+        logger.info("\n   Creating follow-up reminders for waiting-on threads...")
+        for item in detailed_breakdown['low_priority']:
+            actions = item.get('action_items', [])
+            has_waiting = any('waiting on' in a.lower() for a in actions)
+            if not has_waiting:
+                continue
+            result = build_task(item, 'low')
+            if not result:
+                continue
+            task_title, description = result
+            await todoist.create_task(
+                content=task_title,
+                description=description,
+                priority=2,  # Low priority (blue)
+                due_string='today',
+                labels=['daily-plan', 'follow-up']
+            )
+            created_count += 1
+            logger.info(f"   ✅ Created follow-up: {task_title[:80]}")
         
-        # Create tasks for important calendar events (next 3 days)
-        logger.info("\n   Creating tasks for calendar events...")
-        for event in today_events + [e for e in events if e.get('date') != today]:
+        # Create tasks for NON-ROUTINE calendar events
+        # Recurring events (regular taekwondo, cleaners, etc.) are skipped
+        # unless they contain attention keywords (cancelled, doctor, etc.)
+        logger.info("\n   Creating tasks for non-routine calendar events...")
+
+        attention_keywords = [
+            'cancelled', 'canceled', 'rescheduled', 'moved',
+            'dr', 'doctor', 'dentist', 'appointment',
+            'pickup', 'drop off', 'dropoff',
+            'deadline', 'due', 'expires',
+            'interview', 'presentation', 'demo',
+            'flight', 'travel', 'hotel', 'checkout',
+        ]
+
+        for ei, event in enumerate(all_events_list):
+            if ei in matched_event_indices:
+                continue
             summary = event.get('summary', '')
             date = event.get('date', '')
             time = event.get('time', '')
-            
-            # Skip recurring events like regular Taekwondo unless there's something special
-            if 'Cancelled' in summary or 'Brunch' in summary or 'Pickup' in summary or 'Dr' in summary:
-                # Create task for this event
-                task_content = summary
-                if time and time != 'All day':
-                    task_content = f"{summary} at {time}"
-                
-                description = f"Calendar event on {date}"
-                if time:
-                    description += f" at {time}"
-                
-                # Determine priority based on keywords
-                priority = 3  # Medium by default
-                if 'Cancelled' in summary:
-                    priority = 4  # High - need to remember cancellation
-                elif 'Dr' in summary or 'Pickup' in summary:
-                    priority = 4  # High - important appointments
-                
-                await todoist.create_task(
-                    content=task_content,
-                    description=description,
-                    priority=priority,
-                    due_string=date,
-                    labels=['daily-plan', 'calendar']
-                )
-                created_count += 1
-                logger.info(f"   ✅ Created calendar task: {task_content[:60]}")
+            is_recurring = event.get('is_recurring', False)
+            summary_lower = summary.lower()
+
+            needs_attention = any(kw in summary_lower for kw in attention_keywords)
+
+            if is_recurring and not needs_attention:
+                logger.info(f"   Skipped recurring event: {summary[:60]}")
+                continue
+
+            task_content = summary
+            if time and time != 'All day':
+                task_content = f"{summary} at {time}"
+
+            description = f"Calendar event on {date}"
+            if time:
+                description += f" at {time}"
+
+            priority = 3
+            if any(kw in summary_lower for kw in ['cancelled', 'canceled', 'dr', 'doctor', 'dentist', 'pickup', 'deadline', 'interview']):
+                priority = 4
+
+            await todoist.create_task(
+                content=task_content,
+                description=description,
+                priority=priority,
+                due_string=date,
+                labels=['daily-plan', 'calendar']
+            )
+            created_count += 1
+            logger.info(f"   ✅ Created calendar task: {task_content[:60]}")
         
         logger.info(f"\n   ✅ Created {created_count} total tasks")
         
@@ -304,6 +495,7 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
             "do_now": [],
             "do_soon": [],
             "monitor": [],
+            "stale": [],
             "reference": [],
             "documents": {},
             "reference_emails": gmail.reference_emails,
@@ -311,7 +503,8 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
                 "threads_analyzed": len(thread_analyses),
                 "high_priority": len(detailed_breakdown['high_priority']),
                 "medium_priority": len(detailed_breakdown['medium_priority']),
-                "follow_ups": len(detailed_breakdown['follow_ups_needed'])
+                "follow_ups": len(detailed_breakdown['follow_ups_needed']),
+                "stale_tasks": len(stale_tasks)
             },
             "generated_at": datetime.now().isoformat()
         }
@@ -339,7 +532,20 @@ async def process_new_comprehensive(env_path: Path = DEFAULT_ENV_PATH):
                 "action_items": item['action_items'],
                 "priority": "medium"
             })
-        
+
+        # Add stale tasks to separate section (not DO NOW)
+        for task in stale_tasks:
+            days_overdue = (today_dt - datetime.strptime(task['due']['date'], "%Y-%m-%d").date()).days
+            amplenote_plan["stale"].append({
+                "title": task['content'],
+                "source": "Todoist",
+                "due": task['due']['date'],
+                "days_overdue": days_overdue,
+                "priority": "stale"
+            })
+        if stale_tasks:
+            logger.info(f"   Added {len(stale_tasks)} stale tasks to separate section")
+
         amplenote_success = await amplenote.update_daily_note_with_plan(amplenote_plan)
         if amplenote_success:
             logger.info("   ✅ Amplenote daily note updated successfully")
@@ -366,30 +572,14 @@ Examples:
   python run_process_new_v2.py
   
   # Use custom environment path
-  python run_process_new_v2.py --env-path /path/to/environments.json
-  
-  # Use custom path with spaces
-  python run_process_new_v2.py --env-path "C:\\My Path\\environments.json"
+  python run_process_new_v2.py
         """
     )
     
-    parser.add_argument(
-        '--env-path',
-        type=Path,
-        default=DEFAULT_ENV_PATH,
-        help=f'Path to environments.json file (default: {DEFAULT_ENV_PATH})'
-    )
-    
     args = parser.parse_args()
-    
-    # Validate environment file exists
-    if not args.env_path.exists():
-        logger.error(f"Environment file not found: {args.env_path}")
-        logger.error(f"Please create the file or specify a different path with --env-path")
-        return False
-    
+
     try:
-        result = await process_new_comprehensive(env_path=args.env_path)
+        result = await process_new_comprehensive()
         return result
     except Exception as e:
         logger.error(f"Error running comprehensive process: {e}", exc_info=True)

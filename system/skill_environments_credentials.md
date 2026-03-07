@@ -9,6 +9,13 @@
 
 **Security Level**: CRITICAL - Contains sensitive information handling procedures
 
+## Quick Reference
+**Use when:** Setting up API keys, finding where credentials are stored, configuring a new integration, script fails with auth error
+**Don't use when:** Looking for HRSA/EHBS environment credentials — use pskills `09_environments/skill_keys_management.md`
+**Trigger phrases:** "where are credentials", "set up API key", "find my token", "authentication setup", "environments.json"
+**Time:** 5-10 minutes for initial setup; instant for lookup
+**Lookup order:** KeePass (`keys pass.kdbx`) → `environments.json` → `.env`
+
 ---
 
 ## Table of Contents

@@ -4,7 +4,7 @@ from auth_manager import AuthManager
 from pathlib import Path
 
 async def query_amplenote():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     amp = AmplenoteTools(auth)
     
     # Search for daily plan note

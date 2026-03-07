@@ -7,7 +7,7 @@ from calendar_tools import CalendarTools
 from datetime import datetime, timedelta
 
 async def main():
-    auth = AuthManager(Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json'))
+    auth = AuthManager()
     gmail = GmailTools(auth)
     calendar = CalendarTools(auth)
     

@@ -24,15 +24,13 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-ENV_PATH = Path(r'G:\My Drive\03_Areas\Keys\Environments\environments.json')
-
 async def process_new():
     """Execute complete process new workflow"""
     logger.info("=" * 60)
     logger.info("Starting PROCESS NEW workflow")
     logger.info("=" * 60)
     
-    auth_manager = AuthManager(ENV_PATH)
+    auth_manager = AuthManager()
     gmail = GmailTools(auth_manager)
     todoist = TodoistTools(auth_manager)
     calendar = CalendarTools(auth_manager)

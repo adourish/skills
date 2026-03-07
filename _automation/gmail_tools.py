@@ -60,7 +60,9 @@ class GmailTools:
             'townsq.io',
             'virginiadmv',
             'irs.gov',
-            'dmv.virginia.gov'
+            'dmv.virginia.gov',
+            'aggressor.com',
+            'padi.com',
         ]
         
         # Skip patterns for unimportant emails
@@ -111,7 +113,8 @@ class GmailTools:
             'registration due', 'renewal due', 'expires',
             'property maintenance', 'on site', 'service scheduled',
             'today at', 'this afternoon', 'this evening',
-            'same day', 'deadline today'
+            'same day', 'deadline today',
+            'certification', 'scuba', 'padi', 'dive trip',
         ]
         
         self.skip_keywords = [
@@ -304,8 +307,17 @@ class GmailTools:
     async def get_urgent_emails(self, days: int = 30) -> List[Dict[str, Any]]:
         """Get urgent emails from last N days and detect reference emails"""
         query = f'newer_than:{days}d -from:noreply -from:no-reply -from:donotreply'
-        
-        messages = await self.search(query, max_results=50)
+
+        messages = await self.search(query, max_results=100)
+
+        # Supplemental query: whitelisted domains bypass noreply filter
+        whitelist_query = '(' + ' OR '.join(f'from:{d}' for d in self.whitelist_domains) + f') newer_than:{days}d'
+        whitelist_messages = await self.search(whitelist_query, max_results=50)
+        seen_ids = {m['id'] for m in messages}
+        for m in whitelist_messages:
+            if m['id'] not in seen_ids:
+                messages.append(m)
+                seen_ids.add(m['id'])
         
         urgent = []
         self.reference_emails = []
@@ -327,7 +339,7 @@ class GmailTools:
             
             text = (subject + ' ' + body).lower()
             
-            # Check if this is a reference email
+            # Check if this is a reference email (save silently, don't treat as urgent)
             if self.is_reference_email(subject, body):
                 self.reference_emails.append({
                     'subject': subject,
@@ -336,7 +348,14 @@ class GmailTools:
                     'date': full_msg.get('date', ''),
                     'id': full_msg.get('id', '')
                 })
-            
+                # Reference-only emails (confirmations, account numbers) are NOT urgent
+                # unless they also contain actionable content
+                if not self.has_priority_content(subject, body) and not any(
+                    word in (subject + ' ' + body).lower()
+                    for word in ['urgent', 'asap', 'action required', 'respond', 'deadline']
+                ):
+                    continue
+
             # Whitelisted senders or priority content = always urgent
             if self.is_whitelisted_sender(sender) or self.has_priority_content(subject, body):
                 urgent.append(full_msg)

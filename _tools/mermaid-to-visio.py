@@ -300,13 +300,69 @@ class VisioGenerator:
     
     def _add_title(self, page, title: str):
         """Add diagram title with alt text"""
-        # Create title shape at top
-        pass
+        title_data = {
+            'text': title,
+            'x': 4.0,
+            'y': 0.5,
+            'width': 6.0,
+            'height': 0.6,
+            'fill': '#FFFFFF',
+            'text_color': '#000000',
+            'border': '#000000',
+            'font': self.font,
+            'font_size': self.font_size + 4,
+            'alt_text': f"Diagram title: {title}",
+            'bold': True,
+        }
+        # Note: Actual vsdx title shape creation would go here
+        return title_data
     
     def _add_legend(self, page, nodes: Dict[str, Node]):
         """Add legend explaining shape meanings"""
-        # Create legend box with shape types
-        pass
+        # Collect unique shape types used in the diagram
+        shape_types = {node.shape for node in nodes.values()}
+
+        legend_y = 0.5
+        legend_x = 8.0
+        row_height = 0.4
+
+        legend_items = []
+        for i, shape in enumerate(sorted(shape_types, key=lambda s: s.value)):
+            fill_color = self.palette.get_fill_color(shape)
+            border_color = self.palette.get_border_color(shape)
+            legend_items.append({
+                'text': shape.value,
+                'x': legend_x,
+                'y': legend_y + (i + 1) * row_height,
+                'width': 2.0,
+                'height': 0.35,
+                'fill': fill_color,
+                'text_color': '#000000',
+                'border': border_color,
+                'font': self.font,
+                'font_size': self.font_size - 1,
+                'alt_text': f"Legend: {shape.value} shape",
+            })
+
+        legend_data = {
+            'title': {
+                'text': 'Legend',
+                'x': legend_x,
+                'y': legend_y,
+                'width': 2.0,
+                'height': 0.35,
+                'fill': '#FFFFFF',
+                'text_color': '#000000',
+                'border': '#000000',
+                'font': self.font,
+                'font_size': self.font_size,
+                'alt_text': 'Diagram legend',
+                'bold': True,
+            },
+            'items': legend_items,
+        }
+        # Note: Actual vsdx legend shape creation would go here
+        return legend_data
 
 
 def main():

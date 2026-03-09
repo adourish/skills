@@ -1,10 +1,11 @@
 # Salesforce Developer Activity Report - Master Guide
 
 **Last Updated:** March 9, 2026  
-**Version:** 2.1  
+**Version:** 2.2  
 **Purpose:** Generate comprehensive team activity reports for Salesforce development projects  
 **Success Rate:** 100% (Tested with 20-developer team)  
-**Latest Enhancement:** Clean report format with organized output to `docs/Reports/` directory  
+**Latest Enhancement:** Report format updated to match original February layout - cleaner, more scannable cells  
+**Previous Enhancement:** Clean report format with organized output to `docs/Reports/` directory  
 **Previous Enhancement:** Complete metadata coverage - ALL Salesforce changes tracked with LOC  
 **Previous Fix:** LoginHistory bug resolved - now captures all login activity correctly
 
@@ -674,7 +675,8 @@ This script queries Salesforce for each day individually and builds a true day-b
 
 **Note:** The script automatically cleans up any old reports in the root directory and saves all new reports to the organized `docs/Reports/` folder.
 
-**Key Features (v2.0):**
+**Key Features (v2.2):**
+- ✅ **Clean Report Format** - Each metric on separate line matching original February layout
 - ✅ **Complete Metadata Coverage** - Tracks ALL Salesforce development activity
 - ✅ **Lines of Code (LOC)** - Apex Classes, Triggers, and VisualForce Pages
 - ✅ **Per-Person Per-Day Analysis** - Granular daily breakdowns for each developer

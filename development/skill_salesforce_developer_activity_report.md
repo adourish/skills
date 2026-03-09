@@ -1,10 +1,11 @@
 # Salesforce Developer Activity Report - Master Guide
 
-**Last Updated:** March 6, 2026  
-**Version:** 2.0  
+**Last Updated:** March 9, 2026  
+**Version:** 2.1  
 **Purpose:** Generate comprehensive team activity reports for Salesforce development projects  
 **Success Rate:** 100% (Tested with 20-developer team)  
-**Latest Enhancement:** Complete metadata coverage - ALL Salesforce changes tracked with LOC  
+**Latest Enhancement:** Clean report format with organized output to `docs/Reports/` directory  
+**Previous Enhancement:** Complete metadata coverage - ALL Salesforce changes tracked with LOC  
 **Previous Fix:** LoginHistory bug resolved - now captures all login activity correctly
 
 ---
@@ -628,6 +629,28 @@ For top contributors, add detailed commit breakdown with:
 
 ---
 
+## Quick Start - How to Run This Skill
+
+### Step 1: Navigate to Project Directory
+```powershell
+cd c:\projects\POCs\src\dmedev5
+```
+
+### Step 2: Run the Report Generator
+```powershell
+.\scripts\Generate-DailyActivityMatrix.ps1 -Org dmedev5 -DaysBack 7
+```
+
+### Step 3: View the Report
+The report will be automatically generated and saved to:
+```
+docs/Reports/Developer_Activity_Matrix_Report_YYYYMMDD.md
+```
+
+The report will also automatically open in VS Code when generation completes.
+
+---
+
 ## PowerShell Automation Scripts
 
 ### Enhanced Day-by-Day Matrix Report Generator (RECOMMENDED)
@@ -647,7 +670,9 @@ This script queries Salesforce for each day individually and builds a true day-b
 .\scripts\Generate-DailyActivityMatrix.ps1 -Org dmedev5 -DaysBack 7
 ```
 
-**Output:** `Developer_Activity_Matrix_Report_YYYYMMDD.md`
+**Output Location:** `docs/Reports/Developer_Activity_Matrix_Report_YYYYMMDD.md`
+
+**Note:** The script automatically cleans up any old reports in the root directory and saves all new reports to the organized `docs/Reports/` folder.
 
 **Key Features (v2.0):**
 - ✅ **Complete Metadata Coverage** - Tracks ALL Salesforce development activity

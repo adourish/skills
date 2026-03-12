@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
   "last_updated": "2026-03-01",
-  "total_skills": 36,
+  "total_skills": 37,
   "categories": {
     "automation": 7,
-    "integrations": 5,
+    "integrations": 6,
     "development": 5,
     "documentation": 10,
     "system": 9
@@ -189,6 +189,21 @@
       "related_skills": ["environments_credentials"],
       "outputs": ["Secure password access"],
       "time_estimate": "Instant"
+    },
+    {
+      "id": "google_drive_api",
+      "name": "Google Drive API",
+      "path": "integrations/skill_google_drive_api.md",
+      "category": "integrations",
+      "tags": ["google-drive", "api", "files", "oauth", "cloud-storage"],
+      "description": "Google Drive API integration for listing, searching, uploading, and downloading files",
+      "command": "cd \"G:\\My Drive\\06_Skills\\_scripts\" && python google_drive_client.py list",
+      "frequency": "as-needed",
+      "difficulty": "intermediate",
+      "dependencies": ["environments_credentials"],
+      "related_skills": ["gmail_automation", "file_organization", "daily_planning"],
+      "outputs": ["Drive file listings", "Downloaded files", "Uploaded files"],
+      "time_estimate": "10 minutes setup"
     },
     {
       "id": "salesforce_development",
@@ -562,7 +577,7 @@
       "documentation": ["mermaid_diagrams", "visio_via_mermaid", "mermaid_section_508", "feature_documentation"],
       "development": ["salesforce_development", "git_version_control", "azure_devops_automation"],
       "accessibility": ["section_508_compliance", "mermaid_section_508", "visio_section_508"],
-      "file_management": ["file_organization", "routing_rules"],
+      "file_management": ["file_organization", "routing_rules", "google_drive_api"],
       "ai_integration": ["cascade_workflow", "agent_handoff", "mcp_server_setup", "user_commands"]
     }
   }

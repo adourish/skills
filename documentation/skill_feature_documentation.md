@@ -69,6 +69,12 @@ A feature document is a comprehensive design specification that describes a Sale
 - Implementing new APIs
 - Data migration from legacy systems
 
+✅ **Data Model Documentation**
+- Documenting common data objects across features
+- Defining data lineage from source systems
+- Creating data dictionaries and field inventories
+- Documenting integration patterns and architecture
+
 ### Do NOT Create a Feature Document For:
 
 ❌ **Simple Bug Fixes**
@@ -144,7 +150,129 @@ All feature documents follow this structure:
 ### C. Migration Strategy
 ```
 
+### Alternative Structure: Data/Integration Features
+
+For data model and integration features, use this structure:
+
+```markdown
+# [Feature Name] Feature Documentation
+**[Subtitle/Description]**
+
+**Feature Name:** [Name]
+**Version:** [Version Number]
+**Date:** [Creation Date]
+**Status:** [Active | Deprecated]
+
+---
+
+## Overview
+[Brief description of the feature and its purpose]
+
+---
+
+## Data Lineage Summary
+
+### Source Systems
+1. **[System 1]** - [Description]
+2. **[System 2]** - [Description]
+
+### Integration Flows
+[Mermaid diagram showing data flow]
+
+**Text Description:**
+[Accessible text description of the diagram]
+
+---
+
+## Worksheet Definitions
+
+### WS01: [Worksheet Name]
+**Filename:** `WS01_[Name].csv`
+**Status:** ✅ Complete | ⏳ Pending | ❌ Blocked
+**Records:** [Count]
+**Purpose:** [Description]
+
+**Columns:**
+- [Column list]
+
+**Data Lineage by Object Type:**
+[Table showing lineage]
+
+---
+
+## Common Data Lineage Details
+
+### 1. [Data Domain Name]
+**Full Lineage:** `[Source] → [Target]`
+
+**Process Flow:**
+1. **[System]** - [Description]
+2. **[System]** - [Description]
+
+**Objects Affected:**
+- `[Object__c]` ([Description])
+
+**Integration Method:** [Method]
+**Data Owner:** [Owner]
+**Sync Frequency:** [Frequency]
+
+---
+
+## Integration Architecture
+
+### Integration Methods Overview
+[Description of integration patterns]
+
+### Integration Patterns Diagram
+[Mermaid sequence diagram]
+
+**Text Description:**
+[Pattern descriptions]
+
+---
+
+## Data Ownership & Master Data Management
+
+### Master Data Sources
+[Table showing master vs operational systems]
+
+---
+
+## Sync Frequencies
+[Table showing sync details]
+
+---
+
+## Worksheet File Locations
+[File locations and current files list]
+
+---
+
+## Next Steps
+
+### Immediate Actions
+[Checklist of actions]
+
+### Future Enhancements
+[List of enhancements]
+
+---
+
+## Section 508 Accessibility Compliance
+[Compliance checklist and verification]
+
+---
+
+**Document Owner:** [Team]
+**Last Updated:** [Date]
+**Next Review:** [Date]
+**Status:** [Status]
+**Section 508 Compliance:** ✅ Verified [Date]
+```
+
 ### Required vs Optional Sections
+
+**Standard Feature Documents (User-Facing):**
 
 **Always Required:**
 - Executive Summary
@@ -160,6 +288,25 @@ All feature documents follow this structure:
 - Legacy System Architecture (for modernization)
 - Gap Analysis (for legacy replacement)
 - Migration Strategy (for data migration)
+
+**Data/Integration Feature Documents:**
+
+**Always Required:**
+- Overview
+- Data Lineage Summary (with diagram)
+- Worksheet Definitions
+- Integration Architecture
+- Data Ownership & Master Data Management
+- Sync Frequencies
+- Section 508 Compliance
+
+**Include When Applicable:**
+- Common Data Lineage Details (for each data domain)
+- Integration Patterns Diagram
+- Worksheet File Locations
+- Next Steps
+- ETL Transformation Rules
+- Field-level Data Mapping
 
 ---
 
@@ -644,27 +791,44 @@ public with sharing class ServiceName {
 docs/
 ├── Features/
 │   ├── FeatureName/
-│   │   ├── FeatureName_Feature_Design.md
+│   │   ├── Feature_FeatureName_v1.0.md
 │   │   ├── wireframes/ (optional)
 │   │   └── diagrams/ (optional)
-│   └── AnotherFeature/
-│       └── AnotherFeature_Feature_Design.md
+│   ├── AnotherFeature/
+│   │   └── Feature_AnotherFeature_v1.0.md
+│   └── Data_Model/
+│       ├── Feature_CommonData_v1.0.md
+│       └── csv_exports/
 ```
+
+**Naming Conventions by Location:**
+- **Feature Documents:** `Feature_[FeatureName]_v[Version].md`
+- **Design Documents:** `[ComponentName]_Design.md` (for technical specs)
+- **Analysis Documents:** `[Topic]_Analysis.md`
+- **Master Guides:** `[Topic]_Master_Guide.md`
 
 ### File Naming Convention
 
-**Format:** `[FeatureName]_Feature_Design.md`
+**Standard Format:** `Feature_[FeatureName]_v[Version].md`
 
 **Examples:**
-- `Contribution_Feature_Design.md`
-- `ReviewsAndMonitoring_Feature_Design.md`
-- `VersionCopyForward_Feature_Design.md`
+- `Feature_Contribution_v1.0.md`
+- `Feature_ReviewsAndMonitoring_v1.0.md`
+- `Feature_VersionCopyForward_v2.1.md`
+- `Feature_CommonData_v1.0.md`
 
 **Rules:**
-- Use PascalCase for multi-word names
-- Always end with `_Feature_Design.md`
+- Always start with `Feature_` prefix
+- Use PascalCase for multi-word feature names (no spaces)
+- Always include version number: `_v[Major].[Minor].md`
 - No spaces in filenames
-- No special characters except underscore
+- No special characters except underscore and period
+- Version format: `v1.0`, `v1.1`, `v2.0`, etc.
+
+**Legacy Format (Deprecated):** `[FeatureName]_Feature_Design.md`
+- Old format still exists in codebase
+- New documents should use standard format
+- Rename legacy documents during next major update
 
 ### Version Control
 
@@ -797,6 +961,80 @@ For features that only need a catalog (like Reviews & Monitoring):
 - Phase 2 Features: [Z]
 ```
 
+### Data Model Feature Template
+
+For data model and integration documentation:
+
+```markdown
+# [Feature Name] Feature Documentation
+**[One-line description]**
+
+**Feature Name:** [Name]
+**Version:** 1.0
+**Date:** [Today's Date]
+**Status:** Active
+
+---
+
+## Overview
+[Description of common data and integration needs]
+
+---
+
+## Data Lineage Summary
+
+### Source Systems
+1. **[System Name]** - [Description]
+
+### Integration Flows
+[Mermaid diagram]
+
+---
+
+## Worksheet Definitions
+
+### WS01: [Name]
+**Filename:** `WS01_[Name].csv`
+**Status:** ✅ Complete
+**Records:** [Count]
+**Purpose:** [Description]
+
+---
+
+## Common Data Lineage Details
+
+### 1. [Data Domain]
+**Full Lineage:** `[Source] → [Target]`
+
+**Process Flow:**
+1. **[System]** - [Description]
+
+**Objects Affected:**
+- `[Object__c]`
+
+**Integration Method:** [Method]
+**Data Owner:** [Owner]
+**Sync Frequency:** [Frequency]
+
+---
+
+## Integration Architecture
+
+### Integration Patterns Diagram
+[Mermaid sequence diagram showing 4 patterns]
+
+---
+
+## Section 508 Accessibility Compliance
+[Compliance checklist]
+
+---
+
+**Document Owner:** [Team]
+**Last Updated:** [Date]
+**Section 508 Compliance:** ✅ Verified [Date]
+```
+
 ---
 
 ## Common Mistakes to Avoid
@@ -858,8 +1096,8 @@ For features that only need a catalog (like Reviews & Monitoring):
 
 **Location:** `c:\projects\POCs\src\dmedev5\docs\Features\`
 
-**Good Examples:**
-- `Contribution/Salesforce_Contribution_Feature_Design.md`
+**Good Examples - User-Facing Features:**
+- `Contribution/Feature_Contribution_v1.0.md`
   - Complete business-first structure
   - Comprehensive feature catalog (27 features)
   - Clear user journeys
@@ -869,6 +1107,14 @@ For features that only need a catalog (like Reviews & Monitoring):
   - Phased implementation approach
   - Clear status tracking
   - Good use of diagrams
+
+**Good Examples - Data/Integration Features:**
+- `Data_Model/Feature_CommonData_v1.0.md`
+  - Complete data lineage documentation
+  - 12 worksheets with field inventory (12,043 fields)
+  - Integration architecture with 4 patterns
+  - Section 508 compliant diagrams
+  - Comprehensive source system mappings
 
 ### Reference Materials
 

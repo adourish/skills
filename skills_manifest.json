@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-03-01",
-  "total_skills": 36,
+  "last_updated": "2026-03-20",
+  "total_skills": 37,
   "categories": {
-    "automation": 7,
+    "automation": 8,
     "integrations": 5,
     "development": 5,
     "documentation": 10,
@@ -15,14 +15,34 @@
       "name": "Daily Planning",
       "path": "automation/skill_daily_planning.md",
       "category": "automation",
-      "tags": ["todoist", "amplenote", "calendar", "email", "kanban", "daily"],
+      "tags": [
+        "todoist",
+        "amplenote",
+        "calendar",
+        "email",
+        "kanban",
+        "daily"
+      ],
       "description": "Smart Kanban board generation and task prioritization",
       "command": "cd \"G:\\My Drive\\06_Skills\\_tools\" && python run_process_new.py",
       "frequency": "daily",
       "difficulty": "beginner",
-      "dependencies": ["todoist_api", "amplenote_api", "gmail_automation"],
-      "related_skills": ["email_processing", "file_organization", "process_new", "user_commands"],
-      "outputs": ["Todoist tasks", "Amplenote note", "JSON file"],
+      "dependencies": [
+        "todoist_api",
+        "amplenote_api",
+        "gmail_automation"
+      ],
+      "related_skills": [
+        "email_processing",
+        "file_organization",
+        "process_new",
+        "user_commands"
+      ],
+      "outputs": [
+        "Todoist tasks",
+        "Amplenote note",
+        "JSON file"
+      ],
       "time_estimate": "30 seconds"
     },
     {
@@ -30,14 +50,29 @@
       "name": "Email Processing",
       "path": "automation/skill_email_processing.md",
       "category": "automation",
-      "tags": ["gmail", "email", "tasks", "automation", "weekly"],
+      "tags": [
+        "gmail",
+        "email",
+        "tasks",
+        "automation",
+        "weekly"
+      ],
       "description": "Automated email processing and task extraction",
       "command": "cd \"G:\\My Drive\\06_Skills\\_scripts\" && python email_processor.py",
       "frequency": "weekly",
       "difficulty": "intermediate",
-      "dependencies": ["gmail_automation", "todoist_api"],
-      "related_skills": ["daily_planning", "gmail_automation"],
-      "outputs": ["Extracted tasks", "Email summaries"],
+      "dependencies": [
+        "gmail_automation",
+        "todoist_api"
+      ],
+      "related_skills": [
+        "daily_planning",
+        "gmail_automation"
+      ],
+      "outputs": [
+        "Extracted tasks",
+        "Email summaries"
+      ],
       "time_estimate": "5-10 minutes"
     },
     {
@@ -45,14 +80,27 @@
       "name": "File Organization",
       "path": "automation/skill_file_organization.md",
       "category": "automation",
-      "tags": ["para", "filing", "organization", "downloads", "daily"],
+      "tags": [
+        "para",
+        "filing",
+        "organization",
+        "downloads",
+        "daily"
+      ],
       "description": "PARA method file organization and download processing",
       "command": "Ask AI to help file downloads",
       "frequency": "daily",
       "difficulty": "beginner",
-      "dependencies": ["routing_rules"],
-      "related_skills": ["routing_rules", "daily_planning"],
-      "outputs": ["Organized files in PARA structure"],
+      "dependencies": [
+        "routing_rules"
+      ],
+      "related_skills": [
+        "routing_rules",
+        "daily_planning"
+      ],
+      "outputs": [
+        "Organized files in PARA structure"
+      ],
       "time_estimate": "10-30 minutes"
     },
     {
@@ -60,14 +108,26 @@
       "name": "Browser Automation",
       "path": "automation/skill_browser_automation.md",
       "category": "automation",
-      "tags": ["playwright", "web", "automation", "scraping"],
+      "tags": [
+        "playwright",
+        "web",
+        "automation",
+        "scraping"
+      ],
       "description": "Web automation with Playwright and MCP",
       "command": "Use Playwright MCP tools",
       "frequency": "as-needed",
       "difficulty": "advanced",
-      "dependencies": ["mcp_server_setup"],
-      "related_skills": ["powershell_automation"],
-      "outputs": ["Web scraping results", "Automated interactions"],
+      "dependencies": [
+        "mcp_server_setup"
+      ],
+      "related_skills": [
+        "powershell_automation"
+      ],
+      "outputs": [
+        "Web scraping results",
+        "Automated interactions"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -75,14 +135,24 @@
       "name": "PowerShell Automation",
       "path": "automation/skill_powershell_automation.md",
       "category": "automation",
-      "tags": ["powershell", "scripting", "windows", "automation"],
+      "tags": [
+        "powershell",
+        "scripting",
+        "windows",
+        "automation"
+      ],
       "description": "PowerShell scripting and automation patterns",
       "command": "See skill for specific scripts",
       "frequency": "as-needed",
       "difficulty": "intermediate",
       "dependencies": [],
-      "related_skills": ["browser_automation"],
-      "outputs": ["Automated tasks", "System management"],
+      "related_skills": [
+        "browser_automation"
+      ],
+      "outputs": [
+        "Automated tasks",
+        "System management"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -90,14 +160,22 @@
       "name": "Torrent Downloads",
       "path": "automation/skill_torrent_downloads.md",
       "category": "automation",
-      "tags": ["torrents", "downloads", "automation"],
+      "tags": [
+        "torrents",
+        "downloads",
+        "automation"
+      ],
       "description": "Automated torrent download management",
       "command": "See skill for torrent setup",
       "frequency": "as-needed",
       "difficulty": "intermediate",
       "dependencies": [],
-      "related_skills": ["file_organization"],
-      "outputs": ["Downloaded files"],
+      "related_skills": [
+        "file_organization"
+      ],
+      "outputs": [
+        "Downloaded files"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -105,14 +183,22 @@
       "name": "Archive Parts Recovery",
       "path": "automation/skill_archive_parts_recovery.md",
       "category": "automation",
-      "tags": ["archives", "recovery", "files"],
+      "tags": [
+        "archives",
+        "recovery",
+        "files"
+      ],
       "description": "Archive file recovery and extraction",
       "command": "See skill for recovery tools",
       "frequency": "as-needed",
       "difficulty": "advanced",
       "dependencies": [],
-      "related_skills": ["file_organization"],
-      "outputs": ["Recovered files"],
+      "related_skills": [
+        "file_organization"
+      ],
+      "outputs": [
+        "Recovered files"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -120,14 +206,27 @@
       "name": "Amplenote API",
       "path": "integrations/skill_amplenote_api.md",
       "category": "integrations",
-      "tags": ["amplenote", "api", "notes", "oauth"],
+      "tags": [
+        "amplenote",
+        "api",
+        "notes",
+        "oauth"
+      ],
       "description": "Amplenote API integration and OAuth setup",
       "command": "cd \"G:\\My Drive\\06_Skills\\_scripts\" && node refresh_amplenote_token.js",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["environments_credentials"],
-      "related_skills": ["amplenote_relay_systems", "daily_planning"],
-      "outputs": ["API access", "OAuth tokens"],
+      "dependencies": [
+        "environments_credentials"
+      ],
+      "related_skills": [
+        "amplenote_relay_systems",
+        "daily_planning"
+      ],
+      "outputs": [
+        "API access",
+        "OAuth tokens"
+      ],
       "time_estimate": "5 minutes setup"
     },
     {
@@ -135,14 +234,25 @@
       "name": "Amplenote Relay Systems",
       "path": "integrations/skill_amplenote_relay_systems.md",
       "category": "integrations",
-      "tags": ["amplenote", "relay", "automation", "advanced"],
+      "tags": [
+        "amplenote",
+        "relay",
+        "automation",
+        "advanced"
+      ],
       "description": "Advanced Amplenote relay configurations",
       "command": "See skill for relay setup",
       "frequency": "as-needed",
       "difficulty": "advanced",
-      "dependencies": ["amplenote_api"],
-      "related_skills": ["amplenote_api"],
-      "outputs": ["Automated workflows"],
+      "dependencies": [
+        "amplenote_api"
+      ],
+      "related_skills": [
+        "amplenote_api"
+      ],
+      "outputs": [
+        "Automated workflows"
+      ],
       "time_estimate": "30+ minutes setup"
     },
     {
@@ -150,14 +260,26 @@
       "name": "Gmail Automation",
       "path": "integrations/skill_gmail_automation.md",
       "category": "integrations",
-      "tags": ["gmail", "api", "email", "oauth"],
+      "tags": [
+        "gmail",
+        "api",
+        "email",
+        "oauth"
+      ],
       "description": "Gmail API setup and automation",
       "command": "cd \"G:\\My Drive\\06_Skills\\_scripts\" && python setup_gmail_oauth.py",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["environments_credentials"],
-      "related_skills": ["email_processing", "daily_planning"],
-      "outputs": ["Gmail API access"],
+      "dependencies": [
+        "environments_credentials"
+      ],
+      "related_skills": [
+        "email_processing",
+        "daily_planning"
+      ],
+      "outputs": [
+        "Gmail API access"
+      ],
       "time_estimate": "10 minutes setup"
     },
     {
@@ -165,14 +287,25 @@
       "name": "Todoist API",
       "path": "integrations/skill_todoist_api.md",
       "category": "integrations",
-      "tags": ["todoist", "api", "tasks"],
+      "tags": [
+        "todoist",
+        "api",
+        "tasks"
+      ],
       "description": "Todoist API integration for task management",
       "command": "cd \"G:\\My Drive\\06_Skills\\_tools\" && python query_todoist.py",
       "frequency": "as-needed",
       "difficulty": "beginner",
-      "dependencies": ["environments_credentials"],
-      "related_skills": ["daily_planning", "email_processing"],
-      "outputs": ["Task management"],
+      "dependencies": [
+        "environments_credentials"
+      ],
+      "related_skills": [
+        "daily_planning",
+        "email_processing"
+      ],
+      "outputs": [
+        "Task management"
+      ],
       "time_estimate": "5 minutes setup"
     },
     {
@@ -180,14 +313,22 @@
       "name": "KeePass Integration",
       "path": "integrations/skill_keepass_integration.md",
       "category": "integrations",
-      "tags": ["keepass", "passwords", "security"],
+      "tags": [
+        "keepass",
+        "passwords",
+        "security"
+      ],
       "description": "KeePass password manager integration",
       "command": "See skill for KeePass usage",
       "frequency": "as-needed",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["environments_credentials"],
-      "outputs": ["Secure password access"],
+      "related_skills": [
+        "environments_credentials"
+      ],
+      "outputs": [
+        "Secure password access"
+      ],
       "time_estimate": "Instant"
     },
     {
@@ -195,14 +336,27 @@
       "name": "Salesforce Development",
       "path": "development/skill_salesforce_development.md",
       "category": "development",
-      "tags": ["salesforce", "apex", "lwc", "development"],
+      "tags": [
+        "salesforce",
+        "apex",
+        "lwc",
+        "development"
+      ],
       "description": "Salesforce Apex and LWC development workflows",
       "command": "sfdx force:org:open -u dmedev5",
       "frequency": "as-needed",
       "difficulty": "advanced",
-      "dependencies": ["environments_credentials", "git_version_control"],
-      "related_skills": ["salesforce_fls_automation", "git_version_control"],
-      "outputs": ["Salesforce code"],
+      "dependencies": [
+        "environments_credentials",
+        "git_version_control"
+      ],
+      "related_skills": [
+        "salesforce_fls_automation",
+        "git_version_control"
+      ],
+      "outputs": [
+        "Salesforce code"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -210,14 +364,25 @@
       "name": "Salesforce FLS Automation",
       "path": "development/skill_salesforce_fls_automation.md",
       "category": "development",
-      "tags": ["salesforce", "fls", "security", "automation"],
+      "tags": [
+        "salesforce",
+        "fls",
+        "security",
+        "automation"
+      ],
       "description": "Field-level security automation",
       "command": "See skill for FLS scripts",
       "frequency": "as-needed",
       "difficulty": "advanced",
-      "dependencies": ["salesforce_development"],
-      "related_skills": ["salesforce_development"],
-      "outputs": ["FLS configurations"],
+      "dependencies": [
+        "salesforce_development"
+      ],
+      "related_skills": [
+        "salesforce_development"
+      ],
+      "outputs": [
+        "FLS configurations"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -225,14 +390,24 @@
       "name": "Salesforce Developer Activity Report",
       "path": "development/skill_salesforce_developer_activity_report.md",
       "category": "development",
-      "tags": ["salesforce", "reporting", "analytics"],
+      "tags": [
+        "salesforce",
+        "reporting",
+        "analytics"
+      ],
       "description": "Developer activity tracking and reporting",
       "command": "See skill for report generation",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["salesforce_development"],
-      "related_skills": ["salesforce_development"],
-      "outputs": ["Activity reports"],
+      "dependencies": [
+        "salesforce_development"
+      ],
+      "related_skills": [
+        "salesforce_development"
+      ],
+      "outputs": [
+        "Activity reports"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -240,14 +415,23 @@
       "name": "Git Version Control",
       "path": "development/skill_git_version_control.md",
       "category": "development",
-      "tags": ["git", "version-control", "github"],
+      "tags": [
+        "git",
+        "version-control",
+        "github"
+      ],
       "description": "Git workflows and version control best practices",
       "command": "git status",
       "frequency": "daily",
       "difficulty": "intermediate",
       "dependencies": [],
-      "related_skills": ["salesforce_development", "azure_devops_automation"],
-      "outputs": ["Version controlled code"],
+      "related_skills": [
+        "salesforce_development",
+        "azure_devops_automation"
+      ],
+      "outputs": [
+        "Version controlled code"
+      ],
       "time_estimate": "Ongoing"
     },
     {
@@ -255,14 +439,26 @@
       "name": "Azure DevOps Automation",
       "path": "development/skill_azure_devops_automation.md",
       "category": "development",
-      "tags": ["azure", "devops", "automation", "work-items"],
+      "tags": [
+        "azure",
+        "devops",
+        "automation",
+        "work-items"
+      ],
       "description": "Azure DevOps work item automation",
       "command": "See skill for ADO automation",
       "frequency": "as-needed",
       "difficulty": "advanced",
-      "dependencies": ["environments_credentials"],
-      "related_skills": ["salesforce_development", "git_version_control"],
-      "outputs": ["Work item management"],
+      "dependencies": [
+        "environments_credentials"
+      ],
+      "related_skills": [
+        "salesforce_development",
+        "git_version_control"
+      ],
+      "outputs": [
+        "Work item management"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -270,14 +466,24 @@
       "name": "Mermaid Diagrams",
       "path": "documentation/skill_mermaid_diagrams.md",
       "category": "documentation",
-      "tags": ["mermaid", "diagrams", "documentation"],
+      "tags": [
+        "mermaid",
+        "diagrams",
+        "documentation"
+      ],
       "description": "Mermaid diagram syntax and Visio conversion",
       "command": "Create .mmd file with Mermaid syntax",
       "frequency": "as-needed",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["visio_via_mermaid", "mermaid_from_visio", "mermaid_section_508"],
-      "outputs": ["Mermaid diagrams"],
+      "related_skills": [
+        "visio_via_mermaid",
+        "mermaid_from_visio",
+        "mermaid_section_508"
+      ],
+      "outputs": [
+        "Mermaid diagrams"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -285,14 +491,26 @@
       "name": "Visio via Mermaid",
       "path": "documentation/skill_visio_via_mermaid.md",
       "category": "documentation",
-      "tags": ["visio", "mermaid", "conversion", "diagrams"],
+      "tags": [
+        "visio",
+        "mermaid",
+        "conversion",
+        "diagrams"
+      ],
       "description": "Create Visio diagrams using Mermaid workflow",
       "command": "cd \"G:\\My Drive\\06_Skills\\_tools\" && python mermaid-to-visio.py input.mmd output.vsdx",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["mermaid_diagrams"],
-      "related_skills": ["mermaid_diagrams", "visio_section_508"],
-      "outputs": ["Visio files"],
+      "dependencies": [
+        "mermaid_diagrams"
+      ],
+      "related_skills": [
+        "mermaid_diagrams",
+        "visio_section_508"
+      ],
+      "outputs": [
+        "Visio files"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -300,14 +518,26 @@
       "name": "Mermaid from Visio",
       "path": "documentation/skill_mermaid_from_visio.md",
       "category": "documentation",
-      "tags": ["visio", "mermaid", "conversion", "reverse-engineering"],
+      "tags": [
+        "visio",
+        "mermaid",
+        "conversion",
+        "reverse-engineering"
+      ],
       "description": "Convert Visio diagrams to Mermaid syntax",
       "command": "Manual conversion or use Python script",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["mermaid_diagrams"],
-      "related_skills": ["mermaid_diagrams", "visio_via_mermaid"],
-      "outputs": ["Mermaid files"],
+      "dependencies": [
+        "mermaid_diagrams"
+      ],
+      "related_skills": [
+        "mermaid_diagrams",
+        "visio_via_mermaid"
+      ],
+      "outputs": [
+        "Mermaid files"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -315,14 +545,28 @@
       "name": "Mermaid Section 508",
       "path": "documentation/skill_mermaid_section_508.md",
       "category": "documentation",
-      "tags": ["mermaid", "section-508", "accessibility", "wcag"],
+      "tags": [
+        "mermaid",
+        "section-508",
+        "accessibility",
+        "wcag"
+      ],
       "description": "Section 508 compliant Mermaid diagrams",
       "command": "Use approved color palette from skill",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["mermaid_diagrams", "section_508_compliance"],
-      "related_skills": ["mermaid_diagrams", "visio_section_508", "section_508_compliance"],
-      "outputs": ["Accessible diagrams"],
+      "dependencies": [
+        "mermaid_diagrams",
+        "section_508_compliance"
+      ],
+      "related_skills": [
+        "mermaid_diagrams",
+        "visio_section_508",
+        "section_508_compliance"
+      ],
+      "outputs": [
+        "Accessible diagrams"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -330,14 +574,27 @@
       "name": "Visio Section 508",
       "path": "documentation/skill_visio_section_508.md",
       "category": "documentation",
-      "tags": ["visio", "section-508", "accessibility", "wcag"],
+      "tags": [
+        "visio",
+        "section-508",
+        "accessibility",
+        "wcag"
+      ],
       "description": "Section 508 compliant Visio diagrams",
       "command": "Follow accessibility guidelines in skill",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["section_508_compliance"],
-      "related_skills": ["visio_via_mermaid", "mermaid_section_508", "section_508_compliance"],
-      "outputs": ["Accessible Visio files"],
+      "dependencies": [
+        "section_508_compliance"
+      ],
+      "related_skills": [
+        "visio_via_mermaid",
+        "mermaid_section_508",
+        "section_508_compliance"
+      ],
+      "outputs": [
+        "Accessible Visio files"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -345,14 +602,26 @@
       "name": "Visio Grant Lifecycle Diagram",
       "path": "documentation/skill_visio_grant_lifecycle_diagram.md",
       "category": "documentation",
-      "tags": ["visio", "grant", "lifecycle", "specialized"],
+      "tags": [
+        "visio",
+        "grant",
+        "lifecycle",
+        "specialized"
+      ],
       "description": "Grant lifecycle diagram specifications",
       "command": "See skill for template",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["visio_section_508"],
-      "related_skills": ["visio_via_mermaid", "visio_section_508"],
-      "outputs": ["Grant lifecycle diagrams"],
+      "dependencies": [
+        "visio_section_508"
+      ],
+      "related_skills": [
+        "visio_via_mermaid",
+        "visio_section_508"
+      ],
+      "outputs": [
+        "Grant lifecycle diagrams"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -360,14 +629,23 @@
       "name": "TEG Discussion Templates",
       "path": "documentation/skill_teg_discussion_templates.md",
       "category": "documentation",
-      "tags": ["teg", "templates", "documentation"],
+      "tags": [
+        "teg",
+        "templates",
+        "documentation"
+      ],
       "description": "TEG discussion document templates",
       "command": "Use template from skill",
       "frequency": "as-needed",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["feature_documentation", "teg_discussion_template_alt"],
-      "outputs": ["TEG documents"],
+      "related_skills": [
+        "feature_documentation",
+        "teg_discussion_template_alt"
+      ],
+      "outputs": [
+        "TEG documents"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -375,14 +653,23 @@
       "name": "Feature Documentation",
       "path": "documentation/skill_feature_documentation.md",
       "category": "documentation",
-      "tags": ["documentation", "features", "standards"],
+      "tags": [
+        "documentation",
+        "features",
+        "standards"
+      ],
       "description": "Feature documentation standards",
       "command": "Follow documentation standards in skill",
       "frequency": "as-needed",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["teg_discussion_templates", "mermaid_diagrams"],
-      "outputs": ["Feature documentation"],
+      "related_skills": [
+        "teg_discussion_templates",
+        "mermaid_diagrams"
+      ],
+      "outputs": [
+        "Feature documentation"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -390,14 +677,27 @@
       "name": "QIF DNDD Fillable Forms Visio Spec",
       "path": "documentation/skill_qif_dndd_fillable_forms_visio_spec.md",
       "category": "documentation",
-      "tags": ["qif", "dndd", "forms", "visio", "specialized"],
+      "tags": [
+        "qif",
+        "dndd",
+        "forms",
+        "visio",
+        "specialized"
+      ],
       "description": "QIF DNDD fillable forms architecture",
       "command": "See skill for specifications",
       "frequency": "as-needed",
       "difficulty": "advanced",
-      "dependencies": ["visio_section_508"],
-      "related_skills": ["visio_via_mermaid", "visio_section_508"],
-      "outputs": ["Form specifications"],
+      "dependencies": [
+        "visio_section_508"
+      ],
+      "related_skills": [
+        "visio_via_mermaid",
+        "visio_section_508"
+      ],
+      "outputs": [
+        "Form specifications"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -405,14 +705,24 @@
       "name": "TEG Discussion Template Alt",
       "path": "documentation/skill_teg_discussion_template_alt.md",
       "category": "documentation",
-      "tags": ["teg", "templates", "documentation", "alternative"],
+      "tags": [
+        "teg",
+        "templates",
+        "documentation",
+        "alternative"
+      ],
       "description": "Alternative TEG discussion template",
       "command": "Use alternative template from skill",
       "frequency": "as-needed",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["teg_discussion_templates", "feature_documentation"],
-      "outputs": ["TEG documents"],
+      "related_skills": [
+        "teg_discussion_templates",
+        "feature_documentation"
+      ],
+      "outputs": [
+        "TEG documents"
+      ],
       "time_estimate": "Varies"
     },
     {
@@ -420,14 +730,25 @@
       "name": "User Commands",
       "path": "system/skill_user_commands.md",
       "category": "system",
-      "tags": ["commands", "reference", "quick-start", "daily"],
+      "tags": [
+        "commands",
+        "reference",
+        "quick-start",
+        "daily"
+      ],
       "description": "Quick reference for common commands and workflows",
       "command": "Reference skill for all commands",
       "frequency": "daily",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["daily_planning", "file_organization", "routing_rules"],
-      "outputs": ["Command reference"],
+      "related_skills": [
+        "daily_planning",
+        "file_organization",
+        "routing_rules"
+      ],
+      "outputs": [
+        "Command reference"
+      ],
       "time_estimate": "Instant lookup"
     },
     {
@@ -435,14 +756,24 @@
       "name": "Section 508 Compliance",
       "path": "system/skill_section_508_compliance.md",
       "category": "system",
-      "tags": ["section-508", "accessibility", "wcag", "compliance"],
+      "tags": [
+        "section-508",
+        "accessibility",
+        "wcag",
+        "compliance"
+      ],
       "description": "Section 508 accessibility guidelines for all content",
       "command": "Follow accessibility guidelines in skill",
       "frequency": "as-needed",
       "difficulty": "intermediate",
       "dependencies": [],
-      "related_skills": ["mermaid_section_508", "visio_section_508"],
-      "outputs": ["Accessible content"],
+      "related_skills": [
+        "mermaid_section_508",
+        "visio_section_508"
+      ],
+      "outputs": [
+        "Accessible content"
+      ],
       "time_estimate": "Ongoing"
     },
     {
@@ -450,14 +781,24 @@
       "name": "Routing Rules",
       "path": "system/skill_routing_rules.md",
       "category": "system",
-      "tags": ["routing", "para", "organization", "daily"],
+      "tags": [
+        "routing",
+        "para",
+        "organization",
+        "daily"
+      ],
       "description": "System-wide routing rules for tasks, notes, and files",
       "command": "Reference skill for routing decisions",
       "frequency": "daily",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["file_organization", "process_new"],
-      "outputs": ["Routing guidance"],
+      "related_skills": [
+        "file_organization",
+        "process_new"
+      ],
+      "outputs": [
+        "Routing guidance"
+      ],
       "time_estimate": "Instant lookup"
     },
     {
@@ -465,14 +806,25 @@
       "name": "Environments & Credentials",
       "path": "system/skill_environments_credentials.md",
       "category": "system",
-      "tags": ["credentials", "api-keys", "setup", "security"],
+      "tags": [
+        "credentials",
+        "api-keys",
+        "setup",
+        "security"
+      ],
       "description": "Credential management and environment configuration",
       "command": "Check G:\\My Drive\\03_Areas\\Keys\\Environments\\environments.json",
       "frequency": "as-needed",
       "difficulty": "intermediate",
       "dependencies": [],
-      "related_skills": ["amplenote_api", "gmail_automation", "todoist_api"],
-      "outputs": ["API access"],
+      "related_skills": [
+        "amplenote_api",
+        "gmail_automation",
+        "todoist_api"
+      ],
+      "outputs": [
+        "API access"
+      ],
       "time_estimate": "5-10 minutes setup"
     },
     {
@@ -480,14 +832,24 @@
       "name": "Cascade Workflow",
       "path": "system/skill_cascade_workflow.md",
       "category": "system",
-      "tags": ["cascade", "ai", "workflow", "patterns"],
+      "tags": [
+        "cascade",
+        "ai",
+        "workflow",
+        "patterns"
+      ],
       "description": "Cascade AI workflow patterns and best practices",
       "command": "Follow AI interaction patterns in skill",
       "frequency": "daily",
       "difficulty": "beginner",
       "dependencies": [],
-      "related_skills": ["agent_handoff", "organizing_skills"],
-      "outputs": ["Effective AI collaboration"],
+      "related_skills": [
+        "agent_handoff",
+        "organizing_skills"
+      ],
+      "outputs": [
+        "Effective AI collaboration"
+      ],
       "time_estimate": "Ongoing"
     },
     {
@@ -495,14 +857,26 @@
       "name": "Agent Handoff",
       "path": "system/skill_agent_handoff.md",
       "category": "system",
-      "tags": ["ai", "handoff", "context", "collaboration"],
+      "tags": [
+        "ai",
+        "handoff",
+        "context",
+        "collaboration"
+      ],
       "description": "Agent handoff protocols and context sharing",
       "command": "Follow handoff protocols in skill",
       "frequency": "as-needed",
       "difficulty": "intermediate",
-      "dependencies": ["cascade_workflow"],
-      "related_skills": ["cascade_workflow", "organizing_skills"],
-      "outputs": ["Smooth AI transitions"],
+      "dependencies": [
+        "cascade_workflow"
+      ],
+      "related_skills": [
+        "cascade_workflow",
+        "organizing_skills"
+      ],
+      "outputs": [
+        "Smooth AI transitions"
+      ],
       "time_estimate": "Ongoing"
     },
     {
@@ -510,14 +884,26 @@
       "name": "MCP Server Setup",
       "path": "system/skill_mcp_server_setup.md",
       "category": "system",
-      "tags": ["mcp", "server", "windsurf", "integration"],
+      "tags": [
+        "mcp",
+        "server",
+        "windsurf",
+        "integration"
+      ],
       "description": "MCP server configuration and setup",
       "command": "cd \"G:\\My Drive\\06_Skills\\_tools\" && python server.py",
       "frequency": "as-needed",
       "difficulty": "advanced",
-      "dependencies": ["environments_credentials"],
-      "related_skills": ["browser_automation", "daily_planning"],
-      "outputs": ["MCP server running"],
+      "dependencies": [
+        "environments_credentials"
+      ],
+      "related_skills": [
+        "browser_automation",
+        "daily_planning"
+      ],
+      "outputs": [
+        "MCP server running"
+      ],
       "time_estimate": "15 minutes setup"
     },
     {
@@ -525,14 +911,30 @@
       "name": "Process New",
       "path": "system/skill_process_new.md",
       "category": "system",
-      "tags": ["workflow", "daily", "automation", "comprehensive"],
+      "tags": [
+        "workflow",
+        "daily",
+        "automation",
+        "comprehensive"
+      ],
       "description": "Complete workflow for processing new items",
       "command": "cd \"G:\\My Drive\\06_Skills\\_tools\" && python run_process_new.py",
       "frequency": "daily",
       "difficulty": "beginner",
-      "dependencies": ["daily_planning", "email_processing", "file_organization"],
-      "related_skills": ["daily_planning", "email_processing", "file_organization", "routing_rules"],
-      "outputs": ["Complete daily plan"],
+      "dependencies": [
+        "daily_planning",
+        "email_processing",
+        "file_organization"
+      ],
+      "related_skills": [
+        "daily_planning",
+        "email_processing",
+        "file_organization",
+        "routing_rules"
+      ],
+      "outputs": [
+        "Complete daily plan"
+      ],
       "time_estimate": "30 seconds"
     },
     {
@@ -540,30 +942,118 @@
       "name": "Organizing Skills",
       "path": "system/skill_organizing_skills.md",
       "category": "system",
-      "tags": ["meta", "organization", "tools", "creation"],
+      "tags": [
+        "meta",
+        "organization",
+        "tools",
+        "creation"
+      ],
       "description": "Guidelines for organizing skills and creating tools",
       "command": "Follow organization guidelines in skill",
       "frequency": "as-needed",
       "difficulty": "intermediate",
       "dependencies": [],
-      "related_skills": ["cascade_workflow", "agent_handoff"],
-      "outputs": ["Well-organized skills"],
+      "related_skills": [
+        "cascade_workflow",
+        "agent_handoff"
+      ],
+      "outputs": [
+        "Well-organized skills"
+      ],
       "time_estimate": "Varies"
+    },
+    {
+      "id": "bphc_release_planning",
+      "name": "BPHC Release Planning",
+      "path": "automation/skill_bphc_release_planning.md",
+      "category": "automation",
+      "tags": [
+        "planning",
+        "excel",
+        "ado",
+        "release",
+        "bphc",
+        "estimates",
+        "rom"
+      ],
+      "description": "Build Release Planning Estimates Excel, inject completion percentages, and patch ADO epic/feature effort fields",
+      "command": "python build_release_planning_excel.py && python scripts/inject_completion_release_sheets.py",
+      "frequency": "as-needed",
+      "difficulty": "intermediate",
+      "dependencies": [
+        "openpyxl",
+        "devops-hrsa-ado credentials"
+      ],
+      "related_skills": [
+        "azure_devops_automation",
+        "daily_planning"
+      ],
+      "outputs": [
+        "Release_Planning_Estimates_v3.X.xlsx (33 sheets)",
+        "ADO Effort field patches"
+      ],
+      "time_estimate": "5-15 minutes"
     }
   ],
   "quick_lookup": {
-    "daily_use": ["daily_planning", "file_organization", "user_commands", "routing_rules", "git_version_control"],
-    "weekly_use": ["email_processing"],
-    "setup_first": ["environments_credentials", "routing_rules", "mcp_server_setup"],
-    "most_important": ["user_commands", "daily_planning", "routing_rules", "section_508_compliance"],
+    "daily_use": [
+      "daily_planning",
+      "file_organization",
+      "user_commands",
+      "routing_rules",
+      "git_version_control"
+    ],
+    "weekly_use": [
+      "email_processing"
+    ],
+    "setup_first": [
+      "environments_credentials",
+      "routing_rules",
+      "mcp_server_setup"
+    ],
+    "most_important": [
+      "user_commands",
+      "daily_planning",
+      "routing_rules",
+      "section_508_compliance"
+    ],
     "by_use_case": {
-      "email_management": ["email_processing", "gmail_automation", "daily_planning"],
-      "task_management": ["todoist_api", "daily_planning", "process_new"],
-      "documentation": ["mermaid_diagrams", "visio_via_mermaid", "mermaid_section_508", "feature_documentation"],
-      "development": ["salesforce_development", "git_version_control", "azure_devops_automation"],
-      "accessibility": ["section_508_compliance", "mermaid_section_508", "visio_section_508"],
-      "file_management": ["file_organization", "routing_rules"],
-      "ai_integration": ["cascade_workflow", "agent_handoff", "mcp_server_setup", "user_commands"]
+      "email_management": [
+        "email_processing",
+        "gmail_automation",
+        "daily_planning"
+      ],
+      "task_management": [
+        "todoist_api",
+        "daily_planning",
+        "process_new"
+      ],
+      "documentation": [
+        "mermaid_diagrams",
+        "visio_via_mermaid",
+        "mermaid_section_508",
+        "feature_documentation"
+      ],
+      "development": [
+        "salesforce_development",
+        "git_version_control",
+        "azure_devops_automation"
+      ],
+      "accessibility": [
+        "section_508_compliance",
+        "mermaid_section_508",
+        "visio_section_508"
+      ],
+      "file_management": [
+        "file_organization",
+        "routing_rules"
+      ],
+      "ai_integration": [
+        "cascade_workflow",
+        "agent_handoff",
+        "mcp_server_setup",
+        "user_commands"
+      ]
     }
   }
 }

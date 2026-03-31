@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-03-20",
-  "total_skills": 37,
+  "last_updated": "2026-03-31",
+  "total_skills": 38,
   "categories": {
     "automation": 8,
     "integrations": 5,
-    "development": 5,
+    "development": 6,
     "documentation": 10,
     "system": 9
   },
@@ -963,6 +963,42 @@
       "time_estimate": "Varies"
     },
     {
+      "id": "dev_complete",
+      "name": "Developer Complete Work",
+      "path": "development/skill_dev_complete.md",
+      "category": "development",
+      "tags": [
+        "definition-of-done",
+        "commit",
+        "push",
+        "feature-docs",
+        "handoff",
+        "pr",
+        "dod"
+      ],
+      "description": "Definition of Done — update feature docs, create handoff, commit, push, and create PR",
+      "command": "Follow 4-phase DoD process in skill",
+      "frequency": "per-feature",
+      "difficulty": "intermediate",
+      "dependencies": [
+        "git_version_control",
+        "feature_documentation"
+      ],
+      "related_skills": [
+        "salesforce_development",
+        "azure_devops_automation",
+        "feature_documentation",
+        "git_version_control"
+      ],
+      "outputs": [
+        "Updated feature docs",
+        "Handoff document",
+        "Git commit",
+        "ADO PR"
+      ],
+      "time_estimate": "30-90 minutes"
+    },
+    {
       "id": "bphc_release_planning",
       "name": "BPHC Release Planning",
       "path": "automation/skill_bphc_release_planning.md",
@@ -1037,7 +1073,8 @@
       "development": [
         "salesforce_development",
         "git_version_control",
-        "azure_devops_automation"
+        "azure_devops_automation",
+        "dev_complete"
       ],
       "accessibility": [
         "section_508_compliance",

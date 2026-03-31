@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
   "last_updated": "2026-03-31",
-  "total_skills": 38,
+  "total_skills": 39,
   "categories": {
     "automation": 8,
     "integrations": 5,
-    "development": 6,
+    "development": 7,
     "documentation": 10,
     "system": 9
   },
@@ -961,6 +961,40 @@
         "Well-organized skills"
       ],
       "time_estimate": "Varies"
+    },
+    {
+      "id": "e2e_testing",
+      "name": "E2E Testing — Salesforce + Playwright",
+      "path": "development/skill_e2e_testing.md",
+      "category": "development",
+      "tags": [
+        "e2e",
+        "playwright",
+        "salesforce",
+        "testing",
+        "lwc",
+        "ui-testing",
+        "smoke-test"
+      ],
+      "description": "E2E testing of Salesforce LWC features using Playwright CLI + sf org open frontdoor URL pattern",
+      "command": "export SF_FRONTDOOR_URL=$(sf org open --target-org dmedev5 --url-only 2>&1 | grep '^https') && npx playwright test --project=my-feature",
+      "frequency": "per-feature",
+      "difficulty": "intermediate",
+      "dependencies": [
+        "salesforce_development",
+        "git_version_control"
+      ],
+      "related_skills": [
+        "salesforce_development",
+        "dev_complete",
+        "browser_automation"
+      ],
+      "outputs": [
+        "Playwright spec file",
+        "Screenshots in Tests/screenshots/",
+        "Playwright HTML report"
+      ],
+      "time_estimate": "5-30 minutes"
     },
     {
       "id": "dev_complete",

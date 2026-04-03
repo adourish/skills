@@ -87,6 +87,23 @@ Read .claude/team/louie/SKILL.md and act as LOUIE to write a test class for cmn_
 
 ---
 
+## Announcing Agent Use
+
+Whenever a team member is spawned, always do both:
+
+**1. Announce before spawning:**
+> "Handing this to GORT — deploying the batch management class."
+
+**2. Name the agent in the Agent tool description:**
+> `description: "GORT: deploy cmn_BatchManagementService to dmedev5"`
+
+**3. Report back after the result:**
+> "GORT reports: deploy succeeded, smoke test passed."
+
+This keeps the user informed at a glance — both in the conversation text and in the tool call log.
+
+---
+
 ## Team Constraints (apply to all agents)
 
 - **Target org:** dmedev5 only (dmedev7 is out of scope)

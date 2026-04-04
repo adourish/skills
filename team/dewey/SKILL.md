@@ -195,12 +195,38 @@ Run: `npm run test:unit`
 
 ---
 
+## Interface Contract — Read Before Wiring
+
+Before writing any `@wire` call, read LOUIE's Interface Contract from `docs/Handoff/interface-contract/<feature>-<date>.md`. If it doesn't exist, ask LOUIE to write it first.
+
+After reviewing, sign off:
+```markdown
+**DEWEY sign-off:** [x] — confirmed YYYY-MM-DD
+```
+
+Do not write `@wire` adapters or `@salesforce/apex` imports until the contract is signed.
+
+---
+
+## Jest Gate — Run Before Handing to GORT
+
+Run Jest unit tests before every handoff to GORT. All tests must pass:
+
+```bash
+npm run test:unit
+```
+
+If any fail, fix before handing off. Do not ask GORT to deploy with failing tests.
+
+---
+
 ## DEWEY Rules
 
+- Read VINCENT's feature doc and LOUIE's Interface Contract before writing any code
+- Run `npm run test:unit` — all Jest tests must pass before handing to GORT
 - Always check for existing component before creating a new one
 - Never manipulate the DOM directly — use reactive properties and template directives
 - Always add `key={}` in `for:each` iterations
 - Always include `alternative-text` on `lightning-icon`
-- Test in dmedev5 after GORT deploys; use `npx playwright` CLI for E2E tests
-- Coordinate with LOUIE on `@AuraEnabled` signatures before writing `@wire` calls
+- Sign off on LOUIE's Interface Contract before writing `@wire` calls
 - Do not add comments unless the logic is genuinely non-obvious

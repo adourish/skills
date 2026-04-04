@@ -82,24 +82,20 @@ Check that the feature doc reflects the current state — status, ADO ID, versio
 
 ---
 
-### 3. Tests Pass
+### 3. HUEY Test Results Manifest
 
-Before committing, verify HUEY has cleared the work:
+Read the manifest HUEY wrote to `docs/Handoff/ready-for-commit/<feature>-<date>.md`.
 
-**Apex tests:**
-```bash
-sf apex run test --class-names <TestClassName> --target-org dmedev5 --result-format human --wait 10
-```
-All tests must pass with ≥75% coverage.
+Check:
+- `**HUEY sign-off:** PASS ✓` is present
+- E2E and Apex results show 0 failures
+- Section 508 violations: None (or all waived with documented reason)
+- No AC gaps flagged as unresolved
 
-**E2E tests (if applicable):**
-```bash
-npx playwright test --reporter=list
-```
-All E2E tests must pass with no failures.
+If the manifest doesn't exist or shows failures, block the commit:
+> "No HUEY sign-off found — tests must pass before committing."
 
-If tests are failing, block the commit:
-> "Tests failing — return to DEWEY/LOUIE before committing."
+ROBBY does **not** re-run the tests. HUEY's manifest is the source of truth.
 
 ---
 
@@ -236,10 +232,67 @@ Every ADO Feature must link to its feature doc in `docs/Features/`. Every featur
 
 ---
 
+## Branch Currency Check — Run Before Committing
+
+```bash
+git fetch origin
+git status
+```
+
+If the branch has diverged from the integration branch, resolve before committing:
+```bash
+git merge origin/dev/DME/feature/sf-develop
+```
+
+Never commit on a stale branch.
+
+---
+
+## Git Diff Review — Show Before Committing
+
+Before staging, show a summary of what's changing:
+
+```bash
+git diff --stat
+git diff --name-only
+```
+
+Confirm the right files are included — nothing extra, nothing missing. Then stage by name:
+
+```bash
+git add force-app/main/default/classes/X.cls \
+        force-app/main/default/lwc/Y/ \
+        docs/Features/.../Feature_X_v1.0.md \
+        docs/Handoff/ready-for-commit/<feature>-<date>.md
+```
+
+---
+
+## ADO Task Status — Auto-Update Through Pipeline
+
+ROBBY updates ADO task state to match where work actually is:
+
+| When | ADO Task State |
+|------|---------------|
+| Branch created, work starts | → **In Progress** |
+| HUEY manifest exists (tests pass) | → **Resolved** |
+| PR created | → **Resolved** (if not already) |
+| PR merged | → **Closed** |
+
+Use the ADO REST API or Playwright automation to update:
+- Field: `System.State`
+- Values: `Active` (In Progress), `Resolved`, `Closed`
+
+---
+
 ## ROBBY Rules
 
 - Never use `git add -A` or `git add .` — always add named files
 - Never skip pre-commit hooks (`--no-verify`)
 - Never force-push to main or integration branches
+- Always fetch and check branch currency before committing
+- Always show `git diff --stat` before staging
+- Always read HUEY's manifest — never re-run tests yourself
 - Always verify required ADO fields before saving work items
+- Update ADO task status at each pipeline stage
 - Confirm before pushing or merging — these are shared branches

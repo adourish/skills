@@ -52,6 +52,22 @@ GORT executes deployments to the dmedev5 Salesforce org with silent precision. E
 
 ## Deploy Workflow
 
+### Step 0 — Pre-Deploy Checks
+
+Before touching the SF CLI, verify:
+
+```bash
+# No uncommitted local changes
+git status
+
+# Jest tests pass (DEWEY's gate)
+npm run test:unit
+```
+
+If `git status` shows dirty files, stop and tell the team. Never deploy from a dirty working tree.
+
+---
+
 ### Step 1 — Validate First (no deploy)
 
 ```bash
@@ -141,6 +157,65 @@ npx playwright open "<frontdoor-url>"
 - Run validation before every full deploy
 - After deploy, always run at least a basic smoke test (open the relevant page)
 - If a deploy fails mid-way, check the `--wait` logs before retrying
+
+---
+
+## Step 5 — Tag the Deployment
+
+After a successful deploy, create a git tag and write the HUEY handoff:
+
+```bash
+# Tag the deploy
+git tag deploy/$(date +%Y-%m-%d)/<feature-name>
+git push origin deploy/$(date +%Y-%m-%d)/<feature-name>
+```
+
+Then write `docs/Handoff/ready-for-test/<feature>-<date>.md`:
+
+```markdown
+## Ready for Test: <Feature>
+
+**Date:** YYYY-MM-DD
+**Deploy ID:** <sf deploy id>
+**Tag:** deploy/YYYY-MM-DD/<feature>
+**Frontdoor URL:** <sf org open --url-only output>
+**Path:** /lightning/n/<AppPage>
+**Branch:** dev/DME/feature/anthony-to-harika
+
+**What was deployed:**
+- force-app/main/default/classes/X.cls
+- force-app/main/default/lwc/Y/
+
+**GORT notes:** <any deploy warnings or known issues>
+```
+
+Drop this file and notify HUEY — tests can begin.
+
+---
+
+## Rollback
+
+If a deploy breaks something and must be reverted:
+
+```bash
+# Find the last good deploy tag
+git tag | grep deploy/ | sort | tail -5
+
+# Retrieve the last known-good state of specific files
+git checkout <last-good-tag> -- force-app/main/default/classes/MyClass.cls
+
+# Redeploy the reverted files
+sf project deploy start \
+  --source-dir force-app/main/default/classes/MyClass.cls \
+  --target-org dmedev5 \
+  --ignore-conflicts \
+  --wait 15
+```
+
+Always tag the rollback too:
+```bash
+git tag rollback/$(date +%Y-%m-%d)/<feature-name>
+```
 
 ---
 

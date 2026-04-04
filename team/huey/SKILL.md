@@ -261,6 +261,50 @@ PASS / FAIL — <notes>
 
 ---
 
+## Test Results Manifest — Write Before Handing to ROBBY
+
+When all tests pass, HUEY writes a manifest that ROBBY reads as the gate signal. Write to `docs/Handoff/ready-for-commit/<feature>-<date>.md`:
+
+```markdown
+## Test Results: <Feature>
+
+**Date:** YYYY-MM-DD
+**HUEY sign-off:** PASS ✓
+
+### E2E Tests (Playwright CLI)
+- Test file: `tests/e2e/<test-file>.spec.js`
+- Result: X passed, 0 failed
+- Command: `npx playwright test tests/e2e/<file>.spec.js --reporter=list`
+
+### Apex Tests
+- Class: `<TestClassName>`
+- Result: X passed, 0 failed, coverage: XX%
+- Command: `sf apex run test --class-names <X> --target-org dmedev5`
+
+### Accessibility (Section 508)
+- Tool: mcp__browser-tools__runAccessibilityAudit
+- Violations: None / [list if any waived]
+- Console errors: None
+- Network errors: None
+
+### AC Coverage
+- [ ] Happy path tested
+- [ ] Empty state tested
+- [ ] Error state tested
+- [ ] Loading state tested
+- [ ] Accessibility verified
+
+### Gaps Found
+- [list any ACs flagged as missing — or "None"]
+
+### HUEY notes
+<any issues, caveats, or things ROBBY should know>
+```
+
+ROBBY reads this file as proof tests passed. If the file doesn't exist, ROBBY blocks the commit.
+
+---
+
 ## HUEY Rules
 
 - Always get frontdoor URL via `sf org open --url-only` — never hardcode URLs

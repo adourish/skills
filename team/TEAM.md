@@ -5,7 +5,7 @@ description: BPHC-GAM2010 development team roster and collaboration guide. Spawn
 
 # BPHC Dev Team — Classic Robots
 
-Five retro robot agents covering every layer of the development lifecycle.
+Six retro robot agents covering every layer of the development lifecycle.
 
 ---
 
@@ -13,10 +13,11 @@ Five retro robot agents covering every layer of the development lifecycle.
 
 | Agent | Film | Role | Invoke When |
 |-------|------|------|------------|
-| **HUEY** | Silent Running (1972) | QA & Test Engineer | "write a test", "run the tests", "smoke test", "does this work", "check for errors", "playwright", "accessibility audit", "test plan" |
-| **DEWEY** | Silent Running (1972) | LWC Frontend Developer | "build a component", "fix the UI", "wire a data call", "LWC template", "CSS/SLDS" |
+| **VINCENT** | The Black Hole (1979) | Design & Requirements | "write a feature doc", "define acceptance criteria", "create user stories", "wireframe this", "what should this feature do", "interface contract" |
 | **LOUIE** | Silent Running (1972) | Apex & Backend Developer | "write an Apex class", "fix the SOQL", "batch job", "test class", "data model" |
+| **DEWEY** | Silent Running (1972) | LWC Frontend Developer | "build a component", "fix the UI", "wire a data call", "LWC template", "CSS/SLDS" |
 | **GORT** | The Day the Earth Stood Still (1951) | Salesforce Deployment | "deploy", "push to org", "validate", "frontdoor URL" |
+| **HUEY** | Silent Running (1972) | QA & Test Engineer | "write a test", "run the tests", "smoke test", "does this work", "check for errors", "playwright", "accessibility audit", "test plan" |
 | **ROBBY** | Forbidden Planet (1956) | ADO & Git Operations | "commit", "create a PR", "push", "create a user story", "merge", "ADO link" |
 
 ---
@@ -25,46 +26,76 @@ Five retro robot agents covering every layer of the development lifecycle.
 
 | Agent | Skill File |
 |-------|-----------|
-| HUEY | `tools/skills/team/huey/SKILL.md` |
-| DEWEY | `tools/skills/team/dewey/SKILL.md` |
+| VINCENT | `tools/skills/team/vincent/SKILL.md` |
 | LOUIE | `tools/skills/team/louie/SKILL.md` |
+| DEWEY | `tools/skills/team/dewey/SKILL.md` |
 | GORT | `tools/skills/team/gort/SKILL.md` |
+| HUEY | `tools/skills/team/huey/SKILL.md` |
 | ROBBY | `tools/skills/team/robby/SKILL.md` |
+
+---
+
+## Sprint Status
+
+All agents read and update `docs/Team/sprint-status.md` on startup and when their status changes.
 
 ---
 
 ## Standard Feature Lifecycle
 
 ```mermaid
-flowchart LR
-    DEW[DEWEY\nLWC Frontend] -->|component ready| GORT[GORT\nDeploy to dmedev5]
-    LOU[LOUIE\nApex Backend] -->|classes ready| GORT
-    GORT -->|deployed| HUE[HUEY\nQA & Tests]
-    HUE -->|tests pass| ROB[ROBBY\nCommit + PR + ADO]
+flowchart TD
+    VIN[VINCENT\nFeature Doc + ACs\nInterface Contract] -->|contract ready| LOU[LOUIE\nApex Backend]
+    VIN -->|contract ready| DEW[DEWEY\nLWC Frontend]
+    LOU -->|interface contract signed| DEW
+    LOU -->|classes ready| GORT[GORT\nDeploy to dmedev5]
+    DEW -->|Jest passing| GORT
+    GORT -->|deployed + frontdoor URL| HUE[HUEY\nQA & Tests]
+    HUE -->|manifest written\ntests pass| ROB[ROBBY\nCommit + PR + ADO]
     HUE -->|tests fail| DEW
     HUE -->|tests fail| LOU
+    ROB -->|PR merged| done[Done]
 ```
 
-### Handoff Points
+### Handoff Files
 
-1. **DEWEY → GORT**: LWC component complete, Jest unit tests passing
-2. **LOUIE → GORT**: Apex class complete, test class written (≥75% coverage)
-3. **GORT → HUEY**: Deployed to dmedev5, frontdoor URL provided
-4. **HUEY → ROBBY**: All tests pass, accessibility audit clean, evidence documented
-5. **HUEY → DEWEY/LOUIE**: Tests fail — bug report with reproduction steps
-6. **ROBBY → ADO**: PR created, work items linked, branch pushed
+| Stage | From | To | File Location |
+|-------|------|----|---------------|
+| Design → Build | VINCENT | LOUIE + DEWEY | `docs/Handoff/interface-contract/<feature>-<date>.md` |
+| Build → Deploy | DEWEY + LOUIE | GORT | `docs/Handoff/ready-for-deploy/<feature>-<date>.md` |
+| Deploy → Test | GORT | HUEY | `docs/Handoff/ready-for-test/<feature>-<date>.md` |
+| Test → Commit | HUEY | ROBBY | `docs/Handoff/ready-for-commit/<feature>-<date>.md` |
+
+### Handoff Points (narrative)
+
+1. **VINCENT → LOUIE + DEWEY**: Feature doc written, ACs defined, interface contract in `docs/Handoff/interface-contract/`
+2. **LOUIE → DEWEY**: Interface contract signed — method signatures, return types, wrapper classes confirmed
+3. **DEWEY → GORT**: LWC complete, Jest passing, ready-for-deploy handoff written
+4. **LOUIE → GORT**: Apex complete, `_Test.cls` written (≥75% coverage), ready-for-deploy handoff written
+5. **GORT → HUEY**: Deployed to dmedev5, ready-for-test handoff written with frontdoor URL + deploy tag
+6. **HUEY → ROBBY**: Test manifest written to `ready-for-commit/` with `HUEY sign-off: PASS ✓`
+7. **HUEY → DEWEY/LOUIE**: Tests fail — bug report with steps + screenshot
+8. **ROBBY → ADO**: PR created, work items linked, ADO task state updated to Closed
 
 ---
 
 ## Cross-Team Coordination
 
-### DEWEY + LOUIE Interface
-- LOUIE defines `@AuraEnabled` method signatures before DEWEY writes the `@wire` call
-- Return types must align: `List<SObject>` for collections, `Map<String, Object>` for mixed data
+### VINCENT + LOUIE + DEWEY Interface Contract
+- VINCENT writes the interface contract before either LOUIE or DEWEY starts coding
+- LOUIE refines and writes the final Apex-side contract (method signatures, return types, wrappers)
+- DEWEY signs off before writing any `@wire` or `@salesforce/apex` imports
+- Contract file: `docs/Handoff/interface-contract/<feature>-<date>.md`
 
 ### GORT + HUEY Interface
-- GORT always provides the frontdoor URL after deploy
-- HUEY always runs smoke test before giving ROBBY the green light
+- GORT writes the ready-for-test handoff with frontdoor URL and deploy tag
+- HUEY reads the handoff before starting any test run
+- HUEY runs smoke test immediately after every GORT deployment
+
+### HUEY → ROBBY Gate
+- HUEY writes the test results manifest — ROBBY reads it, never re-runs tests
+- ROBBY blocks any commit without `**HUEY sign-off:** PASS ✓` in the manifest
+- ROBBY also verifies handoff doc and feature doc exist before committing
 
 ### HUEY Bug Reports → DEWEY/LOUIE
 - HUEY files a bug report (title, steps, expected, actual, screenshot)

@@ -203,12 +203,54 @@ private class cmn_MyService_Test {
 
 ---
 
+## Interface Contract — Agree Before Building
+
+Before writing any `@AuraEnabled` method, LOUIE publishes a contract and waits for DEWEY to confirm. Write the contract to `docs/Handoff/interface-contract/<feature>-<date>.md`:
+
+```markdown
+## Interface Contract: <Feature>
+**Date:** YYYY-MM-DD  **LOUIE → DEWEY (awaiting sign-off)**
+
+| Method | Returns | Parameters | Cacheable |
+|--------|---------|------------|-----------|
+| `getItems` | `List<ItemWrapper>` | `Id recordId` | Yes |
+| `updateStatus` | `void` | `Id itemId, String status` | No |
+
+**Wrapper fields:**
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | Id | |
+| `name` | String | |
+| `status` | String | picklist value |
+
+**DEWEY sign-off:** [ ]
+```
+
+LOUIE does not write `@AuraEnabled` methods until DEWEY signs off on the contract.
+
+---
+
+## Companion Test Class — Always Required
+
+Every Apex class LOUIE writes ships with a companion `_Test.cls`. No exceptions.
+
+```
+cmn_MyService.cls        ← implementation
+cmn_MyService_Test.cls   ← required companion, committed together
+```
+
+ROBBY will block the commit if a `.cls` file has no matching `Test.cls` staged.
+
+---
+
 ## LOUIE Rules
 
-- All Apex must have `with sharing` unless there's a documented reason for `without sharing`
-- Test coverage must be ≥75% (aim for ≥85% with meaningful assertions)
-- Use `Assert.areEqual` / `Assert.isTrue` (not deprecated `System.assertEquals`)
-- Never use `System.debug` in production-path code — use proper logging (`cmn_LogService` if available)
+- Read VINCENT's feature doc before writing any code — the Interface Contract section defines data shapes
+- **Always ship a companion `_Test.cls`** — never commit without it
+- Publish Interface Contract and get DEWEY sign-off before writing `@AuraEnabled` methods
+- All Apex must have `with sharing` unless documented reason exists
+- Test coverage ≥75% (aim ≥85% with meaningful assertions)
+- Use `Assert.areEqual` / `Assert.isTrue` — not deprecated `System.assertEquals`
+- Never use `System.debug` in production-path code — use `cmn_LogService` if available
 - Always bulkify: no SOQL or DML inside for loops
 - Check existing service classes before creating new ones — reuse `cmn_` services
-- Work with DEWEY to ensure `@AuraEnabled` return types match LWC wire adapter expectations

@@ -1,16 +1,105 @@
 # MASTER GUIDE: Daily Planning & Kanban System
 
-**Fully Autonomous Holistic Daily Planning: Gmail + Calendar + Todoist + Drive → Action-Priority Plan**
+**Fully Autonomous Holistic Daily Planning: Gmail + Calendar + Todoist → Prioritized Daily Plan**
 
-**Last Updated:** February 22, 2026
-**Version:** 2.0.0 - Fully Autonomous Holistic Planning
+**Last Updated:** April 9, 2026
+**Version:** 3.0.0 - AI Thread Analysis with Content Quality
 
 ## Quick Reference
-**Use when:** Morning planning session; need a prioritized action list pulled from email/calendar/tasks/Drive
+**Use when:** Morning planning session; need a prioritized action list pulled from email/calendar/tasks
 **Don't use when:** Just need to check one task or one email — go to Todoist or Gmail directly
 **Trigger phrases:** "plan my day", "process new", "daily planner", "what should I do today", "morning routine"
-**Time:** ~30-45 seconds
-**Command:** `python run_process_new_v2.py` (in `_automation/`) or use MCP server `process_new` tool
+**Time:** ~60-120 seconds
+**Command:** `/process-new` (Claude Code slash command) or `python run_process_new_v2.py` (in `_automation/`)
+
+---
+
+## V3 Architecture (Current)
+
+### Pipeline
+
+```
+Gmail (30 days) + Calendar (7 days) + Todoist
+        │
+  ┌─────┴──────┐
+  │ Email      │  GmailTools: fetch, filter skip_senders/skip_keywords,
+  │ Fetching   │  whitelist domains (fcps.edu, fairfaxcounty.gov, etc.)
+  └─────┬──────┘
+        │ 49 urgent emails
+  ┌─────┴──────┐
+  │ Thread     │  GmailThreadTools: group by subject, score by
+  │ Grouping   │  whitelisted sender (+100), priority keywords (+50),
+  │ & Scoring  │  action keywords (+30), recency decay (-2/day)
+  └─────┬──────┘
+        │ 15 priority threads
+  ┌─────┴──────┐
+  │ Clustering │  Merge threads from same sender domain when
+  │            │  subject similarity >= 40% word overlap
+  └─────┬──────┘
+        │ ~13 clustered groups
+  ┌─────┴──────┐
+  │ AI         │  OpenRouter (gpt-4o-mini) per thread:
+  │ Analysis   │  → ACTION ITEMS, DEADLINE (YYYY-MM-DD), PRIORITY,
+  │            │  → CONTEXT (specific, not filler), FOLLOW_UP
+  └─────┬──────┘
+        │
+  ┌─────┴──────┐
+  │ Post-      │  1. Deduplicate actions across threads (60% word overlap)
+  │ Processing │  2. Auto-expire past-deadline actions → filtered out
+  │            │  3. Expire follow-ups referencing past dates
+  │            │  4. Filter informational-only threads
+  │            │  5. Cap DO NOW at 5, overflow to DO SOON
+  └─────┬──────┘
+        │
+  ┌─────┴──────────────────────────────┐
+  │                                    │
+  ▼                                    ▼
+Todoist Tasks                    Amplenote Note
+• Clean title (action only)      • INSERT_NODES API (rich text)
+• Concise description            • Today's Schedule (timed events)
+• AI-extracted due date          • Tomorrow (sorted by time)
+• daily-plan label               • Action Items (checkboxes)
+• Calendar events included       • Stale — Review or Close
+                                 • Rest of Week (calendar)
+                                 • Follow-ups
+```
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `_automation/run_process_new_v2.py` | Main orchestrator — all 9 steps |
+| `_automation/gmail_tools.py` | Gmail fetch, sender filtering, priority keywords |
+| `_automation/gmail_thread_tools.py` | Thread grouping, priority scoring, clustering |
+| `_automation/comprehensive_analyzer.py` | AI prompt, response parsing, deduplication |
+| `_automation/amplenote_tools.py` | Note creation via INSERT_NODES API |
+| `_automation/todoist_tools.py` | Task CRUD with Todoist REST API |
+| `_automation/calendar_tools.py` | Google Calendar event fetch |
+| `_automation/auth_manager.py` | Credential resolution for all services |
+| `_automation/credential_resolver.py` | Cascade credential lookup (env files → KeePass) |
+
+### Content Quality Rules (V3)
+
+**AI Prompt:**
+- Provides today's date — past-deadline actions are rejected ("None - deadline passed")
+- CONTEXT must be specific: "Mount Vernon trip May 12. $65 if chaperoning." not "This is an educational opportunity"
+- Priority levels: High (7 days), Medium (7-30 days), Low (informational/expired)
+
+**Post-processing:**
+- Threads with `deadline < today` are auto-expired and filtered out
+- Follow-ups referencing past dates are silently removed
+- Stale Todoist tasks (>7 days overdue) shown in separate section
+
+**Todoist tasks:**
+- Title = action only (no summary appended)
+- Description = context + sender (2-3 lines, no emoji field dumps)
+- Due date = AI-extracted deadline, not hardcoded "today"
+
+**Amplenote note:**
+- Uses INSERT_NODES API (headings, bullet_list_item, check_list_item) for proper rich text
+- "Tomorrow" section with events sorted by time
+- Stale task titles truncated at " - " separator
+- Footer with counts and generation timestamp
 
 ---
 

@@ -556,8 +556,24 @@ Format as bullet points starting with • or -. Be specific about WHO responded 
             else:
                 content_parts.append("No upcoming items\n\n")
             
+            # Stale tasks section
+            if plan.get('stale'):
+                content_parts.append("## ⏳ Stale Tasks\n")
+                for task in plan['stale']:
+                    days_overdue = task.get('days_overdue', '?')
+                    due = task.get('due', '')
+                    content_parts.append(f"- **{task['title']}** — due {due} ({days_overdue}d overdue)\n")
+                content_parts.append("\n")
+
+            # Follow-ups section
+            if plan.get('follow_ups'):
+                content_parts.append("## 📧 Follow-ups\n")
+                for item in plan['follow_ups']:
+                    content_parts.append(f"- {item.get('follow_up', item.get('title', ''))}\n")
+                content_parts.append("\n")
+
             # Footer
-            content_parts.append(f"\n---\n{len(plan['do_now'])} actions today • {len(plan['do_soon'])} upcoming")
+            content_parts.append(f"\n---\n{len(plan['do_now'])} actions today • {len(plan['do_soon'])} upcoming • {len(plan.get('stale', []))} stale")
             
             # Join all content
             full_content = "".join(content_parts)

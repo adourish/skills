@@ -12,13 +12,14 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 # Paths
-GMAIL_TOKEN_PATH = r'G:\My Drive\03_Areas\Keys\Gmail\token.json'
-GMAIL_CREDENTIALS_PATH = r'G:\My Drive\03_Areas\Keys\Gmail\credentials.json'
+GMAIL_TOKEN_PATH = r'G:\My Drive\Areas\Keys\Gmail\token.json'
+GMAIL_CREDENTIALS_PATH = r'G:\My Drive\Areas\Keys\Gmail\credentials.json'
 
-# Scopes for Gmail and Drive
+# Scopes for Gmail, Drive, and Calendar
 SCOPES = [
     'https://www.googleapis.com/auth/gmail.readonly',
-    'https://www.googleapis.com/auth/drive.readonly'
+    'https://www.googleapis.com/auth/drive.readonly',
+    'https://www.googleapis.com/auth/calendar.readonly'
 ]
 
 def setup_gmail_oauth():

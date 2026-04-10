@@ -7,6 +7,7 @@ Analyzes email threads over 2 weeks to understand context, outcomes, and action 
 import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
+import re
 import requests
 
 logger = logging.getLogger(__name__)
@@ -58,60 +59,41 @@ Consolidate into ONE set of non-redundant action items.
 Do NOT create duplicate or overlapping actions — if multiple emails reference the same form, payment, or task, produce a SINGLE action for it.
 
 """
-        prompt = f"""You are a strict executive assistant. Analyze this email thread and determine if I need to DO anything.
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        prompt = f"""Analyze this email thread. Today is {today_str}.
 {cluster_instruction}
 THREAD SUBJECT: {thread_subject}
 
-THREAD CONTENT (chronological order, oldest to newest):
+THREAD CONTENT:
 {thread_text}
 
-DECISION FRAMEWORK - Answer these 3 questions:
-1. Is there a SPECIFIC action I must take? (not "be aware of" or "keep in mind")
-2. Is there a DEADLINE or time pressure?
-3. Will something BAD happen if I ignore this for a week?
+RULES:
+- If there is NO specific action I must personally take, set ACTION ITEMS to "None - informational only" and PRIORITY to "low".
+- Newsletters, FYI updates, confirmations, status reports = "None - informational only"
+- Someone else handling it = "None - waiting on [person]"
+- I already replied/acted = "None - already handled"
+- "Review", "consider", "be aware of", "stay informed" are NOT action items
 
-If the answer to ALL three is NO, this is informational - set PRIORITY to "low" and ACTION ITEMS to "None - informational only".
+ACTION ITEMS must be specific and concrete:
+  GOOD: "Pay $45 field trip fee by May 5 via MySchoolBucks"
+  GOOD: "Renew vehicle registration online before 3/31/2026"
+  BAD: "Review the situation" / "Stay informed" / "Monitor updates"
 
-CLASSIFICATION RULES:
-- Newsletters, announcements, FYI updates, status reports with no ask = "None - informational only"
-- Someone else is handling it = "None - waiting on [person]"
-- Routine confirmations (payment received, order placed, appointment confirmed with no prep needed) = "None - informational only"
-- Emails where I already replied/acted = "None - already handled"
-- Vague suggestions (consider, explore, think about, review options) = NOT action items
+DEADLINE: Extract the exact date from the email if mentioned (e.g., "by Friday March 14", "before 3/31", "due May 5"). If no date mentioned, write "No deadline mentioned".
 
-ONLY include actions that are:
-- SPECIFIC: "Reply to Sarah confirming Tuesday 2pm" not "respond to Sarah"
-- CONCRETE: "Sign and return the attached form" not "review the document"
-- MINE TO DO: Something I personally must act on, not observe
+Respond in EXACTLY this format:
+SUMMARY: [1 sentence]
+OUTCOME: [1 sentence — what's resolved, or "Pending - [what's needed]"]
+ACTION ITEMS: [specific actions, or "None - reason"]
+DEADLINE: [extracted date as YYYY-MM-DD, or "None"]
+FOLLOW_UP: [Yes/No - if yes, what to check and by when]
+PRIORITY: [High/Medium/Low - reason]
+CONTEXT: [1 sentence why this matters, or "FYI only"]
 
-Please provide:
-
-1. **SUMMARY** (1 sentence): What is this about?
-
-2. **OUTCOME** (1 sentence): What's resolved? If nothing, "Pending - [what's needed]"
-
-3. **ACTION ITEMS**: ONLY specific actions I must take, or "None - [reason]"
-   GOOD: "Reply to confirm attendance by Friday"
-   GOOD: "Pay invoice #4521 ($235) before March 15"
-   BAD: "Review the situation" / "Consider options" / "Stay informed"
-
-4. **FOLLOW_UP**: Yes/No - if yes, WHO and by WHEN
-
-5. **PRIORITY**:
-   - High = deadline within 48hrs OR someone is blocked waiting on me
-   - Medium = needs action this week but no immediate consequence
-   - Low = informational, no action needed, or action can wait 7+ days
-
-6. **CONTEXT** (1 sentence): Why this matters (or "FYI only" if informational)
-
-Format:
-SUMMARY: [summary]
-OUTCOME: [outcome]
-ACTION ITEMS: [specific actions or "None - reason"]
-FOLLOW_UP: [Yes/No - details]
-PRIORITY: [level - reason]
-CONTEXT: [context]
-"""
+Priority levels:
+- High = explicit deadline within 7 days OR someone blocked on me OR money/registration at risk
+- Medium = action needed this week, no immediate consequence if delayed 2-3 days
+- Low = informational, already handled, or action can wait 7+ days"""
         
         try:
             response = requests.post(
@@ -169,6 +151,7 @@ CONTEXT: [context]
             'summary': '',
             'outcome': '',
             'action_items': [],
+            'deadline': None,
             'follow_up_needed': False,
             'follow_up_reason': '',
             'priority': 'medium',
@@ -179,13 +162,13 @@ CONTEXT: [context]
             'latest_sender': emails[-1].get('from', 'Unknown') if emails else 'Unknown',
             'latest_date': emails[-1].get('date', 'Unknown') if emails else 'Unknown'
         }
-        
+
         current_section = None
         for line in lines:
             line = line.strip()
             if not line:
                 continue
-            
+
             if line.startswith('SUMMARY:'):
                 current_section = 'summary'
                 analysis['summary'] = line.replace('SUMMARY:', '').strip()
@@ -197,6 +180,13 @@ CONTEXT: [context]
                 action_text = line.replace('ACTION ITEMS:', '').strip()
                 if action_text and action_text.lower() != 'none':
                     analysis['action_items'].append(action_text)
+            elif line.startswith('DEADLINE:'):
+                current_section = 'deadline'
+                deadline_text = line.replace('DEADLINE:', '').strip()
+                # Extract YYYY-MM-DD date if present
+                date_match = re.search(r'(\d{4}-\d{2}-\d{2})', deadline_text)
+                if date_match:
+                    analysis['deadline'] = date_match.group(1)
             elif line.startswith('FOLLOW_UP:') or line.startswith('FOLLOW-UP:'):
                 current_section = 'follow_up'
                 follow_text = line.replace('FOLLOW_UP:', '').replace('FOLLOW-UP:', '').strip()
@@ -219,15 +209,14 @@ CONTEXT: [context]
                 item = line.lstrip('-•* ').strip()
                 if item and item.lower() != 'none':
                     analysis['action_items'].append(item)
-            elif current_section and line and not line.startswith(('SUMMARY', 'OUTCOME', 'ACTION', 'FOLLOW', 'PRIORITY', 'CONTEXT')):
-                # Continuation of previous section
+            elif current_section and line and not line.startswith(('SUMMARY', 'OUTCOME', 'ACTION', 'FOLLOW', 'PRIORITY', 'CONTEXT', 'DEADLINE')):
                 if current_section == 'summary':
                     analysis['summary'] += ' ' + line
                 elif current_section == 'outcome':
                     analysis['outcome'] += ' ' + line
                 elif current_section == 'context':
                     analysis['context'] += ' ' + line
-        
+
         return analysis
     
     def _fallback_analysis(self, emails: List[Dict[str, Any]], thread_subject: str) -> Dict[str, Any]:

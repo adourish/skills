@@ -16,7 +16,7 @@ from credential_resolver import CredentialResolver
 
 logger = logging.getLogger(__name__)
 
-GMAIL_TOKEN_PATH = Path(r'G:\My Drive\03_Areas\Keys\Gmail\token.json')
+GMAIL_TOKEN_PATH = Path(r'G:\My Drive\Areas\Keys\Gmail\token.json')
 
 
 class AuthManager:
@@ -56,8 +56,12 @@ class AuthManager:
     async def get_todoist_token(self) -> str:
         """Get Todoist API token."""
         if not self._todoist_token:
-            self._todoist_token = self._resolver.get("todoist", "api.apiToken")
+            self._todoist_token = self._resolver.get("todoist", "credentials.apiToken")
         return self._todoist_token
+
+    async def get_openrouter_key(self) -> str:
+        """Get OpenRouter API key."""
+        return self._resolver.get("openrouter", "credentials.apiKey")
 
     async def get_amplenote_token(self) -> str:
         """Get Amplenote access token."""

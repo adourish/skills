@@ -97,6 +97,8 @@ class GmailTools:
             'hbo.com', 'hbomax.com', 'max.com', 'warnermedia.com',
             # Healthcare/appointment services
             'zocdoc.com', 'mail5.zocdoc.com',
+            # Billing notifications
+            'verizon', 'vzw.com', 'verizonwireless.com',
             # School/PTA promotional emails
             'notify@membershiptoolkit.com', 'afterschool activities',
             # Investment newsletters

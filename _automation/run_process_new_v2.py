@@ -8,7 +8,7 @@ import asyncio
 import json
 import logging
 import argparse
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from auth_manager import AuthManager
@@ -122,8 +122,10 @@ async def process_new_comprehensive():
     logger.info("\n📅 STEP 5: Fetching calendar events...")
     try:
         events = await calendar.get_events(days_ahead=7)  # Get full week
-        today_events = [e for e in events if e.get('date') == datetime.now().strftime("%Y-%m-%d")]
-        logger.info(f"   Found {len(today_events)} events today")
+        tomorrow = (today_dt + timedelta(days=1)).strftime("%Y-%m-%d")
+        today_events = [e for e in events if e.get('date') == today]
+        tomorrow_events = [e for e in events if e.get('date') == tomorrow]
+        logger.info(f"   Found {len(today_events)} events today, {len(tomorrow_events)} tomorrow")
         logger.info(f"   Found {len(events)} events in next 7 days")
     except Exception as e:
         logger.warning(f"   Calendar unavailable (insufficient scopes or auth): {e}")
@@ -207,20 +209,56 @@ async def process_new_comprehensive():
     logger.info("\n🧹 STEP 7.5: Deduplicating action items...")
     thread_analyses = analyzer.deduplicate_action_items(thread_analyses)
 
-    # Step 7.55: Filter out informational-only threads (no real actions)
-    logger.info("\n🧹 STEP 7.55: Filtering out informational-only threads...")
+    # Step 7.55: Filter out informational-only and expired threads
+    logger.info("\n🧹 STEP 7.55: Filtering out informational-only and expired threads...")
     actionable_analyses = []
     informational_count = 0
+    expired_count = 0
     for analysis in thread_analyses:
         actions = analysis.get('action_items', [])
+
+        # Check if deadline has passed — demote to low/informational
+        deadline = analysis.get('deadline')
+        if deadline and deadline < today:
+            days_past = (today_dt - datetime.strptime(deadline, "%Y-%m-%d").date()).days
+            analysis['priority'] = 'low'
+            analysis['action_items'] = [f"None - deadline passed ({deadline}, {days_past}d ago)"]
+            expired_count += 1
+            logger.info(f"   Expired (deadline {deadline}): {analysis['thread_subject'][:60]}")
+
+        # Also expire follow-ups that reference past dates
+        if analysis.get('follow_up_needed'):
+            follow_text = (analysis.get('follow_up_reason') or '').lower()
+            import re as _re
+            date_match = _re.search(r'(\d{4}-\d{2}-\d{2})', follow_text)
+            if not date_match:
+                # Try "march 16, 2026" style
+                date_match = _re.search(r'(january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s*\d{4}', follow_text)
+            if date_match:
+                try:
+                    raw = date_match.group(0).replace(',', '')
+                    for fmt in ('%Y-%m-%d', '%B %d %Y'):
+                        try:
+                            fu_date = datetime.strptime(raw, fmt).date()
+                            if fu_date < today_dt:
+                                analysis['follow_up_needed'] = False
+                                analysis['follow_up_reason'] = ''
+                                logger.info(f"   Expired follow-up (date {fu_date}): {analysis['thread_subject'][:50]}")
+                            break
+                        except ValueError:
+                            continue
+                except Exception:
+                    pass
+
         # Check if all actions are "None" variants or empty
         is_informational = (
             not actions
             or all(
                 (a.lower().startswith('none') and 'waiting on' not in a.lower()) or
                 'informational' in a.lower() or
-                'already handled' in a.lower()
-                for a in actions
+                'already handled' in a.lower() or
+                'deadline passed' in a.lower()
+                for a in analysis.get('action_items', [])
             )
         )
         if is_informational and not analysis.get('follow_up_needed'):
@@ -228,7 +266,7 @@ async def process_new_comprehensive():
             logger.info(f"   Filtered (informational): {analysis['thread_subject'][:60]}")
         else:
             actionable_analyses.append(analysis)
-    logger.info(f"   Kept {len(actionable_analyses)} actionable, filtered {informational_count} informational")
+    logger.info(f"   Kept {len(actionable_analyses)} actionable, filtered {informational_count} informational, {expired_count} expired")
     thread_analyses = actionable_analyses
 
     # Rebuild detailed_breakdown with deduped + filtered analyses
@@ -316,7 +354,7 @@ async def process_new_comprehensive():
             return ' '.join(text.lower().translate(str.maketrans('', '', string.punctuation)).split())
 
         def build_task(item, priority_level):
-            """Build a Todoist task from an analysis item. Returns (title, description) or None if duplicate/non-actionable."""
+            """Build a Todoist task from an analysis item. Returns (title, description, due_date) or None."""
             action_items = item.get('action_items', [])
             follow_up = item.get('follow_up', '') or ''
 
@@ -332,11 +370,10 @@ async def process_new_comprehensive():
             else:
                 action = action_items[0]
 
-            # Skip non-actionable items that slipped through AI classification
+            # Skip non-actionable items
             action_lower = action.lower()
             if action_lower.startswith('none'):
                 if 'waiting on' in action_lower:
-                    # Convert to a follow-up reminder
                     who = action_lower.split('waiting on', 1)[-1].strip().rstrip('.')
                     subject_short = item.get('subject', '')[:60]
                     action = f"Follow up with {who} re: {subject_short}" if who else f"Follow up re: {subject_short}"
@@ -344,10 +381,7 @@ async def process_new_comprehensive():
                 else:
                     logger.info(f"   ⏭️  Skipped non-actionable: {action[:60]}")
                     return None
-            if ('informational' in action_lower or
-                'already handled' in action_lower or
-                'no action' in action_lower or
-                'fyi only' in action_lower):
+            if any(phrase in action_lower for phrase in ('informational', 'already handled', 'no action', 'fyi only', 'deadline passed')):
                 logger.info(f"   ⏭️  Skipped non-actionable: {action[:60]}")
                 return None
 
@@ -358,45 +392,27 @@ async def process_new_comprehensive():
             seen_actions.add(norm_action)
 
             sender = item.get('latest_from', 'Unknown').split('<')[0].strip()
-            summary = item.get('summary', '')
             context = item.get('context', '')
-            outcome = item.get('outcome', '')
 
-            # Title: action + summary (truncated for readability)
-            key_info = summary or context or ""
-            if len(key_info) > 120:
-                key_info = key_info[:117] + "..."
-            task_title = f"{action} - {key_info}" if key_info else action
+            # Title: just the action, clean and short
+            task_title = action
+            if len(task_title) > 120:
+                task_title = task_title[:117] + "..."
 
-            # Rich description with all available context
-            description_parts = [
-                f"📧 From: {sender}",
-                f"📌 Subject: {item['subject']}",
-                "",
-                f"📝 Summary: {summary}" if summary else None,
-                f"🔍 Context: {context}" if context else None,
-                f"📊 Outcome: {outcome}" if outcome else None,
-                f"🔄 Follow-up: {follow_up}" if follow_up else None,
-            ]
-            # Filter out None entries
-            description_parts = [p for p in description_parts if p is not None]
-
-            # Add ALL action items (not just the first)
+            # Description: context + sender, concise
+            desc_lines = []
+            if context and context.lower() != 'fyi only':
+                desc_lines.append(context)
+            desc_lines.append(f"From: {sender}")
+            # Additional actions below the first
             if len(action_items) > 1:
-                description_parts.append("")
-                description_parts.append("✅ All action items:")
-                for i, a in enumerate(action_items, 1):
-                    description_parts.append(f"  {i}. {a}")
+                desc_lines.append("")
+                for i, a in enumerate(action_items[1:], 2):
+                    desc_lines.append(f"{i}. {a}")
 
-            # Add email count for clustered threads
-            if item.get('email_count', 1) > 1:
-                description_parts.append("")
-                description_parts.append(f"📬 {item['email_count']} emails in thread")
-
-            # Determine due date from AI-extracted deadline, fallback to 'today'
             due_date = item.get('deadline') or 'today'
 
-            return task_title, "\n".join(description_parts), due_date
+            return task_title, "\n".join(desc_lines), due_date
 
         # Create tasks for high priority items
         for item in detailed_breakdown['high_priority']:
@@ -543,6 +559,9 @@ async def process_new_comprehensive():
             "reference": [],
             "documents": {},
             "reference_emails": gmail.reference_emails,
+            "today_events": today_events,
+            "tomorrow_events": tomorrow_events,
+            "week_events": [e for e in events if e.get('date') != today and e.get('date') != tomorrow],
             "stats": {
                 "threads_analyzed": len(thread_analyses),
                 "high_priority": len(detailed_breakdown['high_priority']),

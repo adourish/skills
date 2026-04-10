@@ -442,162 +442,228 @@ Format as bullet points starting with • or -. Be specific about WHO responded 
             return "Review your tasks and emails to prioritize your day."
     
     async def update_daily_note_with_plan(self, plan: Dict[str, Any]) -> bool:
-        """Create/update single daily plan note with content using actions endpoint"""
+        """Create/update single daily plan note using INSERT_NODES for proper rendering"""
         try:
-            # Use a single static title - no dates
             static_title = "📋 Daily Plan"
-            
-            # Use daily-plan tag for filtering
+
+            # Find existing note to replace
             all_notes = await self.get_notes(tag='daily-plan')
-            
             logger.info(f"Found {len(all_notes)} notes with 'daily-plan' tag")
-            
-            # Find the existing daily plan note (should only be one)
+
             existing_note_uuid = None
-            
-            # Search through ALL notes to find the static title
             logger.info(f"Searching all {len(all_notes)} notes for static daily plan: {static_title}")
-            
-            # Check notes for the static title (use metadata from get_notes if available)
             for note_item in all_notes:
                 try:
-                    # note_item is a dict with metadata from get_notes
-                    if isinstance(note_item, dict):
-                        uuid = note_item.get('uuid')
-                        name = note_item.get('name', '')
-                        
-                        # Check if this is THE daily plan note
-                        if name == static_title:
-                            existing_note_uuid = uuid
-                            logger.info(f"✓ Found existing daily plan note: {static_title} (UUID: {uuid})")
-                            break
-                        
+                    if isinstance(note_item, dict) and note_item.get('name', '') == static_title:
+                        existing_note_uuid = note_item.get('uuid')
+                        logger.info(f"✓ Found existing daily plan note: {static_title} (UUID: {existing_note_uuid})")
+                        break
                 except Exception as e:
                     logger.warning(f"Error checking note: {e}")
                     continue
-            
-            # Build simple, clean content first
-            content_parts = []
-            
-            # Header
-            content_parts.append(f"# Daily Plan - {datetime.now().strftime('%B %d, %Y')}\n")
-            
-            # Today's Actions
-            content_parts.append("## Today's Actions\n")
-            
-            if plan['do_now']:
-                for i, item in enumerate(plan['do_now'][:5], 1):
-                    source = item.get('source', '')
-                    
-                    # For Email Thread items (comprehensive analysis)
-                    if source == 'Email Thread':
-                        action_items = item.get('action_items', [])
-                        summary = item.get('summary', '')
-                        context = item.get('context', '')
-                        sender = item.get('from', '').split('<')[0].strip() if item.get('from') else 'Unknown'
-                        
-                        # Main action
-                        if action_items:
-                            content_parts.append(f"**{i}. {action_items[0]}**\n")
-                        else:
-                            content_parts.append(f"**{i}. {item.get('title', 'Review thread')}**\n")
-                        
-                        # Details
-                        if summary:
-                            first_sentence = summary.split('.')[0] + '.'
-                            content_parts.append(f"- What: {first_sentence}\n")
-                        
-                        if context:
-                            content_parts.append(f"- Why: {context}\n")
-                        
-                        content_parts.append(f"- From: {sender}\n")
-                        
-                        if len(action_items) > 1:
-                            content_parts.append(f"- Also: {action_items[1]}\n")
-                        
-                        content_parts.append("\n")
-                    
-                    # For regular Email items
-                    elif source == 'Email':
-                        ai_summary = item.get('ai_summary') or item['title']
-                        sender = item.get('from', '').split('<')[0].strip() if item.get('from') else 'Unknown'
-                        
-                        content_parts.append(f"**{i}. {ai_summary}**\n")
-                        content_parts.append(f"- From: {sender}\n\n")
-                    
-                    # For Calendar/Todoist
-                    else:
-                        content_parts.append(f"**{i}. {item['title']}**\n")
-                        if source == 'Calendar' and item.get('time'):
-                            content_parts.append(f"- Time: {item['time']}\n")
-                        content_parts.append("\n")
-            else:
-                content_parts.append("No urgent actions today\n\n")
-            
-            # Add This Week section
-            content_parts.append("## This Week\n")
-            
-            if plan['do_soon']:
-                for item in plan['do_soon'][:5]:
-                    title = item['title']
-                    due_str = ""
-                    
-                    if item.get('due'):
-                        try:
-                            from datetime import datetime as dt
-                            date_obj = dt.strptime(item['due'], '%Y-%m-%d')
-                            due_str = f" ({date_obj.strftime('%a %b %d')})"
-                        except:
-                            due_str = f" ({item['due']})"
-                    
-                    content_parts.append(f"- {title}{due_str}\n")
-                
-                content_parts.append("\n")
-            else:
-                content_parts.append("No upcoming items\n\n")
-            
-            # Stale tasks section
-            if plan.get('stale'):
-                content_parts.append("## ⏳ Stale Tasks\n")
-                for task in plan['stale']:
-                    days_overdue = task.get('days_overdue', '?')
-                    due = task.get('due', '')
-                    content_parts.append(f"- **{task['title']}** — due {due} ({days_overdue}d overdue)\n")
-                content_parts.append("\n")
 
-            # Follow-ups section
-            if plan.get('follow_ups'):
-                content_parts.append("## 📧 Follow-ups\n")
-                for item in plan['follow_ups']:
-                    content_parts.append(f"- {item.get('follow_up', item.get('title', ''))}\n")
-                content_parts.append("\n")
-
-            # Footer
-            content_parts.append(f"\n---\n{len(plan['do_now'])} actions today • {len(plan['do_soon'])} upcoming • {len(plan.get('stale', []))} stale")
-            
-            # Join all content
-            full_content = "".join(content_parts)
-            
             # Delete old note if it exists
             if existing_note_uuid:
                 logger.info(f"Deleting existing daily plan note: {existing_note_uuid}")
                 await self.delete_note(existing_note_uuid)
-            
-            # Create fresh note with content
-            logger.info(f"Creating new daily plan note with content")
+
+            # Create empty note first
+            logger.info(f"Creating new daily plan note")
             note = await self.create_note(
                 title=static_title,
-                content=full_content,
+                content="",
                 tags=['daily-plan', 'process-new']
             )
             note_uuid = note['uuid']
-            
+
+            # Build structured nodes and insert them
+            nodes = self._build_daily_plan_nodes(plan)
+            await self._insert_nodes_batched(note_uuid, nodes)
+
             logger.info(f"Daily plan note created successfully: https://www.amplenote.com/notes/{note_uuid}")
             return True
-        
+
         except Exception as e:
             logger.error(f"Error creating daily plan note: {e}")
             return False
+
+    async def _insert_nodes_batched(self, note_uuid: str, nodes: list, batch_size: int = 15):
+        """Insert nodes in batches to avoid API limits"""
+        headers = await self._get_headers()
+        for i in range(0, len(nodes), batch_size):
+            batch = nodes[i:i + batch_size]
+            action_data = {
+                'type': 'INSERT_NODES',
+                'nodes': batch
+            }
+            try:
+                response = requests.post(
+                    f"{self.base_url}/notes/{note_uuid}/actions",
+                    headers=headers,
+                    json=action_data,
+                    timeout=30
+                )
+                if response.status_code >= 400:
+                    logger.warning(f"INSERT_NODES batch {i // batch_size + 1} returned {response.status_code}: {response.text[:200]}")
+            except Exception as e:
+                logger.warning(f"INSERT_NODES batch {i // batch_size + 1} failed: {e}")
+
+    def _make_heading(self, text: str, level: int = 2) -> dict:
+        """Create a heading node"""
+        return {
+            'type': 'heading',
+            'attrs': {'level': level},
+            'content': [{'type': 'text', 'text': text}]
+        }
+
+    def _make_paragraph(self, text: str) -> dict:
+        """Create a paragraph node"""
+        return {
+            'type': 'paragraph',
+            'content': [{'type': 'text', 'text': text}]
+        }
+
+    def _make_bullet(self, text: str) -> dict:
+        """Create a bullet list item node"""
+        return {
+            'type': 'bullet_list_item',
+            'content': [{'type': 'paragraph', 'content': [{'type': 'text', 'text': text}]}]
+        }
+
+    def _make_task(self, text: str, important: bool = False) -> dict:
+        """Create a check list item (task) node"""
+        attrs = {}
+        if important:
+            attrs['flags'] = 'I'
+        return {
+            'type': 'check_list_item',
+            'attrs': attrs,
+            'content': [{'type': 'paragraph', 'content': [{'type': 'text', 'text': text}]}]
+        }
+
+    def _build_daily_plan_nodes(self, plan: Dict[str, Any]) -> list:
+        """Build structured Amplenote nodes for the daily plan"""
+        nodes = []
+        now = datetime.now()
+
+        # ── Header ──
+        nodes.append(self._make_paragraph(f"📅 {now.strftime('%A, %B %d, %Y')}"))
+
+        # ── Today's Schedule ──
+        today_events = plan.get('today_events', [])
+        if today_events:
+            nodes.append(self._make_heading("Today", 2))
+            nodes.extend(self._events_to_nodes(today_events))
+
+        # ── Tomorrow's Schedule ──
+        tomorrow_events = plan.get('tomorrow_events', [])
+        if tomorrow_events:
+            try:
+                from datetime import timedelta
+                tmrw_date = (now + timedelta(days=1)).strftime('%A %b %d')
+            except Exception:
+                tmrw_date = "Tomorrow"
+            nodes.append(self._make_heading(f"Tomorrow — {tmrw_date}", 2))
+            nodes.extend(self._events_to_nodes(tomorrow_events))
+
+        # ── Action Items ──
+        if plan['do_now']:
+            nodes.append(self._make_heading("Action Items", 2))
+            for item in plan['do_now'][:5]:
+                source = item.get('source', '')
+                if source == 'Email Thread':
+                    action_items = item.get('action_items', [])
+                    action = action_items[0] if action_items else item.get('title', 'Review thread')
+                    if len(action) > 120:
+                        action = action[:117] + "..."
+                    nodes.append(self._make_task(action, important=True))
+                    context = item.get('context', '')
+                    if context and context.lower() != 'fyi only':
+                        nodes.append(self._make_paragraph(f"  ↳ {context}"))
+                else:
+                    nodes.append(self._make_task(item['title']))
+
+        # ── Do Soon ──
+        if plan['do_soon']:
+            nodes.append(self._make_heading("Do Soon", 2))
+            for item in plan['do_soon'][:5]:
+                title = item['title'][:80]
+                due_str = self._format_due_date(item.get('due'))
+                nodes.append(self._make_task(f"{title}{due_str}"))
+
+        # ── Stale Tasks ──
+        if plan.get('stale'):
+            nodes.append(self._make_heading("Stale — Review or Close", 2))
+            for task in plan['stale']:
+                days = task.get('days_overdue', '?')
+                due = task.get('due', '')
+                title = task['title']
+                # Extract just the action part before " - " description
+                if ' - ' in title:
+                    title = title.split(' - ')[0]
+                if len(title) > 80:
+                    title = title[:77] + "..."
+                nodes.append(self._make_bullet(f"{title} — due {due} ({days}d overdue)"))
+
+        # ── Rest of Week ──
+        week_events = plan.get('week_events', [])
+        if week_events:
+            nodes.append(self._make_heading("Rest of Week", 2))
+            for event in week_events[:8]:
+                date_str = event.get('date', '')
+                time_str = event.get('time', '')
+                summary = event.get('summary', '')
+                try:
+                    dt = datetime.strptime(date_str, '%Y-%m-%d')
+                    day_label = dt.strftime('%a %b %d')
+                except ValueError:
+                    day_label = date_str
+                if time_str and time_str != 'All day':
+                    nodes.append(self._make_bullet(f"{day_label} — {summary} at {time_str}"))
+                else:
+                    nodes.append(self._make_bullet(f"{day_label} — {summary}"))
+
+        # ── Follow-ups ──
+        if plan.get('follow_ups'):
+            nodes.append(self._make_heading("Follow-ups", 2))
+            for item in plan['follow_ups']:
+                text = item.get('follow_up', item.get('title', ''))
+                if text:
+                    nodes.append(self._make_bullet(text))
+
+        # ── Footer ──
+        stats = plan.get('stats', {})
+        action_count = len(plan.get('do_now', []))
+        stale_count = len(plan.get('stale', []))
+        total_events = len(today_events) + len(tomorrow_events) + len(week_events)
+        nodes.append(self._make_paragraph("—"))
+        nodes.append(self._make_paragraph(
+            f"{action_count} actions · {total_events} events · {stale_count} stale · Generated {now.strftime('%I:%M %p')}"
+        ))
+
+        return nodes
+
+    def _events_to_nodes(self, events: list) -> list:
+        """Convert calendar events to sorted bullet nodes"""
+        nodes = []
+        timed = [(e, e.get('time', '')) for e in events if e.get('time') and e['time'] != 'All day']
+        allday = [e for e in events if not e.get('time') or e['time'] == 'All day']
+        timed.sort(key=lambda x: x[1])
+        for event, time in timed:
+            nodes.append(self._make_bullet(f"{time} — {event.get('summary', '')}"))
+        for event in allday:
+            nodes.append(self._make_bullet(f"All day — {event.get('summary', '')}"))
+        return nodes
+
+    def _format_due_date(self, due_str: Optional[str]) -> str:
+        """Format a YYYY-MM-DD date string as readable short date"""
+        if not due_str:
+            return ""
+        try:
+            dt = datetime.strptime(due_str, '%Y-%m-%d')
+            return f" (due {dt.strftime('%b %d')})"
+        except ValueError:
+            return f" ({due_str})"
     
     def _format_plan_for_amplenote(self, plan: Dict[str, Any]) -> str:
         """Format the plan data as markdown for Amplenote"""

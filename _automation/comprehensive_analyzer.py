@@ -68,6 +68,7 @@ THREAD CONTENT:
 {thread_text}
 
 RULES:
+- If the DEADLINE has already passed (before {today_str}), set ACTION ITEMS to "None - deadline passed [date]" and PRIORITY to "low". Do NOT suggest actions for expired events.
 - If there is NO specific action I must personally take, set ACTION ITEMS to "None - informational only" and PRIORITY to "low".
 - Newsletters, FYI updates, confirmations, status reports = "None - informational only"
 - Someone else handling it = "None - waiting on [person]"
@@ -75,25 +76,30 @@ RULES:
 - "Review", "consider", "be aware of", "stay informed" are NOT action items
 
 ACTION ITEMS must be specific and concrete:
-  GOOD: "Pay $45 field trip fee by May 5 via MySchoolBucks"
-  GOOD: "Renew vehicle registration online before 3/31/2026"
+  GOOD: "Pay $55 field trip fee by May 5 via MySchoolBucks"
   BAD: "Review the situation" / "Stay informed" / "Monitor updates"
 
-DEADLINE: Extract the exact date from the email if mentioned (e.g., "by Friday March 14", "before 3/31", "due May 5"). If no date mentioned, write "No deadline mentioned".
+DEADLINE: Extract the exact date as YYYY-MM-DD. If no date mentioned, write "None".
+
+CONTEXT: Write ONE short, specific sentence with key details (who, how much, what date). Not generic filler.
+  GOOD: "Mount Vernon field trip May 12. $65 if chaperoning."
+  GOOD: "No school Apr 21 — need childcare plan."
+  BAD: "This is an educational opportunity for students."
+  BAD: "This matters as it involves the school schedule."
 
 Respond in EXACTLY this format:
-SUMMARY: [1 sentence]
+SUMMARY: [1 sentence — what happened]
 OUTCOME: [1 sentence — what's resolved, or "Pending - [what's needed]"]
-ACTION ITEMS: [specific actions, or "None - reason"]
-DEADLINE: [extracted date as YYYY-MM-DD, or "None"]
-FOLLOW_UP: [Yes/No - if yes, what to check and by when]
+ACTION ITEMS: [specific actions with dollar amounts/dates, or "None - reason"]
+DEADLINE: [YYYY-MM-DD, or "None"]
+FOLLOW_UP: [Yes/No - if yes, what specifically to check and by when]
 PRIORITY: [High/Medium/Low - reason]
-CONTEXT: [1 sentence why this matters, or "FYI only"]
+CONTEXT: [1 specific sentence with key details]
 
 Priority levels:
 - High = explicit deadline within 7 days OR someone blocked on me OR money/registration at risk
-- Medium = action needed this week, no immediate consequence if delayed 2-3 days
-- Low = informational, already handled, or action can wait 7+ days"""
+- Medium = action needed but deadline is 7-30 days out
+- Low = informational, already handled, deadline passed, or no action needed"""
         
         try:
             response = requests.post(

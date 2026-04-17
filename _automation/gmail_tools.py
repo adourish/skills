@@ -308,7 +308,7 @@ class GmailTools:
     
     async def get_urgent_emails(self, days: int = 30) -> List[Dict[str, Any]]:
         """Get urgent emails from last N days and detect reference emails"""
-        query = f'newer_than:{days}d -from:noreply -from:no-reply -from:donotreply'
+        query = f'newer_than:{days}d -from:noreply -from:no-reply -from:donotreply -category:promotions'
 
         messages = await self.search(query, max_results=100)
 

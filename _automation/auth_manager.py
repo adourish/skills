@@ -6,6 +6,7 @@ Personal services: Gmail, Todoist, Amplenote.
 
 import json
 import logging
+import os
 from pathlib import Path
 
 from google.auth.transport.requests import Request
@@ -16,7 +17,23 @@ from credential_resolver import CredentialResolver
 
 logger = logging.getLogger(__name__)
 
-GMAIL_TOKEN_PATH = Path(r'G:\My Drive\Areas\Keys\Gmail\token.json')
+# Support both Windows and Linux paths
+def get_gmail_token_path():
+    """Get Gmail token path - supports cross-platform paths"""
+    para_root = os.environ.get('PARA_ROOT', str(Path.home() / 'GoogleDrive'))
+    # Try Windows path first, then Linux
+    windows_path = Path(f'{para_root}\\03_Areas\\Keys\\Gmail\\token.json')
+    linux_path = Path(f'{para_root}/03_Areas/Keys/Gmail/token.json')
+
+    if windows_path.exists():
+        return windows_path
+    elif linux_path.exists():
+        return linux_path
+    else:
+        # Return Linux path as default for new tokens
+        return linux_path
+
+GMAIL_TOKEN_PATH = None  # Will be set dynamically
 
 
 class AuthManager:
@@ -34,8 +51,9 @@ class AuthManager:
         if self._gmail_creds and not self._gmail_creds.expired:
             return self._gmail_creds
 
-        if GMAIL_TOKEN_PATH.exists():
-            token_data = json.loads(GMAIL_TOKEN_PATH.read_text())
+        token_path = get_gmail_token_path()
+        if token_path.exists():
+            token_data = json.loads(token_path.read_text())
             self._gmail_creds = Credentials(
                 token=token_data['token'],
                 refresh_token=token_data['refresh_token'],
@@ -48,7 +66,7 @@ class AuthManager:
                 logger.info("Refreshing Gmail token")
                 self._gmail_creds.refresh(Request())
                 token_data['token'] = self._gmail_creds.token
-                GMAIL_TOKEN_PATH.write_text(json.dumps(token_data, indent=2))
+                token_path.write_text(json.dumps(token_data, indent=2))
                 logger.info("Gmail token refreshed and saved")
 
         return self._gmail_creds
